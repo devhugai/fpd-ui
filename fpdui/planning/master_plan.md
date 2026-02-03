@@ -1,0 +1,112 @@
+# Master Plan: Porting shadcn/ui to Flutter
+
+This document outlines the systematic approach to replicating the `shadcn/ui` ecosystem in Flutter. The goal is to provide a feature-complete port including the design system, components, routing, and a showcase application.
+
+## 1. Project Setup & Foundation
+
+### 1.1 Initialization
+- [ ] Initialize Flutter project in `F:\Proyectos\FlutterPilot.dev\fpd-ui\fpdui`.
+- [ ] Configure `pubspec.yaml` with essential dependencies:
+  - `flutter_riverpod` (State Management)
+  - `go_router` (Routing)
+  - `flutter_animate` (Animations)
+  - `google_fonts` (Typography)
+  - `lucide_icons` (Iconography)
+  - `intl` (Localization/Formatting)
+  - `gap` (Layout spacing)
+
+### 1.2 Architecture
+- [ ] Establish directory structure:
+  ```
+  lib/
+  ├── components/   # Individual UI components (shadcn equivalents)
+  ├── theme/        # Theme extensions and token definitions
+  ├── pages/        # Documentation/Showcase pages
+  ├── routes/       # GoRouter configuration
+  ├── utils/        # Helper functions
+  └── main.dart     # Entry point
+  ```
+
+### 1.3 Theming System (Hybrid Approach)
+We will leverage Flutter's native `ThemeData` and `ColorScheme` as the foundation, mapping shadcn tokens to standard Material properties where possible. We will ONLY use `ThemeExtension` for shadcn-specific concepts that fit awkwardly into Material Design.
+
+- [ ] **Standard Mapping**: Map shadcn colors to `ColorScheme` (e.g., `primary` -> `primary`, `destructive` -> `error`, `background` -> `surface`).
+- [ ] **Extension for Gaps**: Create `FpduiTheme` extension for specific tokens lacking direct equivalents:
+  - `muted`, `accent`, `popover`, `card` (if specific styling needed), `border`, `input`, `ring`.
+  - `radius` values.
+- [ ] Implement Light/Dark mode toggling using `Riverpod`.
+- [ ] Configure `GoogleFonts` (Inter or Geist equivalent) as the default text theme.
+
+## 2. Component Implementation Roadmap
+
+Components will be built in phases, starting from primitives used by others.
+
+### Phase 2.1: Primitives & Base
+- [ ] `Button` (Variants: Default, Secondary, Destructive, Outline, Ghost, Link).
+- [ ] `Badge` (Variants match Button).
+- [ ] `Avatar` (Image, Fallback).
+- [ ] `Card` (Header, Title, Description, Content, Footer).
+- [ ] `Separator`.
+- [ ] `Skelton` (Loading states).
+- [ ] `Label`.
+
+### Phase 2.2: Inputs & Forms
+- [ ] `Input` (TextField styling).
+- [ ] `Textarea` (Input with multiline).
+- [ ] `Checkbox`.
+- [ ] `Switch`.
+- [ ] `RadioGroup`.
+- [ ] `Slider`.
+- [ ] `Progress`.
+- [ ] `Form` (Validation wrapper using `flutter_form_builder` or vanilla `Form`).
+
+### Phase 2.3: Overlays & Feedback
+- [ ] `Dialog` (Modal).
+- [ ] `AlertDialog`.
+- [ ] `Sheet` (Side Drawer).
+- [ ] `Popover` (Anchor-based overlay).
+- [ ] `Tooltip`.
+- [ ] `Sonner/Toast` (SnackBar replacement).
+- [ ] `Context Menu`.
+- [ ] `Dropdown Menu`.
+
+### Phase 2.4: Navigation & Layout
+- [ ] `Accordion`.
+- [ ] `Collapsible`.
+- [ ] `Tabs` (Underlined active state).
+- [ ] `ScrollArea` (Custom scrollbar styling).
+- [ ] `Resizable` (Split view panel).
+- [ ] `Sidebar` (Complex responsive sidebar with collapse/expand).
+- [ ] `NavigationMenu` (Header navigation).
+- [ ] `Breadcrumb`.
+
+### Phase 2.5: Complex Data & Visuals
+- [ ] `Table` (DataTable with custom styling).
+- [ ] `Command` (Command Palette - Search interface).
+- [ ] `Calendar` (DatePicker).
+- [ ] `Carousel`.
+- [ ] `Chart` (Wrapper around `fl_chart` to match Shadcn style).
+
+## 3. Showcase Application (Documentation Site)
+
+Replicate the `apps/v4` documentation site to demonstrate the components.
+
+- [ ] Create generic `ComponentPage` layout.
+- [ ] Implement `Route` structure matching the web:
+  - `/docs/components/button`
+  - `/docs/components/card`
+  - etc.
+- [ ] Create a "Sink" page (Kitchen Sink) to view all components at once for theming tests.
+- [ ] Implement Theme Configurator (Color picker, Radius picker) similar to the website.
+
+## 4. Verification & Testing
+
+- [ ] Widget Tests for each primitive ensuring variant styling (visual regression or property checks).
+- [ ] Integration Test for the Command Palette and Navigation flows.
+- [ ] Manual verification via the Showcase App.
+
+## 5. Next Steps
+
+1.  Initialize the project.
+2.  Set up the Theme System (This is the blocker for all components).
+3.  Begin Phase 2.1 (Primitives).
