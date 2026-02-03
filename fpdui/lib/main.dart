@@ -5,6 +5,13 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'components/button.dart';
 import 'pages/docs/button_page.dart';
 import 'pages/docs/badge_page.dart';
+import 'pages/docs/avatar_page.dart';
+import 'pages/docs/card_page.dart';
+import 'pages/docs/separator_page.dart';
+import 'pages/docs/skeleton_page.dart';
+import 'pages/docs/label_page.dart';
+import 'pages/docs/input_page.dart';
+import 'pages/docs/textarea_page.dart';
 import 'theme/app_theme.dart';
 
 void main() {
@@ -26,6 +33,34 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/badge',
       builder: (context, state) => const BadgePage(),
+    ),
+    GoRoute(
+      path: '/docs/components/avatar',
+      builder: (context, state) => const AvatarPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/card',
+      builder: (context, state) => const CardPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/separator',
+      builder: (context, state) => const SeparatorPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/skeleton',
+      builder: (context, state) => const SkeletonPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/label',
+      builder: (context, state) => const LabelPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/input',
+      builder: (context, state) => const InputPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/textarea',
+      builder: (context, state) => const TextareaPage(),
     ),
   ],
 );
@@ -65,6 +100,55 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Badge',
             onPressed: () => context.push('/docs/components/badge'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Avatar',
+            onPressed: () => context.push('/docs/components/avatar'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Card',
+            onPressed: () => context.push('/docs/components/card'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Separator',
+            onPressed: () => context.push('/docs/components/separator'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Skeleton',
+            onPressed: () => context.push('/docs/components/skeleton'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Label',
+            onPressed: () => context.push('/docs/components/label'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+           FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Input',
+            onPressed: () => context.push('/docs/components/input'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Textarea',
+            onPressed: () => context.push('/docs/components/textarea'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],

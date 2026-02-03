@@ -42,18 +42,18 @@ We will leverage Flutter's native `ThemeData` and `ColorScheme` as the foundatio
 Components will be built in phases, starting from primitives used by others.
 
 ### Phase 2.1: Primitives & Base
-- [ ] `Button` (Variants: Default, Secondary, Destructive, Outline, Ghost, Link).
-- [ ] `Badge` (Variants match Button).
-- [ ] `Avatar` (Image, Fallback).
-- [ ] `Card` (Header, Title, Description, Content, Footer).
-- [ ] `Separator`.
-- [ ] `Skelton` (Loading states).
-- [ ] `Label`.
+- [x] `Button` (Variants: Default, Secondary, Destructive, Outline, Ghost, Link).
+- [x] `Badge` (Variants match Button).
+- [x] `Avatar` (Image, Fallback).
+- [x] `Card` (Header, Title, Description, Content, Footer).
+- [x] `Separator`.
+- [x] `Skelton` (Loading states).
+- [x] `Label`.
 
 ### Phase 2.2: Inputs & Forms
-- [ ] `Input` (TextField styling).
-- [ ] `Textarea` (Input with multiline).
-- [ ] `Checkbox`.
+- [x] `Input` (TextField styling). <!-- id: 24 -->
+- [x] `Textarea` (Input with multiline). <!-- id: 25 -->
+- [ ] `Checkbox`. <!-- id: 26 -->
 - [ ] `Switch`.
 - [ ] `RadioGroup`.
 - [ ] `Slider`.
