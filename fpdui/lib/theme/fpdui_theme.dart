@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class ShadcnTheme extends ThemeExtension<ShadcnTheme> {
-  const ShadcnTheme({
+class FpduiTheme extends ThemeExtension<FpduiTheme> {
+  const FpduiTheme({
     required this.background,
     required this.foreground,
     required this.card,
@@ -47,7 +47,7 @@ class ShadcnTheme extends ThemeExtension<ShadcnTheme> {
   final double radius;
 
   @override
-  ShadcnTheme copyWith({
+  FpduiTheme copyWith({
     Color? background,
     Color? foreground,
     Color? card,
@@ -69,7 +69,7 @@ class ShadcnTheme extends ThemeExtension<ShadcnTheme> {
     Color? ring,
     double? radius,
   }) {
-    return ShadcnTheme(
+    return FpduiTheme(
       background: background ?? this.background,
       foreground: foreground ?? this.foreground,
       card: card ?? this.card,
@@ -94,11 +94,11 @@ class ShadcnTheme extends ThemeExtension<ShadcnTheme> {
   }
 
   @override
-  ShadcnTheme lerp(ThemeExtension<ShadcnTheme>? other, double t) {
-    if (other is! ShadcnTheme) {
+  FpduiTheme lerp(ThemeExtension<FpduiTheme>? other, double t) {
+    if (other is! FpduiTheme) {
       return this;
     }
-    return ShadcnTheme(
+    return FpduiTheme(
       background: Color.lerp(background, other.background, t)!,
       foreground: Color.lerp(foreground, other.foreground, t)!,
       card: Color.lerp(card, other.card, t)!,

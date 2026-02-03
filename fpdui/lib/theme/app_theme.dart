@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'shadcn_theme.dart';
+import 'fpdui_theme.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
@@ -20,7 +20,7 @@ class AppTheme {
       outline: Color(0xffe4e4e7), // zinc-200
     ),
     extensions: const [
-      ShadcnTheme(
+      FpduiTheme(
         background: Colors.white,
         foreground: Color(0xff09090b),
         card: Colors.white,
@@ -37,10 +37,10 @@ class AppTheme {
         accentForeground: Color(0xff18181b),
         destructive: Color(0xffef4444),
         destructiveForeground: Color(0xfffafafa),
-        border: Color(0xffe4e4e7),
-        input: Color(0xffe4e4e7),
+        border: Color(0xffd4d4d8), // zinc-300 (Darker for visibility)
+        input: Color(0xffd4d4d8), // zinc-300
         ring: Color(0xff18181b),
-        radius: 0.5, // 0.5rem approx 8.0 logic? No, shadcn uses rem. 0.5rem = 8px usually. Let's use 8.0.
+        radius: 8.0, 
       ),
     ],
   );
@@ -62,7 +62,7 @@ class AppTheme {
       outline: Color(0xff27272a),
     ),
     extensions: const [
-      ShadcnTheme(
+      FpduiTheme(
         background: Color(0xff09090b),
         foreground: Color(0xfffafafa),
         card: Color(0xff09090b),
