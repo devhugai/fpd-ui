@@ -5,8 +5,8 @@ This document outlines the systematic approach to replicating the `shadcn/ui` ec
 ## 1. Project Setup & Foundation
 
 ### 1.1 Initialization
-- [ ] Initialize Flutter project in `F:\Proyectos\FlutterPilot.dev\fpd-ui\fpdui`.
-- [ ] Configure `pubspec.yaml` with essential dependencies:
+- [x] Initialize Flutter project in `F:\Proyectos\FlutterPilot.dev\fpd-ui\fpdui`.
+- [x] Configure `pubspec.yaml` with essential dependencies:
   - `flutter_riverpod` (State Management)
   - `go_router` (Routing)
   - `flutter_animate` (Animations)
@@ -16,26 +16,26 @@ This document outlines the systematic approach to replicating the `shadcn/ui` ec
   - `gap` (Layout spacing)
 
 ### 1.2 Architecture
-- [ ] Establish directory structure:
+- [x] Establish directory structure:
   ```
-  lib/
-  ├── components/   # Individual UI components (shadcn equivalents)
-  ├── theme/        # Theme extensions and token definitions
-  ├── pages/        # Documentation/Showcase pages
-  ├── routes/       # GoRouter configuration
-  ├── utils/        # Helper functions
+  lib\
+  ├── components\   # Individual UI components (shadcn equivalents)
+  ├── theme\        # Theme extensions and token definitions
+  ├── pages\        # Documentation/Showcase pages
+  ├── routes\       # GoRouter configuration
+  ├── utils\        # Helper functions
   └── main.dart     # Entry point
   ```
 
 ### 1.3 Theming System (Hybrid Approach)
 We will leverage Flutter's native `ThemeData` and `ColorScheme` as the foundation, mapping shadcn tokens to standard Material properties where possible. We will ONLY use `ThemeExtension` for shadcn-specific concepts that fit awkwardly into Material Design.
 
-- [ ] **Standard Mapping**: Map shadcn colors to `ColorScheme` (e.g., `primary` -> `primary`, `destructive` -> `error`, `background` -> `surface`).
-- [ ] **Extension for Gaps**: Create `FpduiTheme` extension for specific tokens lacking direct equivalents:
+- [x] **Standard Mapping**: Map shadcn colors to `ColorScheme` (e.g., `primary` -> `primary`, `destructive` -> `error`, `background` -> `surface`).
+- [x] **Extension for Gaps**: Create `FpduiTheme` extension for specific tokens lacking direct equivalents:
   - `muted`, `accent`, `popover`, `card` (if specific styling needed), `border`, `input`, `ring`.
   - `radius` values.
-- [ ] Implement Light/Dark mode toggling using `Riverpod`.
-- [ ] Configure `GoogleFonts` (Inter or Geist equivalent) as the default text theme.
+- [x] Implement Light/Dark mode toggling using `Riverpod`.
+- [x] Configure `GoogleFonts` (Inter or Geist equivalent) as the default text theme.
 
 ## 2. Component Implementation Roadmap
 

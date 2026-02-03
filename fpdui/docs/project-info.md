@@ -18,3 +18,6 @@
 ## Project Paths
 - **Root:** `F:\Proyectos\FlutterPilot.dev\fpd-ui\fpdui`
 - **Documentation:** `F:\Proyectos\FlutterPilot.dev\fpd-ui\fpdui\docs`
+
+## Workflow Rules
+- **Master Plan:** The `master_plan.md` file MUST be updated immediately upon completion of any task or sub-task. It serves as the source of truth for project progress.
