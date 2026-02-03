@@ -21,32 +21,32 @@ class ButtonPage extends StatelessWidget {
               spacing: 16,
               runSpacing: 16,
               children: [
-                ShadcnButton(
+                FpduiButton(
                   text: 'Primary',
                   onPressed: () {},
                 ),
-                ShadcnButton(
-                  variant: ShadcnButtonVariant.secondary,
+                FpduiButton(
+                  variant: FpduiButtonVariant.secondary,
                   text: 'Secondary',
                   onPressed: () {},
                 ),
-                ShadcnButton(
-                  variant: ShadcnButtonVariant.destructive,
+                FpduiButton(
+                  variant: FpduiButtonVariant.destructive,
                   text: 'Destructive',
                   onPressed: () {},
                 ),
-                ShadcnButton(
-                  variant: ShadcnButtonVariant.outline,
+                FpduiButton(
+                  variant: FpduiButtonVariant.outline,
                   text: 'Outline',
                   onPressed: () {},
                 ),
-                ShadcnButton(
-                  variant: ShadcnButtonVariant.ghost,
+                FpduiButton(
+                  variant: FpduiButtonVariant.ghost,
                   text: 'Ghost',
                   onPressed: () {},
                 ),
-                ShadcnButton(
-                  variant: ShadcnButtonVariant.link,
+                FpduiButton(
+                  variant: FpduiButtonVariant.link,
                   text: 'Link',
                   onPressed: () {},
                 ),
@@ -60,18 +60,18 @@ class ButtonPage extends StatelessWidget {
               spacing: 16,
               runSpacing: 16,
               children: [
-                ShadcnButton(
-                  size: ShadcnButtonSize.lg,
+                FpduiButton(
+                  size: FpduiButtonSize.lg,
                   text: 'Large',
                   onPressed: () {},
                 ),
-                ShadcnButton(
-                  size: ShadcnButtonSize.$default,
+                FpduiButton(
+                  size: FpduiButtonSize.$default,
                   text: 'Default',
                   onPressed: () {},
                 ),
-                ShadcnButton(
-                  size: ShadcnButtonSize.sm,
+                FpduiButton(
+                  size: FpduiButtonSize.sm,
                   text: 'Small',
                   onPressed: () {},
                 ),
@@ -84,18 +84,18 @@ class ButtonPage extends StatelessWidget {
               spacing: 16,
               runSpacing: 16,
               children: [
-                ShadcnButton(
+                FpduiButton(
                   text: 'With Icon',
                   icon: const Icon(LucideIcons.mail),
                   onPressed: () {},
                 ),
-                ShadcnButton(
+                FpduiButton(
                   text: 'Trailing Icon',
                   trailingIcon: const Icon(LucideIcons.arrowRight),
                   onPressed: () {},
                 ),
-                ShadcnButton(
-                  size: ShadcnButtonSize.icon,
+                FpduiButton(
+                  size: FpduiButtonSize.icon,
                   icon: const Icon(LucideIcons.chevronRight),
                   onPressed: () {},
                 ),
@@ -108,17 +108,17 @@ class ButtonPage extends StatelessWidget {
               spacing: 16,
               runSpacing: 16,
               children: [
-                 const ShadcnButton(
+                 const FpduiButton(
                   text: 'Disabled',
                   onPressed: null,
                 ),
-                 const ShadcnButton(
-                  variant: ShadcnButtonVariant.secondary,
+                 const FpduiButton(
+                  variant: FpduiButtonVariant.secondary,
                   text: 'Disabled',
                   onPressed: null,
                 ),
-                const ShadcnButton(
-                  variant: ShadcnButtonVariant.outline,
+                const FpduiButton(
+                  variant: FpduiButtonVariant.outline,
                   text: 'Disabled',
                   onPressed: null,
                 ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
-import '../theme/shadcn_theme.dart';
+import '../theme/fpdui_theme.dart';
 
-enum ShadcnButtonVariant {
+enum FpduiButtonVariant {
   primary,
   destructive,
   outline,
@@ -12,18 +12,18 @@ enum ShadcnButtonVariant {
   link,
 }
 
-enum ShadcnButtonSize {
+enum FpduiButtonSize {
   $default,
   sm,
   lg,
   icon,
 }
 
-class ShadcnButton extends StatefulWidget {
-  const ShadcnButton({
+class FpduiButton extends StatefulWidget {
+  const FpduiButton({
     super.key,
-    this.variant = ShadcnButtonVariant.primary,
-    this.size = ShadcnButtonSize.$default,
+    this.variant = FpduiButtonVariant.primary,
+    this.size = FpduiButtonSize.$default,
     this.onPressed,
     this.child,
     this.text,
@@ -33,8 +33,8 @@ class ShadcnButton extends StatefulWidget {
     this.height,
   }) : assert(child != null || text != null, 'Either child or text must be provided');
 
-  final ShadcnButtonVariant variant;
-  final ShadcnButtonSize size;
+  final FpduiButtonVariant variant;
+  final FpduiButtonSize size;
   final VoidCallback? onPressed;
   final Widget? child;
   final String? text;
@@ -44,17 +44,16 @@ class ShadcnButton extends StatefulWidget {
   final double? height;
 
   @override
-  State<ShadcnButton> createState() => _ShadcnButtonState();
+  State<FpduiButton> createState() => _FpduiButtonState();
 }
 
-class _ShadcnButtonState extends State<ShadcnButton> {
+class _FpduiButtonState extends State<FpduiButton> {
   bool _isHovered = false;
-  bool _isFocused = false;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final shadcnTheme = theme.extension<ShadcnTheme>()!;
+    final fpduiTheme = theme.extension<FpduiTheme>()!;
     
     // Determine colors based on variant
     Color? backgroundColor;
@@ -62,42 +61,41 @@ class _ShadcnButtonState extends State<ShadcnButton> {
     Color? borderColor;
     
     switch (widget.variant) {
-      case ShadcnButtonVariant.primary:
-        backgroundColor = shadcnTheme.primary;
-        foregroundColor = shadcnTheme.primaryForeground;
-        if (_isHovered) backgroundColor = shadcnTheme.primary.withOpacity(0.9);
+      case FpduiButtonVariant.primary:
+        backgroundColor = fpduiTheme.primary;
+        foregroundColor = fpduiTheme.primaryForeground;
+        if (_isHovered) backgroundColor = fpduiTheme.primary.withOpacity(0.9);
         break;
-      case ShadcnButtonVariant.destructive:
-        backgroundColor = shadcnTheme.destructive;
-        foregroundColor = shadcnTheme.destructiveForeground;
-        if (_isHovered) backgroundColor = shadcnTheme.destructive.withOpacity(0.9);
+      case FpduiButtonVariant.destructive:
+        backgroundColor = fpduiTheme.destructive;
+        foregroundColor = fpduiTheme.destructiveForeground;
+        if (_isHovered) backgroundColor = fpduiTheme.destructive.withOpacity(0.9);
         break;
-      case ShadcnButtonVariant.outline:
-        backgroundColor = shadcnTheme.background; // Usually transparent or background
+      case FpduiButtonVariant.outline:
+        backgroundColor = fpduiTheme.background; 
         foregroundColor = theme.colorScheme.onBackground;
-        borderColor = shadcnTheme.border;
+        borderColor = fpduiTheme.border;
         if (_isHovered) {
-          backgroundColor = shadcnTheme.accent;
-          foregroundColor = shadcnTheme.accentForeground;
+          backgroundColor = fpduiTheme.accent;
+          foregroundColor = fpduiTheme.accentForeground;
         }
         break;
-      case ShadcnButtonVariant.secondary:
-        backgroundColor = shadcnTheme.secondary;
-        foregroundColor = shadcnTheme.secondaryForeground;
-        if (_isHovered) backgroundColor = shadcnTheme.secondary.withOpacity(0.8);
+      case FpduiButtonVariant.secondary:
+        backgroundColor = fpduiTheme.secondary;
+        foregroundColor = fpduiTheme.secondaryForeground;
+        if (_isHovered) backgroundColor = fpduiTheme.secondary.withOpacity(0.8);
         break;
-      case ShadcnButtonVariant.ghost:
+      case FpduiButtonVariant.ghost:
         backgroundColor = Colors.transparent;
         foregroundColor = theme.colorScheme.onBackground;
         if (_isHovered) {
-          backgroundColor = shadcnTheme.accent;
-          foregroundColor = shadcnTheme.accentForeground;
+          backgroundColor = fpduiTheme.accent;
+          foregroundColor = fpduiTheme.accentForeground;
         }
         break;
-      case ShadcnButtonVariant.link:
+      case FpduiButtonVariant.link:
         backgroundColor = Colors.transparent;
-        foregroundColor = shadcnTheme.primary;
-        // Hover underline handled in content usually, but here we might just not change bg
+        foregroundColor = fpduiTheme.primary;
         break;
     }
 
@@ -106,26 +104,25 @@ class _ShadcnButtonState extends State<ShadcnButton> {
     EdgeInsetsGeometry padding;
     
     switch (widget.size) {
-      case ShadcnButtonSize.$default:
-        height = 36; // h-9 = 2.25rem = 36px
-        padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 8); // px-4 py-2
+      case FpduiButtonSize.$default:
+        height = 36; 
+        padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 8); 
         break;
-      case ShadcnButtonSize.sm:
-        height = 32; // h-8 = 2rem = 32px
-        padding = const EdgeInsets.symmetric(horizontal: 12); // px-3
+      case FpduiButtonSize.sm:
+        height = 32; 
+        padding = const EdgeInsets.symmetric(horizontal: 12); 
         break;
-      case ShadcnButtonSize.lg:
-        height = 40; // h-10 = 2.5rem = 40px
-        padding = const EdgeInsets.symmetric(horizontal: 32); // px-8
+      case FpduiButtonSize.lg:
+        height = 40; 
+        padding = const EdgeInsets.symmetric(horizontal: 32); 
         break;
-      case ShadcnButtonSize.icon:
-        height = 36; // h-9
+      case FpduiButtonSize.icon:
+        height = 36; 
         padding = EdgeInsets.zero;
         break;
     }
 
-    final double effectiveWidth = widget.size == ShadcnButtonSize.icon ? height : (widget.width ?? double.infinity);
-    final double radius = shadcnTheme.radius;
+    final double effectiveRadius = fpduiTheme.radius;
 
     final bool isDisabled = widget.onPressed == null;
     if (isDisabled) {
@@ -148,7 +145,7 @@ class _ShadcnButtonState extends State<ShadcnButton> {
               color: foregroundColor,
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              decoration: widget.variant == ShadcnButtonVariant.link && _isHovered 
+              decoration: widget.variant == FpduiButtonVariant.link && _isHovered 
                   ? TextDecoration.underline 
                   : null,
               decorationColor: foregroundColor,
@@ -172,16 +169,16 @@ class _ShadcnButtonState extends State<ShadcnButton> {
         child: AnimatedContainer(
           duration: 150.ms,
           curve: Curves.easeInOut,
-          width: widget.size == ShadcnButtonSize.icon ? height : widget.width, // Don't force infinity if not needed
+          width: widget.size == FpduiButtonSize.icon ? height : widget.width,
           height: widget.height ?? height,
           constraints: BoxConstraints(
-            minWidth: widget.size == ShadcnButtonSize.icon ? height : 0, 
+            minWidth: widget.size == FpduiButtonSize.icon ? height : 0, 
             minHeight: height,
           ),
-          padding: widget.size == ShadcnButtonSize.icon ? EdgeInsets.zero : padding,
+          padding: widget.size == FpduiButtonSize.icon ? EdgeInsets.zero : padding,
           decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: BorderRadius.circular(radius),
+            borderRadius: BorderRadius.circular(effectiveRadius),
             border: borderColor != null ? Border.all(color: borderColor, width: 1) : null,
           ),
           child: Center(child: content),

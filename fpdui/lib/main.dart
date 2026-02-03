@@ -49,8 +49,8 @@ class HomePage extends ConsumerWidget {
         children: [
           const Text('Primitives', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
-          ShadcnButton(
-            variant: ShadcnButtonVariant.outline,
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
             text: 'Button',
             onPressed: () => context.push('/docs/components/button'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
