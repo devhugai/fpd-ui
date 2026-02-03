@@ -12,6 +12,11 @@ import 'pages/docs/skeleton_page.dart';
 import 'pages/docs/label_page.dart';
 import 'pages/docs/input_page.dart';
 import 'pages/docs/textarea_page.dart';
+import 'pages/docs/checkbox_page.dart';
+import 'pages/docs/switch_page.dart';
+import 'pages/docs/radio_group_page.dart';
+import 'pages/docs/slider_page.dart';
+import 'pages/docs/progress_page.dart';
 import 'theme/app_theme.dart';
 
 void main() {
@@ -61,6 +66,26 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/textarea',
       builder: (context, state) => const TextareaPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/checkbox',
+      builder: (context, state) => const CheckboxPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/switch',
+      builder: (context, state) => const SwitchPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/radio-group',
+      builder: (context, state) => const RadioGroupPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/slider',
+      builder: (context, state) => const SliderPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/progress',
+      builder: (context, state) => const ProgressPage(),
     ),
   ],
 );
@@ -149,6 +174,41 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Textarea',
             onPressed: () => context.push('/docs/components/textarea'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Checkbox',
+            onPressed: () => context.push('/docs/components/checkbox'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Switch',
+            onPressed: () => context.push('/docs/components/switch'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Radio Group',
+            onPressed: () => context.push('/docs/components/radio-group'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Slider',
+            onPressed: () => context.push('/docs/components/slider'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Progress',
+            onPressed: () => context.push('/docs/components/progress'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],
