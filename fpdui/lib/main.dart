@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'components/button.dart';
 import 'pages/docs/button_page.dart';
+import 'pages/docs/badge_page.dart';
 import 'theme/app_theme.dart';
 
 void main() {
@@ -21,6 +22,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/button',
       builder: (context, state) => const ButtonPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/badge',
+      builder: (context, state) => const BadgePage(),
     ),
   ],
 );
@@ -53,6 +58,13 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Button',
             onPressed: () => context.push('/docs/components/button'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Badge',
+            onPressed: () => context.push('/docs/components/badge'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],
