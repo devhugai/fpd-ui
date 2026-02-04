@@ -91,8 +91,8 @@ Components will be built in phases, starting from primitives used by others.
 
 Replicate the `apps/v4` documentation site to demonstrate the components.
 
-- [ ] Create generic `ComponentPage` layout.
-- [ ] Implement `Route` structure matching the web:
+- [x] Create generic `ComponentPage` layout.
+- [x] Implement `Route` structure matching the web:
   - `/docs/components/button`
   - `/docs/components/card`
   - etc.
@@ -107,6 +107,6 @@ Replicate the `apps/v4` documentation site to demonstrate the components.
 
 ## 5. Next Steps
 
-1.  Initialize the project.
-2.  Set up the Theme System (This is the blocker for all components).
-3.  Begin Phase 2.1 (Primitives).
+1.  Migrate remaining component pages to `ComponentPage` wrapper.
+2.  Complete Phase 2.2 (Inputs & Forms) documentation pages.
+3.  Add Widget Tests for core primitives.
