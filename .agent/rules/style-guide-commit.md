@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # Commit Style Guide - FPDUI
 
 ## Philosophy

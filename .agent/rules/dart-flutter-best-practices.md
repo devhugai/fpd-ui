@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # Dart and Flutter Best Practices Guide (2024-2025)
 
 This guide outlines the industry-standard best practices for developing high-quality, maintainable, and performant applications using Dart and Flutter.

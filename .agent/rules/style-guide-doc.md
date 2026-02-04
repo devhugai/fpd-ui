@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # Documentation Style Guide - Flutter Pilot Dev
 
 ## General Principles

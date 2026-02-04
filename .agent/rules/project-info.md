@@ -2,6 +2,10 @@
 trigger: always_on
 ---
 
+---
+trigger: always_on
+---
+
 # Flutter Pilot Dev - Project Information
 
 ## Identity
