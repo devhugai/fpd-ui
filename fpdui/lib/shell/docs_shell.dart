@@ -24,7 +24,7 @@ class DocsShell extends StatelessWidget {
           children: [
             // Desktop Sidebar
             const FpduiSidebar(
-              children: [DocsSidebarContent()],
+              children: [Expanded(child: DocsSidebarContent())],
             ),
             // Main Content
             Expanded(

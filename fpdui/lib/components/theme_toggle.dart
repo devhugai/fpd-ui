@@ -32,6 +32,8 @@ class __ThemeToggleStatefulState extends State<_ThemeToggleStateful> {
   Widget build(BuildContext context) {
     return FpduiPopover(
       controller: _controller,
+      targetAnchor: Alignment.bottomRight,
+      followerAnchor: Alignment.topRight,
       content: const SizedBox(
         width: 300,
         child: ThemeConfigurator(),

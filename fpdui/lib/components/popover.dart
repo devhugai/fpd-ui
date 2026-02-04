@@ -7,6 +7,8 @@ class FpduiPopover extends StatefulWidget {
     required this.child,
     required this.content,
     this.controller,
+    this.targetAnchor = Alignment.bottomCenter,
+    this.followerAnchor = Alignment.topCenter,
   });
 
   /// The widget that triggers the popover (e.g. Button).
@@ -16,6 +18,8 @@ class FpduiPopover extends StatefulWidget {
   final Widget content;
 
   final FpduiPopoverController? controller;
+  final Alignment targetAnchor;
+  final Alignment followerAnchor;
 
   @override
   State<FpduiPopover> createState() => _FpduiPopoverState();
@@ -59,15 +63,16 @@ class _FpduiPopoverState extends State<FpduiPopover> {
         controller: _overlayController,
         overlayChildBuilder: (context) {
           return Positioned(
-            width: 300,
+            height: null, // Let content define height
+            width: null,  // Let content define width
             child: CompositedTransformFollower(
               link: _layerLink,
               showWhenUnlinked: false,
-              targetAnchor: Alignment.bottomCenter,
-              followerAnchor: Alignment.topCenter,
+              targetAnchor: widget.targetAnchor,
+              followerAnchor: widget.followerAnchor,
               offset: const Offset(0, 4),
               child: Align(
-                alignment: Alignment.topCenter,
+                alignment: widget.followerAnchor,
                 child: TapRegion(
                   groupId: _layerLink, // Use layerLink as unique ID
                   onTapOutside: (event) => _hide(),
