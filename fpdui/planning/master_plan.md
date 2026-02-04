@@ -82,10 +82,10 @@ Components will be built in phases, starting from primitives used by others.
 
 ### Phase 2.5: Complex Data & Visuals
 - [x2] `Table` (DataTable with custom styling).
-- [ ] `Command` (Command Palette - Search interface).
-- [ ] `Calendar` (DatePicker).
-- [ ] `Carousel`.
-- [ ] `Chart` (Wrapper around `fl_chart` to match Shadcn style).
+- [x] `Command` (Command Palette - Search interface).
+- [x] `Calendar` (DatePicker).
+- [x] `Carousel`.
+- [x] `Chart` (Wrapper around `fl_chart` to match Shadcn style).
 
 ## 3. Showcase Application (Documentation Site)
 
