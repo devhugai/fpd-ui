@@ -53,7 +53,7 @@ class _FpduiContextMenuState extends State<FpduiContextMenu> {
       ),
       color: theme.colorScheme.background, // bg-popover
       surfaceTintColor: Colors.transparent,
-      items: items.map((item) {
+      items: widget.items.map((item) {
         if (item is FpduiContextMenuItem) {
           return PopupMenuItem(
             height: 32, // py-1.5 -> approx 32px total height

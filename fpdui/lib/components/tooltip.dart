@@ -78,7 +78,6 @@ class _FpduiTooltipState extends State<FpduiTooltip> {
           child: OverlayPortal(
             controller: _overlayController,
             overlayChildBuilder: (context) {
-            overlayChildBuilder: (context) {
               // Remove Positioned. CompositedTransformFollower handles positioning relative to link.
               // We use Align to prevent it from stretching if Overlay forces stretch (unlikely but safe).
               return Align(
