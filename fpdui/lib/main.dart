@@ -30,6 +30,7 @@ import 'pages/docs/accordion_page.dart';
 import 'pages/docs/collapsible_page.dart';
 import 'pages/docs/tabs_page.dart';
 import 'pages/docs/scroll_area_page.dart';
+import 'pages/docs/resizable_page.dart';
 import 'components/toast.dart'; // Import Toaster
 import 'theme/app_theme.dart';
 
@@ -152,6 +153,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/scroll-area',
       builder: (context, state) => const ScrollAreaPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/resizable',
+      builder: (context, state) => const ResizablePage(),
     ),
   ],
 );
@@ -368,6 +373,13 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Scroll Area',
             onPressed: () => context.push('/docs/components/scroll-area'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Resizable',
+            onPressed: () => context.push('/docs/components/resizable'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],
