@@ -27,6 +27,7 @@ import 'pages/docs/toast_page.dart';
 import 'pages/docs/context_menu_page.dart';
 import 'pages/docs/dropdown_menu_page.dart';
 import 'pages/docs/accordion_page.dart';
+import 'pages/docs/collapsible_page.dart';
 import 'components/toast.dart'; // Import Toaster
 import 'theme/app_theme.dart';
 
@@ -137,6 +138,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/accordion',
       builder: (context, state) => const AccordionPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/collapsible',
+      builder: (context, state) => const CollapsiblePage(),
     ),
   ],
 );
@@ -332,6 +337,13 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Accordion',
             onPressed: () => context.push('/docs/components/accordion'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Collapsible',
+            onPressed: () => context.push('/docs/components/collapsible'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],
