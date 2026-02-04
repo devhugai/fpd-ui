@@ -38,21 +38,38 @@ class _AccountTabContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FpduiCard(
-      title: 'Account',
-      description: "Make changes to your account here. Click save when you're done.",
-      content: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch, // Ensure stretch for footer/header alignment
+        mainAxisSize: MainAxisSize.min,
         children: [
-          FpduiLabel('Name'),
-          Gap(8),
-          FpduiInput(placeholder: 'Pedro Duarte'),
-          Gap(16),
-          FpduiLabel('Username'),
-          Gap(8),
-          FpduiInput(placeholder: '@peduarte'),
+          const FpduiCardHeader(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FpduiCardTitle(child: Text('Account')),
+                FpduiCardDescription(child: Text("Make changes to your account here. Click save when you're done.")),
+              ],
+            ),
+          ),
+          const FpduiCardContent(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FpduiLabel('Name'),
+                Gap(8),
+                FpduiInput(hintText: 'Pedro Duarte'),
+                Gap(16),
+                FpduiLabel('Username'),
+                Gap(8),
+                FpduiInput(hintText: '@peduarte'),
+              ],
+            ),
+          ),
+          FpduiCardFooter(
+            child: FpduiButton(text: 'Save changes', onPressed: (){}),
+          ),
         ],
       ),
-      footer: FpduiButton(text: 'Save changes', onPressed: (){}),
     );
   }
 }
@@ -63,21 +80,38 @@ class _PasswordTabContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FpduiCard(
-      title: 'Password',
-      description: "Change your password here. After saving, you'll be logged out.",
-      content: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          FpduiLabel('Current password'),
-          Gap(8),
-          FpduiInput(obscureText: true),
-          Gap(16),
-          FpduiLabel('New password'),
-          Gap(8),
-          FpduiInput(obscureText: true),
+          const FpduiCardHeader(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FpduiCardTitle(child: Text('Password')),
+                FpduiCardDescription(child: Text("Change your password here. After saving, you'll be logged out.")),
+              ],
+            ),
+          ),
+          const FpduiCardContent(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FpduiLabel('Current password'),
+                Gap(8),
+                FpduiInput(obscureText: true),
+                Gap(16),
+                FpduiLabel('New password'),
+                Gap(8),
+                FpduiInput(obscureText: true),
+              ],
+            ),
+          ),
+          FpduiCardFooter(
+             child: FpduiButton(text: 'Save password', onPressed: (){}),
+          ),
         ],
       ),
-      footer: FpduiButton(text: 'Save password', onPressed: (){}),
     );
   }
 }

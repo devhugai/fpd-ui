@@ -5,8 +5,15 @@ import '../../components/button.dart';
 import '../../components/input.dart';
 import '../../components/label.dart';
 
-class PopoverPage extends StatelessWidget {
+class PopoverPage extends StatefulWidget {
   const PopoverPage({super.key});
+
+  @override
+  State<PopoverPage> createState() => _PopoverPageState();
+}
+
+class _PopoverPageState extends State<PopoverPage> {
+  final FpduiPopoverController _controller = FpduiPopoverController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +21,7 @@ class PopoverPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Popover')),
       body: Center(
         child: FpduiPopover(
+          controller: _controller,
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +71,7 @@ class PopoverPage extends StatelessWidget {
           child: FpduiButton(
             text: 'Open Popover',
             variant: FpduiButtonVariant.outline,
-            onPressed: () {}, // Handled by Popover internally via GestureDetector
+            onPressed: () => _controller.toggle(),
           ),
         ),
       ),

@@ -147,23 +147,24 @@ class _TooltipContent extends StatelessWidget {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
-    return FractionallySizedBox(
-        widthFactor: null, // Allow intrinsic width
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6), // px-3 py-1.5
-          decoration: BoxDecoration(
-            color: theme.colorScheme.onBackground, // bg-foreground (inverse)
-            borderRadius: BorderRadius.circular(fpduiTheme.radius), // rounded-md
-          ),
-          child: DefaultTextStyle(
-            style: TextStyle(
-              color: theme.colorScheme.background, // text-background (inverse)
-              fontSize: 12, // text-xs
-              fontWeight: FontWeight.w500,
-            ),
-            child: content ?? Text(message!),
-          ),
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 300), // Max width to prevent screen overflow
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6), // px-3 py-1.5
+      decoration: BoxDecoration(
+        color: theme.colorScheme.onBackground, // bg-foreground (inverse)
+        borderRadius: BorderRadius.circular(fpduiTheme.radius), // rounded-md
+      ),
+      child: DefaultTextStyle(
+        style: TextStyle(
+          color: theme.colorScheme.background, // text-background (inverse)
+          fontSize: 12, // text-xs
+          fontWeight: FontWeight.w500,
         ),
+        child: content ?? Text(
+          message!,
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 }

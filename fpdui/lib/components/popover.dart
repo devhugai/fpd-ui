@@ -58,19 +58,18 @@ class _FpduiPopoverState extends State<FpduiPopover> {
       child: OverlayPortal(
         controller: _overlayController,
         overlayChildBuilder: (context) {
-          return Positioned( // This needs some logic to determine position relative to target
-            // Simplification: Standard OverlayPortal doesn't auto-position nicely like MenuAnchor.
-            // We usually need a follower.
-            width: 300, // w-72 = 288px. Fixed width or intrinsic? shadcn is w-72.
+          return Positioned(
+            width: 300,
             child: CompositedTransformFollower(
               link: _layerLink,
               showWhenUnlinked: false,
-              targetAnchor: Alignment.bottomCenter, // Default align
+              targetAnchor: Alignment.bottomCenter,
               followerAnchor: Alignment.topCenter,
-              offset: const Offset(0, 4), // sideOffset=4
+              offset: const Offset(0, 4),
               child: Align(
                 alignment: Alignment.topCenter,
                 child: TapRegion(
+                  groupId: _layerLink, // Use layerLink as unique ID
                   onTapOutside: (event) => _hide(),
                   child: _PopoverContent(child: widget.content),
                 ),
@@ -78,9 +77,12 @@ class _FpduiPopoverState extends State<FpduiPopover> {
             ),
           );
         },
-        child: GestureDetector(
-          onTap: _toggle,
-          child: widget.child,
+        child: TapRegion(
+          groupId: _layerLink, // Same group ID
+          child: GestureDetector(
+            onTap: _toggle,
+            child: widget.child,
+          ),
         ),
       ),
     );
