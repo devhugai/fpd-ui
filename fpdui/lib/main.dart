@@ -32,6 +32,8 @@ import 'pages/docs/tabs_page.dart';
 import 'pages/docs/scroll_area_page.dart';
 import 'pages/docs/resizable_page.dart';
 import 'pages/docs/sidebar_page.dart';
+import 'pages/docs/navigation_menu_page.dart';
+import 'pages/docs/breadcrumb_page.dart';
 import 'components/toast.dart'; // Import Toaster
 import 'theme/app_theme.dart';
 
@@ -162,6 +164,14 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/sidebar',
       builder: (context, state) => const SidebarPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/navigation-menu',
+      builder: (context, state) => const NavigationMenuPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/breadcrumb',
+      builder: (context, state) => const BreadcrumbPage(),
     ),
   ],
 );
@@ -352,6 +362,20 @@ class HomePage extends ConsumerWidget {
           ),
           const SizedBox(height: 16),
           const Text('Navigation & Layout', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Navigation Menu',
+            onPressed: () => context.push('/docs/components/navigation-menu'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Breadcrumb',
+            onPressed: () => context.push('/docs/components/breadcrumb'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
           const SizedBox(height: 8),
           FpduiButton(
             variant: FpduiButtonVariant.outline,
