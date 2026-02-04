@@ -16,11 +16,21 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeModeProvider);
     final router = ref.watch(routerProvider);
+    final radius = ref.watch(themeRadiusProvider);
+    final primaryColor = ref.watch(themePrimaryColorProvider);
 
     return MaterialApp.router(
       title: 'FPD UI',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: AppTheme.build(
+        brightness: Brightness.light,
+        radius: radius,
+        primaryColor: primaryColor,
+      ),
+      darkTheme: AppTheme.build(
+        brightness: Brightness.dark,
+        radius: radius,
+        primaryColor: primaryColor,
+      ),
       themeMode: themeMode,
       routerConfig: router,
       builder: (context, child) {

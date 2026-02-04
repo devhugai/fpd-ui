@@ -4,6 +4,10 @@ import 'package:lucide_icons/lucide_icons.dart';
 import '../components/button.dart';
 import '../components/card.dart';
 import '../components/badge.dart';
+import '../components/input.dart';
+import '../components/checkbox.dart';
+import '../components/switch.dart';
+import '../components/avatar.dart';
 import 'docs/component_page.dart';
 
 class SinkPage extends StatelessWidget {
@@ -41,6 +45,50 @@ class SinkPage extends StatelessWidget {
               FpduiBadge(child: Text('Secondary'), variant: FpduiBadgeVariant.secondary),
               FpduiBadge(child: Text('Destructive'), variant: FpduiBadgeVariant.destructive),
               FpduiBadge(child: Text('Outline'), variant: FpduiBadgeVariant.outline),
+            ],
+          ),
+          const Gap(32),
+          const Text('Inputs', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const Gap(16),
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 300,
+                child: FpduiInput(hintText: 'Email address'),
+              ),
+              Gap(16),
+              SizedBox(
+                width: 300,
+                child: FpduiInput(hintText: 'Disabled', enabled: false),
+              ),
+            ],
+          ),
+          const Gap(32),
+          const Text('Selection', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const Gap(16),
+          Row(
+            children: [
+              const FpduiCheckbox(value: true, onChanged: null),
+              const Gap(8),
+              const FpduiCheckbox(value: false, onChanged: null),
+              const Gap(16),
+              const FpduiSwitch(value: true, onChanged: null),
+              const Gap(8),
+              const FpduiSwitch(value: false, onChanged: null),
+            ],
+          ),
+          const Gap(32),
+          const Text('Avatars', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const Gap(16),
+          const Row(
+            children: [
+              FpduiAvatar(fallback: Text('CN')),
+              Gap(16),
+              FpduiAvatar(
+                image: NetworkImage('https://github.com/shadcn.png'),
+                fallback: Text('CN'),
+              ),
             ],
           ),
           const Gap(32),

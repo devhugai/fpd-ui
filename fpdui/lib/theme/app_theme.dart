@@ -3,87 +3,99 @@ import 'package:google_fonts/google_fonts.dart';
 import 'fpdui_theme.dart';
 
 class AppTheme {
-  static final ThemeData lightTheme = ThemeData(
-    useMaterial3: true,
-    fontFamily: GoogleFonts.inter().fontFamily,
-    colorScheme: const ColorScheme.light(
-      background: Colors.white,
-      onBackground: Color(0xff09090b), // zinc-950
-      surface: Colors.white,
-      onSurface: Color(0xff09090b),
-      primary: Color(0xff18181b), // zinc-900
-      onPrimary: Color(0xfffafafa), // zinc-50
-      secondary: Color(0xfff4f4f5), // zinc-100
-      onSecondary: Color(0xff18181b),
-      error: Color(0xffef4444), // red-500
-      onError: Colors.white,
-      outline: Color(0xffe4e4e7), // zinc-200
-    ),
-    extensions: const [
-      FpduiTheme(
-        background: Colors.white,
-        foreground: Color(0xff09090b),
-        card: Colors.white,
-        cardForeground: Color(0xff09090b),
-        popover: Colors.white,
-        popoverForeground: Color(0xff09090b),
-        primary: Color(0xff18181b),
-        primaryForeground: Color(0xfffafafa),
-        secondary: Color(0xfff4f4f5),
-        secondaryForeground: Color(0xff18181b),
-        muted: Color(0xfff4f4f5),
-        mutedForeground: Color(0xff71717a), // zinc-500
-        accent: Color(0xfff4f4f5),
-        accentForeground: Color(0xff18181b),
-        destructive: Color(0xffef4444),
-        destructiveForeground: Color(0xfffafafa),
-        border: Color(0xffd4d4d8), // zinc-300 (Darker for visibility)
-        input: Color(0xffd4d4d8), // zinc-300
-        ring: Color(0xff18181b),
-        radius: 8.0, 
-      ),
-    ],
-  );
+  static ThemeData build({
+    required Brightness brightness,
+    Color? primaryColor,
+    double radius = 0.5,
+  }) {
+    final isDark = brightness == Brightness.dark;
+    final baseScheme = isDark ? const ColorScheme.dark() : const ColorScheme.light();
+    
+    // Default Zinc colors
+    // Light
+    final lightBackground = Colors.white;
+    final lightForeground = const Color(0xff09090b);
+    final lightCard = Colors.white;
+    final lightCardForeground = const Color(0xff09090b);
+    final lightPopover = Colors.white;
+    final lightPopoverForeground = const Color(0xff09090b);
+    final lightPrimary = primaryColor ?? const Color(0xff18181b);
+    final lightPrimaryForeground = const Color(0xfffafafa);
+    final lightSecondary = const Color(0xfff4f4f5);
+    final lightSecondaryForeground = const Color(0xff18181b);
+    final lightMuted = const Color(0xfff4f4f5);
+    final lightMutedForeground = const Color(0xff71717a);
+    final lightAccent = const Color(0xfff4f4f5);
+    final lightAccentForeground = const Color(0xff18181b);
+    final lightDestructive = const Color(0xffef4444);
+    final lightDestructiveForeground = const Color(0xfffafafa);
+    final lightBorder = const Color(0xffd4d4d8);
+    final lightInput = const Color(0xffd4d4d8);
+    final lightRing = const Color(0xff18181b);
 
-  static final ThemeData darkTheme = ThemeData(
-    useMaterial3: true,
-    fontFamily: GoogleFonts.inter().fontFamily,
-    colorScheme: const ColorScheme.dark(
-      background: Color(0xff09090b),
-      onBackground: Color(0xfffafafa),
-      surface: Color(0xff09090b),
-      onSurface: Color(0xfffafafa),
-      primary: Color(0xfffafafa),
-      onPrimary: Color(0xff18181b),
-      secondary: Color(0xff27272a), // zinc-800
-      onSecondary: Color(0xfffafafa),
-      error: Color(0xff7f1d1d), // red-900
-      onError: Colors.white,
-      outline: Color(0xff27272a),
-    ),
-    extensions: const [
-      FpduiTheme(
-        background: Color(0xff09090b),
-        foreground: Color(0xfffafafa),
-        card: Color(0xff09090b),
-        cardForeground: Color(0xfffafafa),
-        popover: Color(0xff09090b),
-        popoverForeground: Color(0xfffafafa),
-        primary: Color(0xfffafafa),
-        primaryForeground: Color(0xff18181b),
-        secondary: Color(0xff27272a),
-        secondaryForeground: Color(0xfffafafa),
-        muted: Color(0xff27272a),
-        mutedForeground: Color(0xffa1a1aa), // zinc-400
-        accent: Color(0xff27272a),
-        accentForeground: Color(0xfffafafa),
-        destructive: Color(0xff7f1d1d),
-        destructiveForeground: Color(0xfffafafa),
-        border: Color(0xff27272a),
-        input: Color(0xff27272a),
-        ring: Color(0xffd4d4d8), // zinc-300
-        radius: 8.0,
+    // Dark
+    final darkBackground = const Color(0xff09090b);
+    final darkForeground = const Color(0xfffafafa);
+    final darkCard = const Color(0xff09090b);
+    final darkCardForeground = const Color(0xfffafafa);
+    final darkPopover = const Color(0xff09090b);
+    final darkPopoverForeground = const Color(0xfffafafa);
+    final darkPrimary = primaryColor ?? const Color(0xfffafafa);
+    final darkPrimaryForeground = const Color(0xff18181b);
+    final darkSecondary = const Color(0xff27272a);
+    final darkSecondaryForeground = const Color(0xfffafafa);
+    final darkMuted = const Color(0xff27272a);
+    final darkMutedForeground = const Color(0xffa1a1aa);
+    final darkAccent = const Color(0xff27272a);
+    final darkAccentForeground = const Color(0xfffafafa);
+    final darkDestructive = const Color(0xff7f1d1d);
+    final darkDestructiveForeground = const Color(0xfffafafa);
+    final darkBorder = const Color(0xff27272a);
+    final darkInput = const Color(0xff27272a);
+    final darkRing = const Color(0xffd4d4d8);
+
+    return ThemeData(
+      useMaterial3: true,
+      fontFamily: GoogleFonts.inter().fontFamily,
+      brightness: brightness,
+      colorScheme: baseScheme.copyWith(
+        background: isDark ? darkBackground : lightBackground,
+        onBackground: isDark ? darkForeground : lightForeground,
+        surface: isDark ? darkCard : lightCard,
+        onSurface: isDark ? darkCardForeground : lightCardForeground,
+        primary: isDark ? darkPrimary : lightPrimary, // Native primary used for some widgets
+        onPrimary: isDark ? darkPrimaryForeground : lightPrimaryForeground,
+        secondary: isDark ? darkSecondary : lightSecondary,
+        onSecondary: isDark ? darkSecondaryForeground : lightSecondaryForeground,
+        error: isDark ? darkDestructive : lightDestructive,
+        onError: isDark ? darkDestructiveForeground : lightDestructiveForeground,
+        outline: isDark ? darkBorder : lightBorder, // using border color for outline
       ),
-    ],
-  );
+      extensions: [
+        FpduiTheme(
+          background: isDark ? darkBackground : lightBackground,
+          foreground: isDark ? darkForeground : lightForeground,
+          card: isDark ? darkCard : lightCard,
+          cardForeground: isDark ? darkCardForeground : lightCardForeground,
+          popover: isDark ? darkPopover : lightPopover,
+          popoverForeground: isDark ? darkPopoverForeground : lightPopoverForeground,
+          primary: isDark ? darkPrimary : lightPrimary,
+          primaryForeground: isDark ? darkPrimaryForeground : lightPrimaryForeground,
+          secondary: isDark ? darkSecondary : lightSecondary,
+          secondaryForeground: isDark ? darkSecondaryForeground : lightSecondaryForeground,
+          muted: isDark ? darkMuted : lightMuted,
+          mutedForeground: isDark ? darkMutedForeground : lightMutedForeground,
+          accent: isDark ? darkAccent : lightAccent,
+          accentForeground: isDark ? darkAccentForeground : lightAccentForeground,
+          destructive: isDark ? darkDestructive : lightDestructive,
+          destructiveForeground: isDark ? darkDestructiveForeground : lightDestructiveForeground,
+          border: isDark ? darkBorder : lightBorder,
+          input: isDark ? darkInput : lightInput,
+          ring: isDark ? darkRing : lightRing,
+          radius: radius * 16.0, // mapping 0.0-1.0 to pixel values approx or just use as is? 
+          // Default was 0.5 (web rem?) -> 8.0 px. So multiplier 16 seems right if 0.5 is default.
+        ),
+      ],
+    );
+  }
 }
