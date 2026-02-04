@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
+import '../pages/docs/introduction_page.dart';
+import '../pages/docs/installation_page.dart';
 import '../pages/docs/button_page.dart';
 import '../pages/docs/badge_page.dart';
 import '../pages/docs/avatar_page.dart';
@@ -57,6 +59,14 @@ final routerProvider = Provider<GoRouter>((ref) {
           return DocsShell(child: child);
         },
         routes: [
+          GoRoute(
+            path: '/docs/introduction',
+            builder: (context, state) => const IntroductionPage(),
+          ),
+          GoRoute(
+            path: '/docs/installation',
+            builder: (context, state) => const InstallationPage(),
+          ),
           GoRoute(
             path: '/docs/components/button',
             builder: (context, state) => const ButtonPage(),
