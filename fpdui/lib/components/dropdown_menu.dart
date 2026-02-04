@@ -57,7 +57,7 @@ class FpduiDropdownMenu extends StatelessWidget {
              return const PopupMenuDivider(height: 1);
           }
            return PopupMenuItem<void>(child: item);
-        }).toList(),
+        }).cast<PopupMenuEntry<void>>().toList(),
         child: trigger,
       ),
     );

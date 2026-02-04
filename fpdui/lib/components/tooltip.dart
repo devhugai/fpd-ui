@@ -150,7 +150,6 @@ class _TooltipContent extends StatelessWidget {
     return FractionallySizedBox(
         widthFactor: null, // Allow intrinsic width
         child: Container(
-          mainAxisSize: MainAxisSize.min,
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6), // px-3 py-1.5
           decoration: BoxDecoration(
             color: theme.colorScheme.onBackground, // bg-foreground (inverse)

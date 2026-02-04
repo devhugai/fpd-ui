@@ -35,7 +35,6 @@ class _CollapsiblePageState extends State<CollapsiblePage> {
                    text: '',
                    width: 32, // sq-8 approx size-9 in shadcn
                    height: 32,
-                   padding: EdgeInsets.zero,
                    variant: FpduiButtonVariant.ghost,
                    onPressed: () {
                      _controller.toggle();

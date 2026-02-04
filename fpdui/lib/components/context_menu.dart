@@ -59,7 +59,7 @@ class FpduiContextMenu extends StatelessWidget {
            return const PopupMenuDivider(height: 1); 
         }
         return PopupMenuItem(child: item);
-      }).toList(),
+      }).cast<PopupMenuEntry<dynamic>>().toList(),
     );
   }
 

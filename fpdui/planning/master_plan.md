@@ -61,18 +61,18 @@ Components will be built in phases, starting from primitives used by others.
 - [x] `Form` (Layout wrapper `FpduiFormItem`). <!-- id: 31 -->
 
 ### Phase 2.3: Overlays & Feedback
-- [ ] `Dialog` (Modal).
-- [ ] `AlertDialog`.
-- [ ] `Sheet` (Side Drawer).
-- [ ] `Popover` (Anchor-based overlay).
-- [ ] `Tooltip`.
-- [ ] `Sonner/Toast` (SnackBar replacement).
-- [ ] `Context Menu`.
-- [ ] `Dropdown Menu`.
+- [x] `Dialog` (Modal).
+- [x] `AlertDialog`.
+- [x] `Sheet` (Side Drawer).
+- [x] `Popover` (Anchor-based overlay).
+- [x] `Tooltip`.
+- [x] `Sonner/Toast` (SnackBar replacement).
+- [x] `Context Menu`.
+- [x] `Dropdown Menu`.
 
 ### Phase 2.4: Navigation & Layout
-- [ ] `Accordion`.
-- [ ] `Collapsible`.
+- [x] `Accordion`.
+- [x] `Collapsible`.
 - [ ] `Tabs` (Underlined active state).
 - [ ] `ScrollArea` (Custom scrollbar styling).
 - [ ] `Resizable` (Split view panel).

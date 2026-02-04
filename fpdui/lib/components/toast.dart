@@ -174,15 +174,15 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
         bgColor = theme.colorScheme.error;
         textColor = theme.colorScheme.onError;
         borderColor = theme.colorScheme.error;
-         icon = LucideIcons.octagonX;
+         icon = LucideIcons.alertOctagon;
          iconColor = textColor;
         break;
       case FpduiToastVariant.success:
-        icon = LucideIcons.circleCheck;
+        icon = LucideIcons.checkCircle;
         iconColor = Colors.green;
         break;
       case FpduiToastVariant.warning:
-        icon = LucideIcons.triangleAlert;
+        icon = LucideIcons.alertTriangle;
         iconColor = Colors.amber;
         break;
        case FpduiToastVariant.info:
