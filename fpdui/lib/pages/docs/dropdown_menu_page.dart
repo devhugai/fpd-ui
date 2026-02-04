@@ -49,15 +49,13 @@ class DropdownMenuPage extends StatelessWidget {
                onTap: () {},
              ),
           ],
-          trigger: FpduiButton(
-            text: 'Open',
-            variant: FpduiButtonVariant.outline,
-            // Button usually handles press, but here wrapper handles it. 
-            // FpduiDropdownMenu wraps child in PopupMenuButton which handles tap.
-            // But PopupMenuButton wraps child in InkWell? Default ignores buttons inside.
-            // We need pointer intercept or just let PopupMenuButton render the trigger with `child`.
-             onPressed: null, // Let the dropdown handle click
-          ),
+            trigger: AbsorbPointer(
+              child: FpduiButton(
+                text: 'Open',
+                variant: FpduiButtonVariant.outline,
+                onPressed: () {}, // Enable button visual state
+              ),
+            ),
         ),
       ),
     );

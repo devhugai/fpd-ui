@@ -67,7 +67,7 @@ Components will be built in phases, starting from primitives used by others.
 - [x] `Popover` (Anchor-based overlay).
 - [x] `Tooltip`.
 - [x] `Sonner/Toast` (SnackBar replacement).
-- [x] `Context Menu`.
+- [x] `Context Menu`.2
 - [x] `Dropdown Menu`.
 
 ### Phase 2.4: Navigation & Layout
