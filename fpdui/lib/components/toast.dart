@@ -70,16 +70,20 @@ class _ToasterState extends State<FpduiToaster> {
         widget.child,
         Positioned(
           bottom: 16,
-          right: 16, // Default position bottom-right
+          right: 16,
+          left: 16, // Constrain to screen width with padding
           child: SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: _toasts.map((toast) => _ToastWidget(
-                key: ValueKey(toast.id),
-                entry: toast,
-                onDismiss: () => removeToast(toast.id),
-              )).toList(),
+            child: Align(
+              alignment: Alignment.bottomRight, // Keep toasts to the right on large screens
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: _toasts.map((toast) => _ToastWidget(
+                  key: ValueKey(toast.id),
+                  entry: toast,
+                  onDismiss: () => removeToast(toast.id),
+                )).toList(),
+              ),
             ),
           ),
         ),
@@ -204,7 +208,8 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
           child: FadeTransition(
             opacity: _fadeAnimation,
             child: Container(
-              width: 356, // fixed width typically or constrained? Shadcn toasts usually width-full sm:w-[356px]
+              constraints: const BoxConstraints(maxWidth: 356), // Responsive max width
+              // width: 356, // Removed fixed width
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: bgColor,
@@ -218,53 +223,56 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
                   ),
                 ],
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                   if (icon != null) ...[
-                     Icon(icon, size: 16, color: iconColor),
-                     const Gap(12),
-                   ],
-                   Expanded(
-                     child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       mainAxisSize: MainAxisSize.min, // Critical for avoiding unbounded height if mistakenly nested
-                       children: [
-                         Text(
-                           widget.entry.title,
-                           style: TextStyle(
-                             fontSize: 14,
-                             fontWeight: FontWeight.w600,
-                             color: textColor,
-                           ),
-                           softWrap: true, // Ensure wrapping
-                         ),
-                         if (widget.entry.description != null) ...[
-                           const Gap(4),
+              child: Material(
+                type: MaterialType.transparency,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                     if (icon != null) ...[
+                       Icon(icon, size: 16, color: iconColor),
+                       const Gap(12),
+                     ],
+                     Expanded(
+                       child: Column(
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         mainAxisSize: MainAxisSize.min, // Critical for avoiding unbounded height if mistakenly nested
+                         children: [
                            Text(
-                             widget.entry.description!,
+                             widget.entry.title,
                              style: TextStyle(
-                               fontSize: 12, // text-sm
-                               color: textColor.withOpacity(0.8), 
+                               fontSize: 14,
+                               fontWeight: FontWeight.w600,
+                               color: textColor,
                              ),
-                             softWrap: true,
+                             softWrap: true, // Ensure wrapping
                            ),
+                           if (widget.entry.description != null) ...[
+                             const Gap(4),
+                             Text(
+                               widget.entry.description!,
+                               style: TextStyle(
+                                 fontSize: 12, // text-sm
+                                 color: textColor.withOpacity(0.8), 
+                               ),
+                               softWrap: true,
+                             ),
+                           ],
                          ],
-                       ],
+                       ),
                      ),
-                   ),
-                   if (widget.entry.action != null) ...[
+                     if (widget.entry.action != null) ...[
+                       const Gap(12),
+                       // Action might be large? constrain it?
+                       // shadcn actions are usually buttons.
+                       widget.entry.action!,
+                     ],
                      const Gap(12),
-                     // Action might be large? constrain it?
-                     // shadcn actions are usually buttons.
-                     widget.entry.action!,
-                   ],
-                   const Gap(12),
-                   InkWell(
-                     onTap: _dismiss,
-                     child: Icon(LucideIcons.x, size: 14, color: textColor.withOpacity(0.5)),
-                   ),
-                ],
+                     InkWell(
+                       onTap: _dismiss,
+                       child: Icon(LucideIcons.x, size: 14, color: textColor.withOpacity(0.5)),
+                     ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -73,8 +73,8 @@ Components will be built in phases, starting from primitives used by others.
 ### Phase 2.4: Navigation & Layout
 - [x] `Accordion`.
 - [x] `Collapsible`.
-- [ ] `Tabs` (Underlined active state).
-- [ ] `ScrollArea` (Custom scrollbar styling).
+- [x] `Tabs` (Underlined active state).
+- [x] `ScrollArea` (Custom scrollbar styling).
 - [ ] `Resizable` (Split view panel).
 - [ ] `Sidebar` (Complex responsive sidebar with collapse/expand).
 - [ ] `NavigationMenu` (Header navigation).
