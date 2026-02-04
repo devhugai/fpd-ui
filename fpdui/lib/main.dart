@@ -35,6 +35,8 @@ import 'pages/docs/sidebar_page.dart';
 import 'pages/docs/navigation_menu_page.dart';
 import 'pages/docs/breadcrumb_page.dart';
 import 'pages/docs/table_page.dart';
+import 'pages/docs/data_table_page.dart';
+import 'pages/docs/command_page.dart';
 import 'components/toast.dart'; // Import Toaster
 import 'theme/app_theme.dart';
 
@@ -177,6 +179,14 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/table',
       builder: (context, state) => const TablePage(),
+    ),
+    GoRoute(
+      path: '/docs/components/data-table',
+      builder: (context, state) => const DataTablePage(),
+    ),
+    GoRoute(
+      path: '/docs/components/command',
+      builder: (context, state) => const CommandPage(),
     ),
   ],
 );
@@ -430,6 +440,20 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Table',
             onPressed: () => context.push('/docs/components/table'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Data Table',
+            onPressed: () => context.push('/docs/components/data-table'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Command / Palette',
+            onPressed: () => context.push('/docs/components/command'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],
