@@ -70,7 +70,7 @@ class DataTablePage extends StatelessWidget {
                 child: const Icon(LucideIcons.moreHorizontal, size: 16),
               ),
               items: [
-                FpduiDropdownMenuLabel(child: Text("Actions")),
+                FpduiDropdownMenuLabel("Actions"),
                 FpduiDropdownMenuItem(
                   child: Text("Copy payment ID"),
                   onTap: () {

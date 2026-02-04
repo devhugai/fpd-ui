@@ -154,7 +154,7 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
                SizedBox(
                 width: 250,
                 child: FpduiInput(
-                   placeholder: 'Filter emails...',
+                   hintText: 'Filter emails...',
                    onChanged: (val) {
                      // Implement filter logic
                    },
@@ -189,7 +189,7 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
                     if (widget.enableRowSelection)
                       FpduiTableHead(
                         child: FpduiCheckbox(
-                          checked: _selectedRows.length == _paginatedData.length && _paginatedData.isNotEmpty,
+                          value: _selectedRows.length == _paginatedData.length && _paginatedData.isNotEmpty,
                            // Indeterminate would be nice
                           onChanged: _toggleSelectAll,
                         ),
@@ -240,7 +240,7 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
                       // Workaround: Nested Table or just fill other cells with empty.
                     ] + List.generate(
                         widget.columns.length + (widget.enableRowSelection ? 0 : -1), // + selection - 1 for first cell?
-                        (index) => const SizedBox(),
+                        (index) => const TableCell(child: SizedBox()),
                       ), 
                   ),
 
@@ -253,7 +253,7 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
                       if (widget.enableRowSelection)
                         FpduiTableCell(
                           child: FpduiCheckbox(
-                            checked: isSelected,
+                            value: isSelected,
                             onChanged: (val) => _toggleSelectRow(item, val),
                           ),
                         ),
@@ -289,16 +289,14 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
                 variant: FpduiButtonVariant.outline,
                 size: FpduiButtonSize.sm,
                 text: 'Previous',
-                disabled: _currentPage == 0,
-                onPressed: () => setState(() => _currentPage--),
+                onPressed: _currentPage == 0 ? null : () => setState(() => _currentPage--),
               ),
               const Gap(8),
                FpduiButton(
                 variant: FpduiButtonVariant.outline,
                 size: FpduiButtonSize.sm,
                 text: 'Next',
-                disabled: _currentPage >= _totalPages - 1,
-                onPressed: () => setState(() => _currentPage++),
+                onPressed: _currentPage >= _totalPages - 1 ? null : () => setState(() => _currentPage++),
               ),
             ],
           ),
