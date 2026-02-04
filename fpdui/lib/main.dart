@@ -31,6 +31,7 @@ import 'pages/docs/collapsible_page.dart';
 import 'pages/docs/tabs_page.dart';
 import 'pages/docs/scroll_area_page.dart';
 import 'pages/docs/resizable_page.dart';
+import 'pages/docs/sidebar_page.dart';
 import 'components/toast.dart'; // Import Toaster
 import 'theme/app_theme.dart';
 
@@ -157,6 +158,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/resizable',
       builder: (context, state) => const ResizablePage(),
+    ),
+    GoRoute(
+      path: '/docs/components/sidebar',
+      builder: (context, state) => const SidebarPage(),
     ),
   ],
 );
@@ -380,6 +385,13 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Resizable',
             onPressed: () => context.push('/docs/components/resizable'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Sidebar',
+            onPressed: () => context.push('/docs/components/sidebar'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],

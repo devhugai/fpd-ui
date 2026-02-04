@@ -5,8 +5,21 @@ import '../theme/fpdui_theme.dart';
 
 enum FpduiSheetSide { top, right, bottom, left }
 
-class FpduiSheet {
-  /// Shows a shadcn-styled sheet (side drawer).
+class FpduiSheet extends StatefulWidget {
+  const FpduiSheet({
+    super.key,
+    required this.open,
+    this.onOpenChange,
+    required this.content,
+    this.side = FpduiSheetSide.right,
+  });
+
+  final bool open;
+  final ValueChanged<bool>? onOpenChange;
+  final Widget content;
+  final FpduiSheetSide side;
+
+  /// Imperative show method
   static Future<T?> show<T>({
     required BuildContext context,
     required Widget child,
@@ -23,7 +36,7 @@ class FpduiSheet {
         return Align(
           alignment: _getAlignment(side),
           child: Material(
-            color: Colors.transparent, // Content handles background
+            color: Colors.transparent,
             child: _FpduiSheetContainer(
               side: side,
               child: child,
@@ -64,6 +77,44 @@ class FpduiSheet {
       case FpduiSheetSide.right:
         return Tween(begin: const Offset(1, 0), end: Offset.zero);
     }
+  }
+
+  @override
+  State<FpduiSheet> createState() => _FpduiSheetState();
+}
+
+class _FpduiSheetState extends State<FpduiSheet> {
+  bool _isShown = false;
+
+  @override
+  void didUpdateWidget(FpduiSheet oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.open != oldWidget.open) {
+      if (widget.open && !_isShown) {
+        _show();
+      } else if (!widget.open && _isShown) {
+        // Can't easily force pop specific route without ref, but usually user dismisses it.
+        // If programmatic close is needed:
+        Navigator.of(context).pop(); 
+      }
+    }
+  }
+
+  void _show() {
+    _isShown = true;
+    FpduiSheet.show(
+      context: context,
+      child: widget.content,
+      side: widget.side,
+    ).then((_) {
+      _isShown = false;
+      widget.onOpenChange?.call(false);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.shrink(); // This widget is logical only
   }
 }
 
