@@ -22,6 +22,12 @@ import 'pages/docs/dialog_page.dart';
 import 'pages/docs/alert_dialog_page.dart';
 import 'pages/docs/sheet_page.dart';
 import 'pages/docs/popover_page.dart';
+import 'pages/docs/tooltip_page.dart';
+import 'pages/docs/toast_page.dart';
+import 'pages/docs/context_menu_page.dart';
+import 'pages/docs/dropdown_menu_page.dart';
+import 'pages/docs/accordion_page.dart';
+import 'components/toast.dart'; // Import Toaster
 import 'theme/app_theme.dart';
 
 void main() {
@@ -111,6 +117,26 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/popover',
       builder: (context, state) => const PopoverPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/tooltip',
+      builder: (context, state) => const TooltipPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/toast',
+      builder: (context, state) => const ToastPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/context-menu',
+      builder: (context, state) => const ContextMenuPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/dropdown-menu',
+      builder: (context, state) => const DropdownMenuPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/accordion',
+      builder: (context, state) => const AccordionPage(),
     ),
   ],
 );
@@ -271,6 +297,43 @@ class HomePage extends ConsumerWidget {
             onPressed: () => context.push('/docs/components/popover'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Tooltip',
+            onPressed: () => context.push('/docs/components/tooltip'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Toast / Sonner',
+            onPressed: () => context.push('/docs/components/toast'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Context Menu',
+            onPressed: () => context.push('/docs/components/context-menu'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Dropdown Menu',
+            onPressed: () => context.push('/docs/components/dropdown-menu'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 16),
+          const Text('Navigation & Layout', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Accordion',
+            onPressed: () => context.push('/docs/components/accordion'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
         ],
       ),
     );
@@ -290,6 +353,11 @@ class MyApp extends ConsumerWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode,
       routerConfig: _router,
+      builder: (context, child) {
+        return FpduiToaster(
+          child: child!,
+        );
+      },
       debugShowCheckedModeBanner: false,
     );
   }
