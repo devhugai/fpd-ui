@@ -38,6 +38,8 @@ import 'pages/docs/table_page.dart';
 import 'pages/docs/data_table_page.dart';
 import 'pages/docs/command_page.dart';
 import 'pages/docs/calendar_page.dart';
+import 'pages/docs/chart_page.dart';
+import 'pages/docs/carousel_page.dart';
 import 'components/toast.dart'; // Import Toaster
 import 'theme/app_theme.dart';
 
@@ -192,6 +194,14 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/calendar',
       builder: (context, state) => const CalendarPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/chart',
+      builder: (context, state) => const ChartPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/carousel',
+      builder: (context, state) => const CarouselPage(),
     ),
   ],
 );
@@ -466,6 +476,20 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Calendar',
             onPressed: () => context.push('/docs/components/calendar'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Charts',
+            onPressed: () => context.push('/docs/components/chart'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Carousel',
+            onPressed: () => context.push('/docs/components/carousel'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],
