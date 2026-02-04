@@ -6,6 +6,7 @@ import 'table.dart';
 import 'button.dart';
 import 'input.dart';
 import 'checkbox.dart';
+import 'dropdown_menu.dart';
 
 // Definition for a column
 class FpduiDataColumn<T> {
@@ -52,6 +53,10 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
   int? _sortColumnIndex;
   bool _sortAscending = true;
   
+  // Filters & Visibility
+  String _searchQuery = '';
+  final Set<int> _hiddenColumns = {}; // Set of indices of hidden columns
+
   // Pagination
   int _currentPage = 0;
   final int _pageSize = 10;
@@ -67,7 +72,9 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
     super.didUpdateWidget(oldWidget);
     if (widget.data != oldWidget.data) {
       _sortedData = List.from(widget.data);
-      // Re-apply sort if needed
+      if (_sortColumnIndex != null) {
+         _sort(_sortColumnIndex!, _sortAscending);
+      }
     }
   }
 
@@ -79,10 +86,11 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
       _sortColumnIndex = columnIndex;
       _sortAscending = ascending;
       
-      // Basic sorting if accessorKey is string
-      // Just a mock implementation of sorting for now since we don't have true generic accessor logic without reflection
-      // In real world usage, user provides a `sorter` function.
-      // For MVP, we'll assuming we don't sort or we sort by string representation.
+      // Basic sorting
+      // We assume accessorKey matches a field or we rely on user provided data being somewhat simple for MVP.
+      // To properly sort generic T without reflection, we'd need a comparator in FpduiDataColumn.
+      // For now, let's skip actual sorting logic implementation on T as it's complex without reflection or callbacks.
+      // Visual feedback only for MVP unless we add `comparator` to Column.
     });
   }
 
@@ -107,46 +115,59 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
       widget.onSelectionChanged?.call(_selectedRows.toList());
     });
   }
-
-  List<T> get _paginatedData {
-    final startIndex = _currentPage * _pageSize;
-    if (startIndex >= _sortedData.length) return [];
+  
+  List<T> get _filteredData {
+    if (_searchQuery.isEmpty) return _sortedData;
     
-    final endIndex = (startIndex + _pageSize < _sortedData.length) 
-        ? startIndex + _pageSize 
-        : _sortedData.length;
-        
-    return _sortedData.sublist(startIndex, endIndex);
+    // Naive generic search: toString() check
+    return _sortedData.where((item) {
+      return item.toString().toLowerCase().contains(_searchQuery.toLowerCase());
+    }).toList();
   }
 
-  int get _totalPages => (_sortedData.length / _pageSize).ceil();
+  List<T> get _paginatedData {
+    final data = _filteredData;
+    final startIndex = _currentPage * _pageSize;
+    if (startIndex >= data.length) return [];
+    
+    final endIndex = (startIndex + _pageSize < data.length) 
+        ? startIndex + _pageSize 
+        : data.length;
+        
+    return data.sublist(startIndex, endIndex);
+  }
+
+  int get _totalPages => (_filteredData.length / _pageSize).ceil();
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
     
-    // We emulate a Table structure but using Flex/Rows for layout flexibility (Standard Shadcn look)
-    // Or we stick to FpduiTable (which uses Table widget).
-    // FpduiTable uses Table widget which is rigid on column widths.
-    // DataTable usually needs resizable or intrinsic widths.
-    // Let's use FpduiTable with FixedColumnWidths or FlexColumnWidths based on `flex` prop in definition.
-
+    // Filter out hidden columns from definitions effectively for width calculation
+    // Indices in widget.columns map to columnWidths keys.
+    // If RowSelection is on, Col 0 is Checkbox. Col 1 is widget.columns[0].
+    
     final columnWidths = <int, TableColumnWidth>{};
+    int visibleColCount = 0;
+    
     if (widget.enableRowSelection) {
-      columnWidths[0] = const FixedColumnWidth(48); // Checkbox column
-      for (int i = 0; i < widget.columns.length; i++) {
-        columnWidths[i + 1] = FlexColumnWidth(widget.columns[i].flex.toDouble());
-      }
-    } else {
-       for (int i = 0; i < widget.columns.length; i++) {
-        columnWidths[i] = FlexColumnWidth(widget.columns[i].flex.toDouble());
-      }
+      columnWidths[0] = const FixedColumnWidth(48);
+      visibleColCount++;
+    }
+    
+    for (int i = 0; i < widget.columns.length; i++) {
+        if (_hiddenColumns.contains(i)) continue;
+        
+        // Map logical index 'i' to Table index
+        int tableIndex = widget.enableRowSelection ? i + 1 : i;
+        columnWidths[tableIndex] = FlexColumnWidth(widget.columns[i].flex.toDouble());
+        visibleColCount++;
     }
 
     return Column(
       children: [
-        // Toolbar (Search/Filter placeholder)
+        // Toolbar (Search/Filter)
         Padding(
           padding: const EdgeInsets.only(bottom: 16),
           child: Row(
@@ -154,18 +175,49 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
                SizedBox(
                 width: 250,
                 child: FpduiInput(
-                   hintText: 'Filter emails...',
+                   hintText: 'Filter...',
                    onChanged: (val) {
-                     // Implement filter logic
+                     setState(() {
+                       _searchQuery = val;
+                       _currentPage = 0; // Reset page on filter
+                     });
                    },
                 ),
                ),
                const Spacer(),
-               FpduiButton(
-                 variant: FpduiButtonVariant.outline,
-                 text: 'Columns',
-                 trailingIcon: const Icon(LucideIcons.chevronDown, size: 16),
-                 onPressed: () {},
+               FpduiDropdownMenu(
+                 trigger: FpduiButton(
+                   variant: FpduiButtonVariant.outline,
+                   text: 'Columns',
+                   trailingIcon: const Icon(LucideIcons.chevronDown, size: 16),
+                 ),
+                 items: [
+                   FpduiDropdownMenuLabel("Toggle Columns"),
+                   FpduiDropdownMenuSeparator(),
+                   ...widget.columns.asMap().entries.map((entry) {
+                     final index = entry.key;
+                     final col = entry.value;
+                     final isVisible = !_hiddenColumns.contains(index);
+                     return FpduiDropdownMenuItem(
+                       child: Row(
+                         children: [
+                            SizedBox(width: 16, child: isVisible ? const Icon(LucideIcons.check, size: 14) : null),
+                            const Gap(8),
+                            Text(col.accessorKey ?? 'Column $index'),
+                         ],
+                       ),
+                       onTap: () {
+                         setState(() {
+                           if (isVisible) {
+                             _hiddenColumns.add(index);
+                           } else {
+                             _hiddenColumns.remove(index);
+                           }
+                         });
+                       },
+                     );
+                   }),
+                 ],
                ),
             ],
           ),
@@ -190,12 +242,11 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
                       FpduiTableHead(
                         child: FpduiCheckbox(
                           value: _selectedRows.length == _paginatedData.length && _paginatedData.isNotEmpty,
-                           // Indeterminate would be nice
                           onChanged: _toggleSelectAll,
                         ),
                       ),
                       
-                    ...widget.columns.asMap().entries.map((entry) {
+                    ...widget.columns.asMap().entries.where((e) => !_hiddenColumns.contains(e.key)).map((entry) {
                       final i = entry.key;
                       final col = entry.value;
                       return FpduiTableHead(
@@ -233,15 +284,13 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
                            alignment: Alignment.center,
                            child: const Text('No results.'),
                          ),
-                      ), // PROBLEM: TableRow must have same number of columns.
-                      // We need to span columns? generic Table widget doesn't support colspan nicely on one row relative to headers defined in columnWidths map easily without hacks.
-                      // Actually TableCell has NO colspan.
-                      // This is why `Table` widget is rigid.
-                      // Workaround: Nested Table or just fill other cells with empty.
-                    ] + List.generate(
-                        widget.columns.length + (widget.enableRowSelection ? 0 : -1), // + selection - 1 for first cell?
-                        (index) => const TableCell(child: SizedBox()),
                       ), 
+                      // Need to fill remaining cells to avoid table error
+                      ...List.generate(
+                        visibleColCount - 1, 
+                        (index) => const TableCell(child: SizedBox()),
+                      ),
+                    ], 
                   ),
 
                 ..._paginatedData.map((item) {
@@ -258,12 +307,12 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
                           ),
                         ),
                         
-                      ...widget.columns.map((col) {
-                        if (col.cell != null) {
+                      ...widget.columns.asMap().entries.where((e) => !_hiddenColumns.contains(e.key)).map((entry) {
+                        final col = entry.value;
+                         if (col.cell != null) {
                           return FpduiTableCell(child: col.cell!(context, item));
                         }
-                        // Default string access? - Requires reflection or map
-                        return const FpduiTableCell(child: Text('?'));
+                        return const FpduiTableCell(child: Text(''));
                       }),
                     ],
                   );
@@ -272,6 +321,7 @@ class _FpduiDataTableState<T> extends State<FpduiDataTable<T>> {
             ),
           ),
         ),
+
         
         // Footer / Pagination
         Padding(

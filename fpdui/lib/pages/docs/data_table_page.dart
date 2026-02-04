@@ -14,6 +14,9 @@ class Payment {
   final String email;
 
   Payment({required this.id, required this.amount, required this.status, required this.email});
+  
+  @override
+  String toString() => '$id $status $email ${amount.toString()}';
 }
 
 class DataTablePage extends StatelessWidget {

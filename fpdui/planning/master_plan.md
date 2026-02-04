@@ -81,7 +81,7 @@ Components will be built in phases, starting from primitives used by others.
 - [x] `Breadcrumb`.
 
 ### Phase 2.5: Complex Data & Visuals
-- [x] `Table` (DataTable with custom styling).
+- [x2] `Table` (DataTable with custom styling).
 - [ ] `Command` (Command Palette - Search interface).
 - [ ] `Calendar` (DatePicker).
 - [ ] `Carousel`.

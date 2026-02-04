@@ -17,30 +17,25 @@ class FpduiTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final fpduiTheme = theme.extension<FpduiTheme>()!;
+    // final theme = Theme.of(context);
+    // final fpduiTheme = theme.extension<FpduiTheme>()!;
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width, // Ensure full width or constraints?
-        // Table behaves better if constrained or it shrinks.
-        // Shadcn table is w-full.
-        // In Flutter, Table expands to parent width.
-        // If we put it in ScrollView, we need to constrain it to at LEAST screen width or allow intrinsic.
-        // Let's use a Container with width constraint if needed, or let it handle itself.
-        child: Table(
-          columnWidths: columnWidths,
-          defaultColumnWidth: defaultColumnWidth,
-          border: border, // Shadcn usually borders on rows, handled via TableRow decoration logic or explicit border.
-          // In React: [&_tr]:border-b
-          // Flutter TableRow can have decoration.
-          // But border collapse logic is tricky.
-          // We'll try to emulate border-b via TableRow decoration.
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          children: children,
-        ),
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minWidth: constraints.maxWidth),
+            child: Table(
+              columnWidths: columnWidths,
+              defaultColumnWidth: defaultColumnWidth,
+              border: border,
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: children,
+            ),
+          ),
+        );
+      },
     );
   }
 }
