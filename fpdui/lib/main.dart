@@ -34,6 +34,7 @@ import 'pages/docs/resizable_page.dart';
 import 'pages/docs/sidebar_page.dart';
 import 'pages/docs/navigation_menu_page.dart';
 import 'pages/docs/breadcrumb_page.dart';
+import 'pages/docs/table_page.dart';
 import 'components/toast.dart'; // Import Toaster
 import 'theme/app_theme.dart';
 
@@ -172,6 +173,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/breadcrumb',
       builder: (context, state) => const BreadcrumbPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/table',
+      builder: (context, state) => const TablePage(),
     ),
   ],
 );
@@ -416,6 +421,15 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Sidebar',
             onPressed: () => context.push('/docs/components/sidebar'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 16),
+          const Text('Data Display', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Table',
+            onPressed: () => context.push('/docs/components/table'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],

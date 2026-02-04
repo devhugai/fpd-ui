@@ -75,13 +75,13 @@ Components will be built in phases, starting from primitives used by others.
 - [x] `Collapsible`.
 - [x] `Tabs` (Underlined active state).
 - [x] `ScrollArea` (Custom scrollbar styling).
-- [ ] `Resizable` (Split view panel).
-- [ ] `Sidebar` (Complex responsive sidebar with collapse/expand).
-- [ ] `NavigationMenu` (Header navigation).
-- [ ] `Breadcrumb`.
+- [x] `Resizable` (Split view panel).
+- [x] `Sidebar` (Complex responsive sidebar with collapse/expand).
+- [x] `NavigationMenu` (Header navigation).
+- [x] `Breadcrumb`.
 
 ### Phase 2.5: Complex Data & Visuals
-- [ ] `Table` (DataTable with custom styling).
+- [x] `Table` (DataTable with custom styling).
 - [ ] `Command` (Command Palette - Search interface).
 - [ ] `Calendar` (DatePicker).
 - [ ] `Carousel`.
