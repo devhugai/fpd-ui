@@ -6,6 +6,7 @@ import '../components/button.dart';
 import '../components/separator.dart';
 import '../theme/fpdui_theme.dart';
 import 'docs_sidebar.dart';
+import '../components/theme_toggle.dart';
 
 class DocsShell extends StatelessWidget {
   const DocsShell({super.key, required this.child});
@@ -23,7 +24,7 @@ class DocsShell extends StatelessWidget {
           children: [
             // Desktop Sidebar
             const FpduiSidebar(
-              child: DocsSidebarContent(),
+              children: [DocsSidebarContent()],
             ),
             // Main Content
             Expanded(
@@ -43,7 +44,8 @@ class DocsShell extends StatelessWidget {
                          const Text("Docs", style: TextStyle(fontWeight: FontWeight.bold)),
                         // Add Breadcrumbs here later
                         const Spacer(),
-                        // Theme Toggle or GitHub link here
+                        // Theme Toggle
+                        const ThemeToggle(),
                       ],
                     ),
                   ),

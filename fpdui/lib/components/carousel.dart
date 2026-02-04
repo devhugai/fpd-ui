@@ -252,7 +252,7 @@ class FpduiCarouselPrevious extends StatelessWidget {
     return FpduiButton(
       variant: variant,
       size: FpduiButtonSize.icon,
-      icon: const Icon(LucideIcons.arrowLeft, size: 16),
+      child: const Icon(LucideIcons.arrowLeft, size: 16),
       onPressed: (scope != null && scope.canScrollPrev) ? scope.scrollPrev : null,
       // Rounded full usually?
     );
@@ -270,7 +270,7 @@ class FpduiCarouselNext extends StatelessWidget {
     return FpduiButton(
       variant: variant,
       size: FpduiButtonSize.icon,
-      icon: const Icon(LucideIcons.arrowRight, size: 16),
+      child: const Icon(LucideIcons.arrowRight, size: 16),
       onPressed: (scope != null && scope.canScrollNext) ? scope.scrollNext : null,
     );
   }
