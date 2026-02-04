@@ -3,7 +3,9 @@ import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/fpdui_theme.dart';
 
-class FpduiContextMenu extends StatelessWidget {
+import 'package:flutter/services.dart'; // Import services
+
+class FpduiContextMenu extends StatefulWidget {
   const FpduiContextMenu({
     super.key,
     required this.child,
@@ -12,6 +14,18 @@ class FpduiContextMenu extends StatelessWidget {
 
   final Widget child;
   final List<Widget> items;
+
+  @override
+  State<FpduiContextMenu> createState() => _FpduiContextMenuState();
+}
+
+class _FpduiContextMenuState extends State<FpduiContextMenu> {
+  @override
+  void initState() {
+    super.initState();
+    // Disable browser native context menu to allow Flutter to handle right clicks
+    BrowserContextMenu.disableContextMenu();
+  }
 
   void _showMenu(BuildContext context, Offset position) {
     final theme = Theme.of(context);
@@ -72,7 +86,7 @@ class FpduiContextMenu extends StatelessWidget {
       onLongPressStart: (details) {
         _showMenu(context, details.globalPosition); // Mobile support
       },
-      child: child,
+      child: widget.child,
     );
   }
 }

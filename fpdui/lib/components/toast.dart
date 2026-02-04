@@ -221,38 +221,42 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (icon != null) ...[
+                   if (icon != null) ...[
                      Icon(icon, size: 16, color: iconColor),
                      const Gap(12),
-                  ],
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          widget.entry.title,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: textColor,
-                          ),
-                        ),
-                        if (widget.entry.description != null) ...[
-                          const Gap(4),
-                          Text(
-                            widget.entry.description!,
-                            style: TextStyle(
-                              fontSize: 12, // text-sm
-                              color: textColor.withOpacity(0.8), // muted-foreground equivalent-ish
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
+                   ],
+                   Expanded(
+                     child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       mainAxisSize: MainAxisSize.min, // Critical for avoiding unbounded height if mistakenly nested
+                       children: [
+                         Text(
+                           widget.entry.title,
+                           style: TextStyle(
+                             fontSize: 14,
+                             fontWeight: FontWeight.w600,
+                             color: textColor,
+                           ),
+                           softWrap: true, // Ensure wrapping
+                         ),
+                         if (widget.entry.description != null) ...[
+                           const Gap(4),
+                           Text(
+                             widget.entry.description!,
+                             style: TextStyle(
+                               fontSize: 12, // text-sm
+                               color: textColor.withOpacity(0.8), 
+                             ),
+                             softWrap: true,
+                           ),
+                         ],
+                       ],
+                     ),
+                   ),
                    if (widget.entry.action != null) ...[
                      const Gap(12),
+                     // Action might be large? constrain it?
+                     // shadcn actions are usually buttons.
                      widget.entry.action!,
                    ],
                    const Gap(12),
