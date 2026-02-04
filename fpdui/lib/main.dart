@@ -17,6 +17,11 @@ import 'pages/docs/switch_page.dart';
 import 'pages/docs/radio_group_page.dart';
 import 'pages/docs/slider_page.dart';
 import 'pages/docs/progress_page.dart';
+import 'pages/docs/form_page.dart';
+import 'pages/docs/dialog_page.dart';
+import 'pages/docs/alert_dialog_page.dart';
+import 'pages/docs/sheet_page.dart';
+import 'pages/docs/popover_page.dart';
 import 'theme/app_theme.dart';
 
 void main() {
@@ -86,6 +91,26 @@ final _router = GoRouter(
     GoRoute(
       path: '/docs/components/progress',
       builder: (context, state) => const ProgressPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/form',
+      builder: (context, state) => const FormPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/dialog',
+      builder: (context, state) => const DialogPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/alert-dialog',
+      builder: (context, state) => const AlertDialogPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/sheet',
+      builder: (context, state) => const SheetPage(),
+    ),
+    GoRoute(
+      path: '/docs/components/popover',
+      builder: (context, state) => const PopoverPage(),
     ),
   ],
 );
@@ -209,6 +234,41 @@ class HomePage extends ConsumerWidget {
             variant: FpduiButtonVariant.outline,
             text: 'Progress',
             onPressed: () => context.push('/docs/components/progress'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Form',
+            onPressed: () => context.push('/docs/components/form'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Dialog',
+            onPressed: () => context.push('/docs/components/dialog'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Alert Dialog',
+            onPressed: () => context.push('/docs/components/alert-dialog'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Sheet',
+            onPressed: () => context.push('/docs/components/sheet'),
+            trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
+          ),
+          const SizedBox(height: 8),
+          FpduiButton(
+            variant: FpduiButtonVariant.outline,
+            text: 'Popover',
+            onPressed: () => context.push('/docs/components/popover'),
             trailingIcon: const Icon(LucideIcons.arrowRight, size: 16),
           ),
         ],

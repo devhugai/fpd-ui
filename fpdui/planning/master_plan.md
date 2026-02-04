@@ -53,12 +53,12 @@ Components will be built in phases, starting from primitives used by others.
 ### Phase 2.2: Inputs & Forms
 - [x] `Input` (TextField styling). <!-- id: 24 -->
 - [x] `Textarea` (Input with multiline). <!-- id: 25 -->
-- [ ] `Checkbox`. <!-- id: 26 -->
-- [ ] `Switch`.
-- [ ] `RadioGroup`.
-- [ ] `Slider`.
-- [ ] `Progress`.
-- [ ] `Form` (Validation wrapper using `flutter_form_builder` or vanilla `Form`).
+- [x] `Checkbox`. <!-- id: 26 -->
+- [x] `Switch`. <!-- id: 27 -->
+- [x] `RadioGroup`. <!-- id: 28 -->
+- [x] `Slider`. <!-- id: 29 -->
+- [x] `Progress`. <!-- id: 30 -->
+- [x] `Form` (Layout wrapper `FpduiFormItem`). <!-- id: 31 -->
 
 ### Phase 2.3: Overlays & Feedback
 - [ ] `Dialog` (Modal).
