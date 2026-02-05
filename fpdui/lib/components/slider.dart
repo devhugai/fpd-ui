@@ -45,9 +45,10 @@ class FpduiSlider extends StatelessWidget {
         inactiveTrackColor: fpduiTheme.muted, // bg-muted
         
         // Thumb
-        thumbShape: const _FpduiSliderThumbShape(
+        thumbShape: _FpduiSliderThumbShape(
           thumbRadius: 8, // size-4 -> 16px diam -> 8px radius
           borderThickness: 1, // border-1
+          shadowColor: fpduiTheme.shadow,
         ),
         thumbColor: theme.colorScheme.background, // inner fill
         
@@ -78,10 +79,12 @@ class _FpduiSliderThumbShape extends SliderComponentShape {
   const _FpduiSliderThumbShape({
     required this.thumbRadius,
     required this.borderThickness,
+    required this.shadowColor,
   });
 
   final double thumbRadius;
   final double borderThickness;
+  final Color shadowColor;
 
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
@@ -115,7 +118,7 @@ class _FpduiSliderThumbShape extends SliderComponentShape {
       ..style = PaintingStyle.stroke;
 
     final Paint shadowPaint = Paint()
-        ..color = Colors.black.withOpacity(0.1)
+        ..color = shadowColor
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 1);
 
     // Shadow

@@ -32,6 +32,14 @@ class AppTheme {
     final lightBorder = const Color(0xffd4d4d8);
     final lightInput = const Color(0xffd4d4d8);
     final lightRing = const Color(0xff18181b);
+    final lightSuccess = const Color(0xff22c55e); // green-500
+    final lightSuccessForeground = const Color(0xfffafafa);
+    final lightWarning = const Color(0xfff59e0b); // amber-500
+    final lightWarningForeground = const Color(0xfffafafa);
+    final lightInfo = const Color(0xff3b82f6); // blue-500
+    final lightInfoForeground = const Color(0xfffafafa);
+    final lightShadow = Colors.black.withOpacity(0.1);
+    final lightOverlay = Colors.black.withOpacity(0.5);
 
     // Dark
     final darkBackground = const Color(0xff09090b);
@@ -53,6 +61,14 @@ class AppTheme {
     final darkBorder = const Color(0xff27272a);
     final darkInput = const Color(0xff27272a);
     final darkRing = const Color(0xffd4d4d8);
+    final darkSuccess = const Color(0xff22c55e); // green-500
+    final darkSuccessForeground = const Color(0xfffafafa);
+    final darkWarning = const Color(0xfff59e0b); // amber-500
+    final darkWarningForeground = const Color(0xfffafafa);
+    final darkInfo = const Color(0xff3b82f6); // blue-500
+    final darkInfoForeground = const Color(0xfffafafa);
+    final darkShadow = Colors.black.withOpacity(0.3); // Slightly darker shadow for dark mode visibility? or standard.
+    final darkOverlay = Colors.black.withOpacity(0.5);
 
     return ThemeData(
       useMaterial3: true,
@@ -92,8 +108,16 @@ class AppTheme {
           border: isDark ? darkBorder : lightBorder,
           input: isDark ? darkInput : lightInput,
           ring: isDark ? darkRing : lightRing,
-          radius: radius * 16.0, // mapping 0.0-1.0 to pixel values approx or just use as is? 
+          radius: radius * 16.0, 
           // Default was 0.5 (web rem?) -> 8.0 px. So multiplier 16 seems right if 0.5 is default.
+          success: isDark ? darkSuccess : lightSuccess,
+          successForeground: isDark ? darkSuccessForeground : lightSuccessForeground,
+          warning: isDark ? darkWarning : lightWarning,
+          warningForeground: isDark ? darkWarningForeground : lightWarningForeground,
+          info: isDark ? darkInfo : lightInfo,
+          infoForeground: isDark ? darkInfoForeground : lightInfoForeground,
+          shadow: isDark ? darkShadow : lightShadow,
+          overlay: isDark ? darkOverlay : lightOverlay,
         ),
       ],
     );

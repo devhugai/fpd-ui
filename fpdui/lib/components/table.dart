@@ -49,7 +49,8 @@ class FpduiTableRow {
   }) {
     // Header usually has border-b
     final theme = context != null ? Theme.of(context) : null;
-    final borderColor = theme?.extension<FpduiTheme>()?.border ?? Colors.grey[300]!;
+    final fpduiTheme = theme?.extension<FpduiTheme>();
+    final borderColor = fpduiTheme?.border ?? const Color(0xffd4d4d8); // fallback default
 
     return TableRow(
       decoration: decoration ?? BoxDecoration(
@@ -66,7 +67,7 @@ class FpduiTableRow {
   }) {
     final theme = context != null ? Theme.of(context) : null;
     final fpduiTheme = theme?.extension<FpduiTheme>();
-    final borderColor = fpduiTheme?.border ?? Colors.grey[300]!;
+    final borderColor = fpduiTheme?.border ?? const Color(0xffd4d4d8);
     
     // Logic for hover/selected bg would go here if we could.
     // data-[state=selected]:bg-muted
@@ -94,17 +95,17 @@ class FpduiTableHead extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final fpduiTheme = theme.extension<FpduiTheme>()!;
     return TableCell(
       child: Container(
         height: 48, // h-12
         padding: const EdgeInsets.symmetric(horizontal: 16), // px-4
         alignment: alignment,
         child: DefaultTextStyle(
-          style: TextStyle(
-            fontSize: 14,
+          style: theme.textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.w500,
-            color: theme.colorScheme.onBackground.withOpacity(0.6), // text-muted-foreground
-          ),
+            color: fpduiTheme.mutedForeground,
+          ) ?? const TextStyle(),
           child: child,
         ),
       ),
@@ -129,7 +130,7 @@ class FpduiTableCell extends StatelessWidget {
         padding: const EdgeInsets.all(16), // p-4
         alignment: alignment,
         child: DefaultTextStyle.merge(
-           style: const TextStyle(fontSize: 14),
+           style: Theme.of(context).textTheme.bodyMedium,
            child: child,
         ),
       ),
@@ -144,13 +145,13 @@ class FpduiTableCaption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final fpduiTheme = theme.extension<FpduiTheme>()!;
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: 14,
-          color: theme.colorScheme.onBackground.withOpacity(0.6),
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: fpduiTheme.mutedForeground,
         ),
         textAlign: TextAlign.center,
       ),

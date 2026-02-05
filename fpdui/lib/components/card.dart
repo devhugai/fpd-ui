@@ -24,7 +24,7 @@ class FpduiCard extends StatelessWidget {
         border: Border.all(color: fpduiTheme.border),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: fpduiTheme.shadow,
             blurRadius: 2,
             offset: const Offset(0, 1),
           ),
@@ -65,13 +65,12 @@ class FpduiCardTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return DefaultTextStyle(
-      style: TextStyle(
-        fontSize: 24, // font-semibold leading-none tracking-tight
+      style: theme.textTheme.headlineSmall?.copyWith(
         fontWeight: FontWeight.w600,
         color: theme.colorScheme.onSurface,
         height: 1.0,
         letterSpacing: -0.5,
-      ),
+      ) ?? const TextStyle(),
       child: child,
     );
   }
@@ -93,8 +92,7 @@ class FpduiCardDescription extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 6.0), // gap-2 approx
       child: DefaultTextStyle(
-        style: TextStyle(
-          fontSize: 14, // text-sm
+        style: theme.textTheme.bodyMedium?.copyWith(
           color: fpduiTheme.mutedForeground,
         ),
         child: child,

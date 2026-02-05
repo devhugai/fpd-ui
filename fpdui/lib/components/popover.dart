@@ -125,12 +125,12 @@ class _PopoverContent extends StatelessWidget {
         width: 288, // w-72
         padding: const EdgeInsets.all(16), // p-4
         decoration: BoxDecoration(
-          color: theme.colorScheme.background, // bg-popover
+          color: fpduiTheme.popover, 
           borderRadius: BorderRadius.circular(fpduiTheme.radius), // rounded-md
           border: Border.all(color: fpduiTheme.border),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: fpduiTheme.shadow,
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),

@@ -23,6 +23,14 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
     required this.input,
     required this.ring,
     required this.radius,
+    required this.success,
+    required this.successForeground,
+    required this.warning,
+    required this.warningForeground,
+    required this.info,
+    required this.infoForeground,
+    required this.shadow,
+    required this.overlay,
   });
 
   final Color background;
@@ -45,6 +53,14 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
   final Color input;
   final Color ring;
   final double radius;
+  final Color success;
+  final Color successForeground;
+  final Color warning;
+  final Color warningForeground;
+  final Color info;
+  final Color infoForeground;
+  final Color shadow;
+  final Color overlay;
 
   @override
   FpduiTheme copyWith({
@@ -68,6 +84,14 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
     Color? input,
     Color? ring,
     double? radius,
+    Color? success,
+    Color? successForeground,
+    Color? warning,
+    Color? warningForeground,
+    Color? info,
+    Color? infoForeground,
+    Color? shadow,
+    Color? overlay,
   }) {
     return FpduiTheme(
       background: background ?? this.background,
@@ -90,6 +114,14 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
       input: input ?? this.input,
       ring: ring ?? this.ring,
       radius: radius ?? this.radius,
+      success: success ?? this.success,
+      successForeground: successForeground ?? this.successForeground,
+      warning: warning ?? this.warning,
+      warningForeground: warningForeground ?? this.warningForeground,
+      info: info ?? this.info,
+      infoForeground: infoForeground ?? this.infoForeground,
+      shadow: shadow ?? this.shadow,
+      overlay: overlay ?? this.overlay,
     );
   }
 
@@ -118,7 +150,15 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
       border: Color.lerp(border, other.border, t)!,
       input: Color.lerp(input, other.input, t)!,
       ring: Color.lerp(ring, other.ring, t)!,
-      radius: other.radius, // Radius generally doesn't lerp well or needed?
+      radius: other.radius, 
+      success: Color.lerp(success, other.success, t)!,
+      successForeground: Color.lerp(successForeground, other.successForeground, t)!,
+      warning: Color.lerp(warning, other.warning, t)!,
+      warningForeground: Color.lerp(warningForeground, other.warningForeground, t)!,
+      info: Color.lerp(info, other.info, t)!,
+      infoForeground: Color.lerp(infoForeground, other.infoForeground, t)!,
+      shadow: Color.lerp(shadow, other.shadow, t)!,
+      overlay: Color.lerp(overlay, other.overlay, t)!,
     );
   }
 }

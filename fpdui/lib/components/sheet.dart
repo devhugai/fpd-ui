@@ -26,11 +26,14 @@ class FpduiSheet extends StatefulWidget {
     FpduiSheetSide side = FpduiSheetSide.right,
     bool barrierDismissible = true,
   }) {
+    final theme = Theme.of(context);
+    final fpduiTheme = theme.extension<FpduiTheme>()!;
+
     return showGeneralDialog<T>(
       context: context,
       barrierDismissible: barrierDismissible,
       barrierLabel: 'Dismiss',
-      barrierColor: Colors.black.withOpacity(0.5),
+      barrierColor: fpduiTheme.overlay,
       transitionDuration: const Duration(milliseconds: 300),
       pageBuilder: (context, animation, secondaryAnimation) {
         return Align(
@@ -213,10 +216,10 @@ class FpduiSheetTitle extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Text(
       text,
-      style: const TextStyle(
-        fontSize: 18,
+      style: theme.textTheme.titleLarge?.copyWith(
         fontWeight: FontWeight.w600,
         height: 1.0,
       ),
@@ -236,8 +239,7 @@ class FpduiSheetDescription extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0),
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: 14,
+        style: theme.textTheme.bodyMedium?.copyWith(
           color: fpduiTheme.mutedForeground,
         ),
       ),

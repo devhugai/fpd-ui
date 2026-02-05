@@ -228,11 +228,10 @@ class FpduiNavigationMenuTrigger extends StatelessWidget {
          borderRadius: BorderRadius.circular(fpduiTheme.radius),
        ),
        child: DefaultTextStyle(
-         style: TextStyle(
-           fontSize: 14,
-           fontWeight: FontWeight.w500,
-           color: isActive ? theme.colorScheme.onSecondary : theme.colorScheme.onBackground,
-         ),
+          style: theme.textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.w500,
+            color: isActive ? theme.colorScheme.onSecondary : theme.colorScheme.onBackground,
+          ),
          child: Row(
            mainAxisSize: MainAxisSize.min,
            children: [
@@ -275,7 +274,7 @@ class FpduiNavigationMenuContent extends StatelessWidget {
         borderRadius: BorderRadius.circular(fpduiTheme.radius),
         boxShadow: [
           BoxShadow(
-             color: Colors.black.withOpacity(0.1),
+             color: fpduiTheme.shadow,
              blurRadius: 10,
              offset: const Offset(0, 5),
           ),
@@ -321,14 +320,13 @@ class FpduiNavigationMenuLink extends StatelessWidget {
                 children: [
                    Text(
                      title,
-                     style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                     style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
                    ),
                    if (description != null) ...[
                      const Gap(4),
                      Text(
                        description!,
-                       style: TextStyle(
-                         fontSize: 12,
+                       style: theme.textTheme.bodySmall?.copyWith(
                          color: theme.colorScheme.onBackground.withOpacity(0.7),
                        ),
                      ),

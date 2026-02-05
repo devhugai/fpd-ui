@@ -28,12 +28,11 @@ class FpduiLabel extends StatelessWidget {
     // leading-none (height: 1.0)
     // peer-disabled:cursor-not-allowed peer-disabled:opacity-70 (handled by parent/form usually)
 
-    final baseStyle = TextStyle(
-      fontSize: 14,
+    final baseStyle = theme.textTheme.bodyMedium?.copyWith(
       fontWeight: FontWeight.w500,
       color: theme.colorScheme.onBackground,
       height: 1.0, 
-    );
+    ) ?? const TextStyle();
 
     Widget labelText = Text(
       text,
@@ -48,9 +47,9 @@ class FpduiLabel extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           labelText,
-          const Text(
+          Text(
             ' *',
-            style: TextStyle(color: Colors.red), 
+            style: TextStyle(color: theme.colorScheme.error), 
           ),
         ],
       );

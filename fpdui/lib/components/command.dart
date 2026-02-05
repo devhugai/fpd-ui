@@ -46,9 +46,11 @@ class FpduiCommandDialog extends StatelessWidget {
   final VoidCallback? onClose; // Usually handled by Navigator.pop
 
   static Future<T?> show<T>(BuildContext context, {required Widget child}) {
+    final theme = Theme.of(context);
+    final fpduiTheme = theme.extension<FpduiTheme>()!;
     return showDialog<T>(
       context: context,
-      barrierColor: Colors.black54, // Overlay background
+      barrierColor: fpduiTheme.overlay, // Overlay background
       builder: (context) => FpduiCommandDialog(child: child),
     );
   }
@@ -98,11 +100,10 @@ class FpduiCommandInput extends StatelessWidget {
             child: TextField(
               controller: controller,
               onChanged: onChanged,
-              style: const TextStyle(fontSize: 14),
+              style: theme.textTheme.bodyMedium,
               decoration: InputDecoration(
                 hintText: placeholder,
-                hintStyle: TextStyle(
-                  fontSize: 14,
+                hintStyle: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onBackground.withOpacity(0.5),
                 ),
                 border: InputBorder.none,
@@ -146,7 +147,7 @@ class FpduiCommandEmpty extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 14),
+        style: Theme.of(context).textTheme.bodySmall,
       ),
     );
   }
@@ -172,8 +173,7 @@ class FpduiCommandGroup extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Text(
             heading,
-            style: TextStyle(
-              fontSize: 12,
+            style: theme.textTheme.labelSmall?.copyWith(
               fontWeight: FontWeight.w500,
               color: theme.colorScheme.onBackground.withOpacity(0.6),
             ),
@@ -230,8 +230,7 @@ class FpduiCommandItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
         ),
         child: DefaultTextStyle.merge(
-           style: TextStyle(
-             fontSize: 14,
+           style: theme.textTheme.bodyMedium?.copyWith(
              color: selected ? fpduiTheme.accentForeground : theme.colorScheme.onBackground,
            ),
            child: IconTheme(
@@ -256,8 +255,7 @@ class FpduiCommandShortcut extends StatelessWidget {
     final theme = Theme.of(context);
     return Text(
       text,
-      style: TextStyle(
-        fontSize: 12,
+      style: theme.textTheme.labelSmall?.copyWith(
         color: theme.colorScheme.onBackground.withOpacity(0.5),
         letterSpacing: 0.5,
       ),

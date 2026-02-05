@@ -182,16 +182,25 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
          iconColor = textColor;
         break;
       case FpduiToastVariant.success:
+        bgColor = fpduiTheme.success;
+        textColor = fpduiTheme.successForeground;
+        borderColor = fpduiTheme.success;
         icon = LucideIcons.checkCircle;
-        iconColor = Colors.green;
+        iconColor = fpduiTheme.successForeground;
         break;
       case FpduiToastVariant.warning:
+        bgColor = fpduiTheme.warning;
+        textColor = fpduiTheme.warningForeground;
+        borderColor = fpduiTheme.warning;
         icon = LucideIcons.alertTriangle;
-        iconColor = Colors.amber;
+        iconColor = fpduiTheme.warningForeground;
         break;
        case FpduiToastVariant.info:
+        bgColor = fpduiTheme.info;
+        textColor = fpduiTheme.infoForeground;
+        borderColor = fpduiTheme.info;
         icon = LucideIcons.info;
-        iconColor = Colors.blue;
+        iconColor = fpduiTheme.infoForeground;
         break;
       default:
         break;
@@ -217,7 +226,7 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
                 border: Border.all(color: borderColor),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: fpduiTheme.shadow,
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -239,8 +248,7 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
                          children: [
                            Text(
                              widget.entry.title,
-                             style: TextStyle(
-                               fontSize: 14,
+                             style: theme.textTheme.bodyMedium?.copyWith(
                                fontWeight: FontWeight.w600,
                                color: textColor,
                              ),
@@ -250,8 +258,7 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
                              const Gap(4),
                              Text(
                                widget.entry.description!,
-                               style: TextStyle(
-                                 fontSize: 12, // text-sm
+                               style: theme.textTheme.bodySmall?.copyWith(
                                  color: textColor.withOpacity(0.8), 
                                ),
                                softWrap: true,

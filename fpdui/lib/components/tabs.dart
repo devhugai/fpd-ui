@@ -65,7 +65,7 @@ class _FpduiTabsState extends State<FpduiTabs> with SingleTickerProviderStateMix
                 borderRadius: BorderRadius.circular(fpduiTheme.radius - 2), // rounded-sm
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: fpduiTheme.shadow,
                     blurRadius: 1,
                     offset: const Offset(0, 1),
                   ),
@@ -75,8 +75,7 @@ class _FpduiTabsState extends State<FpduiTabs> with SingleTickerProviderStateMix
               dividerColor: Colors.transparent, // Remove default divider
               labelPadding: EdgeInsets.zero,
               labelColor: theme.colorScheme.onBackground, // text-foreground
-              labelStyle: const TextStyle(
-                fontSize: 14, // text-sm
+              labelStyle: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500, // font-medium
               ),
               unselectedLabelColor: fpduiTheme.mutedForeground, // text-muted-foreground
