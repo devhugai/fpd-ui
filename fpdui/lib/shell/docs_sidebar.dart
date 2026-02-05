@@ -31,6 +31,8 @@ class _DocsSidebarContentState extends State<DocsSidebarContent> {
         _SidebarItem(title: "Typography", path: "/docs/typography"),
         _SidebarItem(title: "Colors", path: "/docs/colors"),
         _SidebarItem(title: "Radius", path: "/docs/radius"),
+        _SidebarItem(title: "Borders", path: "/docs/borders"),
+        _SidebarItem(title: "Shadows", path: "/docs/shadows"),
         _SidebarItem(title: "Spacing", path: "/docs/spacing"),
         _SidebarItem(title: "Sizes", path: "/docs/sizes"),
       ],
@@ -66,7 +68,9 @@ class _DocsSidebarContentState extends State<DocsSidebarContent> {
          // _SidebarItem(title: "Progress", path: "/docs/components/progress"), 
         _SidebarItem(title: "Form", path: "/docs/components/form"),
         _SidebarItem(title: "Date Picker", path: "/docs/components/date-picker"),
+        _SidebarItem(title: "Date Picker", path: "/docs/components/date-picker"),
         _SidebarItem(title: "Time Picker", path: "/docs/components/time-picker"),
+        _SidebarItem(title: "Color Picker", path: "/docs/components/color-picker"),
       ],
     ),
     _SidebarGroupData(

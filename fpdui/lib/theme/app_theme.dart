@@ -12,8 +12,10 @@ class AppTheme {
   static ThemeData build({
     required Brightness brightness,
     Color? primaryColor,
+    Map<String, Color> colorOverrides = const {},
     double radius = 0.5,
     String fontFamily = 'Inter',
+    double fontScale = 1.0,
   }) {
     final isDark = brightness == Brightness.dark;
     final baseScheme = isDark ? const ColorScheme.dark() : const ColorScheme.light();
@@ -77,57 +79,97 @@ class AppTheme {
     final darkShadow = Colors.black.withOpacity(0.3); // Slightly darker shadow for dark mode visibility? or standard.
     final darkOverlay = Colors.black.withOpacity(0.5);
 
+    // Helper to get effective color
+    Color get(String key, Color defaultColor) {
+      if (colorOverrides.containsKey(key)) {
+        return colorOverrides[key]!;
+      }
+      return defaultColor;
+    }
+
+    // Apply Overrides
+    final effectiveBackground = get('background', isDark ? darkBackground : lightBackground);
+    final effectiveForeground = get('foreground', isDark ? darkForeground : lightForeground);
+    final effectiveCard = get('card', isDark ? darkCard : lightCard);
+    final effectiveCardForeground = get('cardForeground', isDark ? darkCardForeground : lightCardForeground);
+    final effectivePopover = get('popover', isDark ? darkPopover : lightPopover);
+    final effectivePopoverForeground = get('popoverForeground', isDark ? darkPopoverForeground : lightPopoverForeground);
+    final effectivePrimary = get('primary', isDark ? darkPrimary : lightPrimary);
+    final effectivePrimaryForeground = get('primaryForeground', isDark ? darkPrimaryForeground : lightPrimaryForeground);
+    final effectiveSecondary = get('secondary', isDark ? darkSecondary : lightSecondary);
+    final effectiveSecondaryForeground = get('secondaryForeground', isDark ? darkSecondaryForeground : lightSecondaryForeground);
+    final effectiveMuted = get('muted', isDark ? darkMuted : lightMuted);
+    final effectiveMutedForeground = get('mutedForeground', isDark ? darkMutedForeground : lightMutedForeground);
+    final effectiveAccent = get('accent', isDark ? darkAccent : lightAccent);
+    final effectiveAccentForeground = get('accentForeground', isDark ? darkAccentForeground : lightAccentForeground);
+    final effectiveDestructive = get('destructive', isDark ? darkDestructive : lightDestructive);
+    final effectiveDestructiveForeground = get('destructiveForeground', isDark ? darkDestructiveForeground : lightDestructiveForeground);
+    final effectiveBorder = get('border', isDark ? darkBorder : lightBorder);
+    final effectiveInput = get('input', isDark ? darkInput : lightInput);
+    final effectiveRing = get('ring', isDark ? darkRing : lightRing);
+    final effectiveSuccess = get('success', isDark ? darkSuccess : lightSuccess);
+    final effectiveSuccessForeground = get('successForeground', isDark ? darkSuccessForeground : lightSuccessForeground);
+    final effectiveWarning = get('warning', isDark ? darkWarning : lightWarning);
+    final effectiveWarningForeground = get('warningForeground', isDark ? darkWarningForeground : lightWarningForeground);
+    final effectiveInfo = get('info', isDark ? darkInfo : lightInfo);
+    final effectiveInfoForeground = get('infoForeground', isDark ? darkInfoForeground : lightInfoForeground);
+    final effectiveShadow = get('shadow', isDark ? darkShadow : lightShadow);
+    final effectiveOverlay = get('overlay', isDark ? darkOverlay : lightOverlay);
+
     return ThemeData(
       useMaterial3: true,
       fontFamily: GoogleFonts.getFont(fontFamily).fontFamily,
       brightness: brightness,
+      textTheme: GoogleFonts.getTextTheme(fontFamily).apply(
+        fontSizeFactor: fontScale,
+      ),
       colorScheme: baseScheme.copyWith(
-        background: isDark ? darkBackground : lightBackground,
-        onBackground: isDark ? darkForeground : lightForeground,
-        surface: isDark ? darkCard : lightCard,
-        onSurface: isDark ? darkCardForeground : lightCardForeground,
-        primary: isDark ? darkPrimary : lightPrimary, // Native primary used for some widgets
-        onPrimary: isDark ? darkPrimaryForeground : lightPrimaryForeground,
-        secondary: isDark ? darkSecondary : lightSecondary,
-        onSecondary: isDark ? darkSecondaryForeground : lightSecondaryForeground,
-        error: isDark ? darkDestructive : lightDestructive,
-        onError: isDark ? darkDestructiveForeground : lightDestructiveForeground,
-        outline: isDark ? darkBorder : lightBorder, // using border color for outline
+        background: effectiveBackground,
+        onBackground: effectiveForeground,
+        surface: effectiveCard,
+        onSurface: effectiveCardForeground,
+        primary: effectivePrimary, // Native primary used for some widgets
+        onPrimary: effectivePrimaryForeground,
+        secondary: effectiveSecondary,
+        onSecondary: effectiveSecondaryForeground,
+        error: effectiveDestructive,
+        onError: effectiveDestructiveForeground,
+        outline: effectiveBorder, // using border color for outline
       ),
       extensions: [
         FpduiTheme(
-          background: isDark ? darkBackground : lightBackground,
-          foreground: isDark ? darkForeground : lightForeground,
-          card: isDark ? darkCard : lightCard,
-          cardForeground: isDark ? darkCardForeground : lightCardForeground,
-          popover: isDark ? darkPopover : lightPopover,
-          popoverForeground: isDark ? darkPopoverForeground : lightPopoverForeground,
-          primary: isDark ? darkPrimary : lightPrimary,
-          primaryForeground: isDark ? darkPrimaryForeground : lightPrimaryForeground,
-          secondary: isDark ? darkSecondary : lightSecondary,
-          secondaryForeground: isDark ? darkSecondaryForeground : lightSecondaryForeground,
-          muted: isDark ? darkMuted : lightMuted,
-          mutedForeground: isDark ? darkMutedForeground : lightMutedForeground,
-          accent: isDark ? darkAccent : lightAccent,
-          accentForeground: isDark ? darkAccentForeground : lightAccentForeground,
-          destructive: isDark ? darkDestructive : lightDestructive,
-          destructiveForeground: isDark ? darkDestructiveForeground : lightDestructiveForeground,
-          border: isDark ? darkBorder : lightBorder,
-          input: isDark ? darkInput : lightInput,
-          ring: isDark ? darkRing : lightRing,
+          background: effectiveBackground,
+          foreground: effectiveForeground,
+          card: effectiveCard,
+          cardForeground: effectiveCardForeground,
+          popover: effectivePopover,
+          popoverForeground: effectivePopoverForeground,
+          primary: effectivePrimary,
+          primaryForeground: effectivePrimaryForeground,
+          secondary: effectiveSecondary,
+          secondaryForeground: effectiveSecondaryForeground,
+          muted: effectiveMuted,
+          mutedForeground: effectiveMutedForeground,
+          accent: effectiveAccent,
+          accentForeground: effectiveAccentForeground,
+          destructive: effectiveDestructive,
+          destructiveForeground: effectiveDestructiveForeground,
+          border: effectiveBorder,
+          input: effectiveInput,
+          ring: effectiveRing,
           radius: radius * 16.0, 
           radiusSm: (radius * 16.0) - 2.0, // radius-sm
           radiusLg: (radius * 16.0) + 2.0, // radius-lg
           radiusXl: (radius * 16.0) + 4.0, // radius-xl (approx)
           // Default was 0.5 (web rem?) -> 8.0 px. So multiplier 16 seems right if 0.5 is default.
-          success: isDark ? darkSuccess : lightSuccess,
-          successForeground: isDark ? darkSuccessForeground : lightSuccessForeground,
-          warning: isDark ? darkWarning : lightWarning,
-          warningForeground: isDark ? darkWarningForeground : lightWarningForeground,
-          info: isDark ? darkInfo : lightInfo,
-          infoForeground: isDark ? darkInfoForeground : lightInfoForeground,
-          shadow: isDark ? darkShadow : lightShadow,
-          overlay: isDark ? darkOverlay : lightOverlay,
+          success: effectiveSuccess,
+          successForeground: effectiveSuccessForeground,
+          warning: effectiveWarning,
+          warningForeground: effectiveWarningForeground,
+          info: effectiveInfo,
+          infoForeground: effectiveInfoForeground,
+          shadow: effectiveShadow,
+          overlay: effectiveOverlay,
         ),
       ],
     );

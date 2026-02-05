@@ -74,7 +74,10 @@ import '../pages/docs/carousel_page.dart';
 import '../pages/docs/typography_page.dart';
 import '../pages/docs/colors_page.dart';
 import '../pages/docs/radius_page.dart';
+import '../pages/docs/borders_page.dart';
+import '../pages/docs/shadows_page.dart';
 import '../pages/docs/spacing_page.dart';
+import '../pages/docs/color_picker_page.dart';
 import '../pages/docs/sizes_page.dart';
 import '../shell/docs_shell.dart';
 import '../pages/home_page.dart';
@@ -112,6 +115,14 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/radius',
             builder: (context, state) => const RadiusPage(),
+          ),
+          GoRoute(
+            path: '/docs/borders',
+            builder: (context, state) => const BordersPage(),
+          ),
+          GoRoute(
+            path: '/docs/shadows',
+            builder: (context, state) => const ShadowsPage(),
           ),
           GoRoute(
             path: '/docs/spacing',
@@ -378,6 +389,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/components/carousel',
             builder: (context, state) => const CarouselPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/color-picker',
+            builder: (context, state) => const ColorPickerPage(),
           ),
         ],
       ),

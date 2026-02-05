@@ -19,8 +19,13 @@ final themeColorProvider = StateProvider<Color>((ref) => const Color(0xFF09090b)
 // For simplicity, let's store the base Primary Color.
 final themePrimaryColorProvider = StateProvider<Color>((ref) => Colors.black); 
 
+// Advanced Color Overrides
+// Maps token name (e.g., 'primary', 'background') to Color
+final themeColorOverridesProvider = StateProvider<Map<String, Color>>((ref) => {});
+
 // Typography
 final themeFontFamilyProvider = StateProvider<String>((ref) => 'Inter');
+final themeFontSizeScaleProvider = StateProvider<double>((ref) => 1.0); // 1.0 = Default scale
 // Note: "Zinc" isn't a single color, it's a slate/gray. 
 // Shadcn themes are "Zinc", "Slate", "Stone", "Gray", "Neutral", "Red", "Rose", "Orange", "Green", "Blue", "Yellow", "Violet".
 // Each has a set of colors.

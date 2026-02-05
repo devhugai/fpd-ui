@@ -25,7 +25,9 @@ class MyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
     final radius = ref.watch(themeRadiusProvider);
     final primaryColor = ref.watch(themePrimaryColorProvider);
+    final colorOverrides = ref.watch(themeColorOverridesProvider);
     final fontFamily = ref.watch(themeFontFamilyProvider);
+    final fontScale = ref.watch(themeFontSizeScaleProvider);
 
     return MaterialApp.router(
       title: 'FPD UI',
@@ -33,13 +35,17 @@ class MyApp extends ConsumerWidget {
         brightness: Brightness.light,
         radius: radius,
         primaryColor: primaryColor,
+        colorOverrides: colorOverrides,
         fontFamily: fontFamily,
+        fontScale: fontScale,
       ),
       darkTheme: AppTheme.build(
         brightness: Brightness.dark,
         radius: radius,
         primaryColor: primaryColor,
+        colorOverrides: colorOverrides,
         fontFamily: fontFamily,
+        fontScale: fontScale,
       ),
       themeMode: themeMode,
       routerConfig: router,
