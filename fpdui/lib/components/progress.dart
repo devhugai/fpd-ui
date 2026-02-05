@@ -1,11 +1,11 @@
-/// Responsible for indicating loading or progress state.
-/// Provides FpduiProgress indicator.
-///
-/// Used by: Uploads, loading screens.
-/// Depends on: fpdui_theme.
-/// Assumes: 0.0 to 1.0 (or 100) range value.
+// Responsible for indicating loading or progress state.
+// Provides FpduiProgress indicator.
+//
+// Used by: Uploads, loading screens.
+// Depends on: fpdui_theme.
+// Assumes: 0.0 to 1.0 (or 100) range value.
 import 'package:flutter/material.dart';
-import '../theme/fpdui_theme.dart';
+
 
 class FpduiProgress extends StatelessWidget {
   const FpduiProgress({
@@ -27,36 +27,21 @@ class FpduiProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    // final fpduiTheme = theme.extension<FpduiTheme>()!;
     
     // Validate bounds
     final safeValue = value.clamp(0.0, max);
-    final percentage = safeValue / max;
+    final percentage = max == 0 ? 0.0 : safeValue / max;
 
-    return Container(
-      width: double.infinity,
+    return SizedBox(
       height: height,
-      decoration: BoxDecoration(
-        color: theme.colorScheme.primary.withOpacity(0.2), // bg-primary/20
+      child: ClipRRect(
         borderRadius: BorderRadius.circular(100), // rounded-full
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Stack(
-        children: [
-          LayoutBuilder(
-            builder: (context, constraints) {
-              return AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeOutCubic, // Smooth deceleration
-                width: constraints.maxWidth * percentage,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.primary, // bg-primary
-                  borderRadius: BorderRadius.circular(100), // rounded-full (inner)
-                ),
-              );
-            },
-          ),
-        ],
+        child: LinearProgressIndicator(
+          value: percentage,
+          backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.2), // bg-primary/20
+          valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary), // bg-primary
+        ),
       ),
     );
   }

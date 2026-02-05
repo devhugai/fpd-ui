@@ -1,12 +1,12 @@
-/// Responsible for displaying lists of actions in a dropdown.
-/// Provides FpduiDropdownMenu widget.
-///
-/// Used by: Header menus, overflow actions.
-/// Depends on: fpdui_theme.
-/// Assumes: Triggered by user interaction (tap/click).
+// Responsible for displaying lists of actions in a dropdown.
+// Provides FpduiDropdownMenu widget.
+//
+// Used by: Header menus, overflow actions.
+// Depends on: fpdui_theme.
+// Assumes: Triggered by user interaction (tap/click).
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+
 import '../theme/fpdui_theme.dart';
 
 // Re-using logic from ContextMenu effectively
@@ -27,44 +27,58 @@ class FpduiDropdownMenu extends StatelessWidget {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
-    return Theme(
-      data: theme.copyWith(
-        popupMenuTheme: PopupMenuThemeData(
-          color: theme.colorScheme.background,
-          surfaceTintColor: Colors.transparent,
-          shape: RoundedRectangleBorder(
+    return MenuAnchor(
+      builder: (context, controller, child) {
+        return GestureDetector(
+          onTap: () {
+            if (controller.isOpen) {
+              controller.close();
+            } else {
+              controller.open();
+            }
+          },
+          child: trigger,
+        );
+      },
+      menuChildren: items.map((item) {
+        if (item is FpduiDropdownMenuItem) {
+          return MenuItemButton(
+            onPressed: item.disabled ? null : item.onTap,
+            leadingIcon: item.leading,
+            trailingIcon: item.trailing,
+            style: ButtonStyle(
+               foregroundColor: WidgetStateProperty.resolveWith((states) {
+                   if (item.isDestructive) return theme.colorScheme.error;
+                   if (states.contains(WidgetState.disabled)) return theme.colorScheme.onSurface.withValues(alpha: 0.5);
+                   return theme.colorScheme.onSurface;
+               }),
+               overlayColor: WidgetStateProperty.all(fpduiTheme.accent),
+            ),
+            child: item.child,
+          );
+        } else if (item is FpduiDropdownMenuLabel) {
+           return Padding(
+             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+             child: DefaultTextStyle(
+               style: theme.textTheme.labelSmall!.copyWith(fontWeight: FontWeight.w600),
+               child: item,
+             ),
+           );
+        } else if (item is FpduiDropdownMenuSeparator) {
+           return const Divider(height: 1);
+        }
+        return item; // Fallback
+      }).toList(),
+      style: MenuStyle(
+        backgroundColor: WidgetStateProperty.all(theme.colorScheme.surface),
+        surfaceTintColor: WidgetStateProperty.all(Colors.transparent),
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(fpduiTheme.radius),
             side: BorderSide(color: fpduiTheme.border),
           ),
-          elevation: 4, // shadow-md
         ),
-      ),
-      child: PopupMenuButton<void>(
-        tooltip: '', // Disable default tooltip
-        offset: const Offset(0, 4), // sideOffset
-        padding: EdgeInsets.zero,
-        itemBuilder: (context) => items.map((item) {
-           if (item is FpduiDropdownMenuItem) {
-            return PopupMenuItem<void>(
-              height: 32,
-              padding: EdgeInsets.zero,
-              enabled: !item.disabled,
-              onTap: item.onTap,
-              child: item,
-            );
-          } else if (item is FpduiDropdownMenuLabel) {
-             return PopupMenuItem<void>(
-              height: 32,
-              padding: EdgeInsets.zero,
-              enabled: false,
-              child: item,
-            );
-          } else if (item is FpduiDropdownMenuSeparator) {
-             return const PopupMenuDivider(height: 1);
-          }
-           return PopupMenuItem<void>(child: item);
-        }).cast<PopupMenuEntry<void>>().toList(),
-        child: trigger,
+        padding: WidgetStateProperty.all(const EdgeInsets.symmetric(vertical: 4)),
       ),
     );
   }
@@ -93,12 +107,12 @@ class FpduiDropdownMenuItem extends StatelessWidget {
      final theme = Theme.of(context);
      final fpduiTheme = theme.extension<FpduiTheme>()!;
     
-    Color textColor = theme.colorScheme.onBackground;
-    Color iconColor = theme.colorScheme.onBackground;
+    Color textColor = theme.colorScheme.onSurface;
+    Color iconColor = theme.colorScheme.onSurface;
     
     if (disabled) {
-      textColor = textColor.withOpacity(0.5);
-      iconColor = iconColor.withOpacity(0.5);
+      textColor = textColor.withValues(alpha: 0.5);
+      iconColor = iconColor.withValues(alpha: 0.5);
     } else if (isDestructive) {
       textColor = theme.colorScheme.error;
       iconColor = theme.colorScheme.error;

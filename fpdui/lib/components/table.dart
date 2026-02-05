@@ -1,9 +1,9 @@
-/// Responsible for standard table layout.
-/// Provides FpduiTable, TableHeader, TableRow, TableCell.
-///
-/// Used by: Data display, simple lists.
-/// Depends on: fpdui_theme.
-/// Assumes: HTML-like table structure composition.
+// Responsible for standard table layout.
+// Provides FpduiTable, TableHeader, TableRow, TableCell.
+//
+// Used by: Data display, simple lists.
+// Depends on: fpdui_theme.
+// Assumes: HTML-like table structure composition.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -23,9 +23,6 @@ class FpduiTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
-    // final fpduiTheme = theme.extension<FpduiTheme>()!;
-
     return LayoutBuilder(
       builder: (context, constraints) {
         return SingleChildScrollView(
@@ -56,7 +53,7 @@ class FpduiTableRow {
     // Header usually has border-b
     final theme = context != null ? Theme.of(context) : null;
     final fpduiTheme = theme?.extension<FpduiTheme>();
-    final borderColor = fpduiTheme?.border ?? const Color(0xffd4d4d8); // fallback default
+    final borderColor = fpduiTheme?.border ?? const Color(0xffd4d4d8); 
 
     return TableRow(
       decoration: decoration ?? BoxDecoration(
@@ -180,7 +177,7 @@ class FpduiTableFooter extends StatelessWidget {
     // In Flutter Table, we can just add a row at the end with different styling.
     
     return Container(
-      color: fpduiTheme.muted.withOpacity(0.5),
+      color: fpduiTheme.muted.withValues(alpha: 0.5),
       child: Row(children: children), // Logic to match table columns is hard with just Row.
     );
   }

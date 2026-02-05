@@ -72,6 +72,10 @@ import '../pages/docs/calendar_page.dart';
 import '../pages/docs/chart_page.dart';
 import '../pages/docs/carousel_page.dart';
 import '../pages/docs/typography_page.dart';
+import '../pages/docs/colors_page.dart';
+import '../pages/docs/radius_page.dart';
+import '../pages/docs/spacing_page.dart';
+import '../pages/docs/sizes_page.dart';
 import '../shell/docs_shell.dart';
 import '../pages/home_page.dart';
 import '../pages/sink_page.dart';
@@ -100,6 +104,22 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/typography',
             builder: (context, state) => const TypographyPage(),
+          ),
+          GoRoute(
+            path: '/docs/colors',
+            builder: (context, state) => const ColorsPage(),
+          ),
+          GoRoute(
+            path: '/docs/radius',
+            builder: (context, state) => const RadiusPage(),
+          ),
+          GoRoute(
+            path: '/docs/spacing',
+            builder: (context, state) => const SpacingPage(),
+          ),
+          GoRoute(
+            path: '/docs/sizes',
+            builder: (context, state) => const SizesPage(),
           ),
           GoRoute(
             path: '/docs/components/button',

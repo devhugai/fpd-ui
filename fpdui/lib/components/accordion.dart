@@ -5,9 +5,10 @@
 /// Depends on: fpdui_theme, flutter/material.
 /// Assumes: Children are provided as a list of items.
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/fpdui_theme.dart';
+
+enum FpduiAccordionType { single, multiple }
 
 class FpduiAccordion extends StatefulWidget {
   const FpduiAccordion({
@@ -23,35 +24,89 @@ class FpduiAccordion extends StatefulWidget {
   State<FpduiAccordion> createState() => _FpduiAccordionState();
 }
 
-enum FpduiAccordionType { single, multiple }
-
 class _FpduiAccordionState extends State<FpduiAccordion> {
-  final List<String> _expandedIds = [];
+  // Store controllers to manage single expansion mode
+  late Map<String, ExpansionTileController> _controllers;
 
-  void _toggle(String id) {
-    setState(() {
-      if (_expandedIds.contains(id)) {
-        _expandedIds.remove(id);
-      } else {
-        if (widget.type == FpduiAccordionType.single) {
-          _expandedIds.clear();
+  @override
+  void initState() {
+    super.initState();
+    _controllers = {
+      for (var item in widget.children) item.value: ExpansionTileController(),
+    };
+  }
+
+  @override
+  void didUpdateWidget(FpduiAccordion oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.children.length != oldWidget.children.length) {
+       _controllers = {
+        for (var item in widget.children) item.value: ExpansionTileController(),
+      };
+    }
+  }
+
+  void _onExpansionChanged(String id, bool expanded) {
+    if (widget.type == FpduiAccordionType.single && expanded) {
+      // Close all others
+      _controllers.forEach((key, controller) {
+        if (key != id && controller.isExpanded) {
+           controller.collapse();
         }
-        _expandedIds.add(id);
-      }
-    });
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final fpduiTheme = theme.extension<FpduiTheme>()!;
+
     return Column(
-      children: widget.children.map((item) {
-        return _FpduiAccordionItemWrapper(
-          item: item,
-          isExpanded: _expandedIds.contains(item.value), // Use value as ID
-          onToggle: () => _toggle(item.value),
+      children: widget.children.map<Widget>((item) {
+        final border = Border(bottom: BorderSide(color: fpduiTheme.border));
+        
+        return ExpansionTile(
+          key: Key(item.value), // Important for state
+          controller: _controllers[item.value],
+          title: DefaultTextStyle(
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w500, // font-medium
+              color: theme.colorScheme.onBackground,
+            ) ?? const TextStyle(),
+            child: item.trigger,
+          ),
+          tilePadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0), // px-0 py-4 handled by ExpansionTile height usually
+          // ExpansionTile default height is min 56 usually. shadcn py-4 is 16px. 
+          // We can adjust via visualDensity or padding.
+          childrenPadding: const EdgeInsets.only(bottom: 16), // pb-4
+          
+          // Style override to match shadcn
+          backgroundColor: Colors.transparent,
+          collapsedBackgroundColor: Colors.transparent,
+          iconColor: fpduiTheme.mutedForeground,
+          collapsedIconColor: fpduiTheme.mutedForeground,
+          shape: border,
+          collapsedShape: border,
+          showTrailingIcon: true,
+          trailing: Icon(LucideIcons.chevronDown, size: 16), // ExpansionTile animates rotation automatically?
+          // Default expansion tile rotates trailing icon. 
+          
+          onExpansionChanged: (expanded) => _onExpansionChanged(item.value, expanded),
+          children: [
+             SizedBox(
+                width: double.infinity,
+                child: DefaultTextStyle(
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.colorScheme.onBackground, 
+                  ) ?? const TextStyle(),
+                  child: item.content
+                ),
+             )
+          ],
         );
       }).toList(),
-    );
+    ); 
   }
 }
 
@@ -69,87 +124,9 @@ class FpduiAccordionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // This widget is just a configuration holder, rendered by wrapper.
+    // Configuration widget, not rendered directly
     return const SizedBox.shrink();
   }
 }
 
-class _FpduiAccordionItemWrapper extends StatelessWidget {
-  const _FpduiAccordionItemWrapper({
-    required this.item,
-    required this.isExpanded,
-    required this.onToggle,
-  });
 
-  final FpduiAccordionItem item;
-  final bool isExpanded;
-  final VoidCallback onToggle;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final fpduiTheme = theme.extension<FpduiTheme>()!;
-
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: fpduiTheme.border),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          InkWell(
-            onTap: onToggle,
-            hoverColor: Colors.transparent, // or hover:underline style? shadcn uses hover:underline on text
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16), // py-4
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: DefaultTextStyle(
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w500, // font-medium
-                        color: theme.colorScheme.onBackground,
-                      ) ?? const TextStyle(),
-                      child: item.trigger, // We might want to add hover:underline via MouseRegion if we want strict fidelity
-                    ),
-                  ),
-                  AnimatedRotation(
-                    turns: isExpanded ? 0.5 : 0, // 180deg
-                    duration: const Duration(milliseconds: 200),
-                    child: Icon(
-                      LucideIcons.chevronDown,
-                      size: 16,
-                      color: fpduiTheme.mutedForeground,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          AnimatedSize(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
-            alignment: Alignment.topCenter,
-            child: SizedBox( // explicit width needed? No, Column stretches.
-              width: double.infinity,
-              child: isExpanded
-                  ? Padding(
-                      padding: const EdgeInsets.only(bottom: 16), // pb-4
-                      child: DefaultTextStyle(
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.onBackground, // or generic text
-                        ) ?? const TextStyle(),
-                        child: item.content
-                      ),
-                    )
-                  : const SizedBox.shrink(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

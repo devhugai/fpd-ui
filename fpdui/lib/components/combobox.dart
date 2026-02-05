@@ -1,9 +1,9 @@
-/// Responsible for selecting items from a large list with search.
-/// Provides FpduiCombobox and ComboboxItem.
-///
-/// Used by: Forms, filters.
-/// Depends on: popover.dart, command.dart, button.dart.
-/// Assumes: Popover handles overlay.
+// Responsible for selecting items from a large list with search.
+// Provides FpduiCombobox and ComboboxItem.
+//
+// Used by: Forms, filters.
+// Depends on: popover.dart, command.dart, button.dart.
+// Assumes: Popover handles overlay.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';

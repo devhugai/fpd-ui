@@ -1,9 +1,9 @@
-/// Responsible for displaying modal dialog content.
-/// Provides FpduiDialog, DialogContent, DialogFooter.
-///
-/// Used by: Forms, confirmation flows.
-/// Depends on: fpdui_theme.
-/// Assumes: Typically shown via showDialog.
+// Responsible for displaying modal dialog content.
+// Provides FpduiDialog, DialogContent, DialogFooter.
+//
+// Used by: Forms, confirmation flows.
+// Depends on: fpdui_theme.
+// Assumes: Typically shown via showDialog.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -40,7 +40,7 @@ class FpduiDialogContent extends StatelessWidget {
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
     return Dialog(
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: theme.colorScheme.surface,
       surfaceTintColor: Colors.transparent, // Remove M3 tint
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(fpduiTheme.radiusLg),
@@ -66,7 +66,7 @@ class FpduiDialogContent extends StatelessWidget {
                   style: IconButton.styleFrom(
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     hoverColor: fpduiTheme.accent,
-                    highlightColor: fpduiTheme.accent.withOpacity(0.5),
+                    highlightColor: fpduiTheme.accent.withValues(alpha: 0.5),
                   ),
                 ),
               ),

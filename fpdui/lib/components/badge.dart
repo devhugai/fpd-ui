@@ -44,44 +44,50 @@ class FpduiBadge extends StatelessWidget {
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
     Color? backgroundColor;
-    Color? foregroundColor;
-    Color? borderColor;
+    Color? labelColor;
+    BorderSide? side;
 
     switch (variant) {
       case FpduiBadgeVariant.primary:
         backgroundColor = fpduiTheme.primary;
-        foregroundColor = fpduiTheme.primaryForeground;
+        labelColor = fpduiTheme.primaryForeground;
         break;
       case FpduiBadgeVariant.secondary:
         backgroundColor = fpduiTheme.secondary;
-        foregroundColor = fpduiTheme.secondaryForeground;
+        labelColor = fpduiTheme.secondaryForeground;
         break;
       case FpduiBadgeVariant.destructive:
         backgroundColor = fpduiTheme.destructive;
-        foregroundColor = fpduiTheme.destructiveForeground;
+        labelColor = fpduiTheme.destructiveForeground;
         break;
       case FpduiBadgeVariant.outline:
         backgroundColor = Colors.transparent;
-        foregroundColor = theme.colorScheme.onBackground;
-        borderColor = fpduiTheme.border;
+        labelColor = theme.colorScheme.onSurface;
+        side = BorderSide(color: fpduiTheme.border);
         break;
     }
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2), // px-2.5 py-0.5
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(100), // rounded-full
-        border: borderColor != null ? Border.all(color: borderColor) : null,
-      ),
-      child: DefaultTextStyle(
+    return RawChip(
+      label: DefaultTextStyle(
         style: theme.textTheme.labelSmall?.copyWith(
-          color: foregroundColor,
-          fontSize: 12, // text-xs
-          fontWeight: FontWeight.w600, // font-semibold
-        ) ?? const TextStyle(),
+              color: labelColor,
+              fontSize: 12, // text-xs
+              fontWeight: FontWeight.w600, // font-semibold
+            ) ??
+            const TextStyle(),
         child: child,
       ),
+      backgroundColor: backgroundColor,
+      side: side ?? BorderSide.none,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(100)), // rounded-full
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2), // px-2.5 py-0.5
+      // RawChip defaults add some padding/margins we might want to strip to match "Badge" look
+      labelPadding: EdgeInsets.zero,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      isEnabled: false, // Badges are typically static indicators
+      disabledColor: backgroundColor, // Maintain color when disabled
     );
   }
 }

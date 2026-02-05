@@ -1,9 +1,9 @@
-/// Responsible for resizable panel layouts.
-/// Provides FpduiResizablePanelGroup and FpduiResizablePanel.
-///
-/// Used by: IDE-like layouts, split views.
-/// Depends on: fpdui_theme, flutter_resizable_container (or custom logic).
-/// Assumes: Parent constraints allowed resizing.
+// Responsible for resizable panel layouts.
+// Provides FpduiResizablePanelGroup and FpduiResizablePanel.
+//
+// Used by: IDE-like layouts, split views.
+// Depends on: fpdui_theme, flutter_resizable_container (or custom logic).
+// Assumes: Parent constraints allowed resizing.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/fpdui_theme.dart';

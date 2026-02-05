@@ -1,9 +1,9 @@
-/// Responsible for cycling through a series of content.
-/// Provides FpduiCarousel and FpduiCarouselContent.
-///
-/// Used by: Image galleries, featured content.
-/// Depends on: carousel_slider (or custom implementation), fpdui_theme.
-/// Assumes: List of items to cycle through.
+// Responsible for cycling through a series of content.
+// Provides FpduiCarousel and FpduiCarouselContent.
+//
+// Used by: Image galleries, featured content.
+// Depends on: carousel_slider (or custom implementation), fpdui_theme.
+// Assumes: List of items to cycle through.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'button.dart';
@@ -258,8 +258,8 @@ class FpduiCarouselPrevious extends StatelessWidget {
     return FpduiButton(
       variant: variant,
       size: FpduiButtonSize.icon,
-      child: const Icon(LucideIcons.arrowLeft, size: 16),
       onPressed: (scope != null && scope.canScrollPrev) ? scope.scrollPrev : null,
+      child: const Icon(LucideIcons.arrowLeft, size: 16),
       // Rounded full usually?
     );
   }
@@ -276,8 +276,8 @@ class FpduiCarouselNext extends StatelessWidget {
     return FpduiButton(
       variant: variant,
       size: FpduiButtonSize.icon,
-      child: const Icon(LucideIcons.arrowRight, size: 16),
       onPressed: (scope != null && scope.canScrollNext) ? scope.scrollNext : null,
+      child: const Icon(LucideIcons.arrowRight, size: 16),
     );
   }
 }

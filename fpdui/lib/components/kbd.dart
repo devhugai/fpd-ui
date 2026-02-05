@@ -1,8 +1,8 @@
-/// Responsible for displaying keyboard shortcuts independently.
-/// Provides FpduiKbd widget.
-///
-/// Used by: Documentation, command palettes, tooltips.
-/// Depends on: fpdui_theme.
+// Responsible for displaying keyboard shortcuts independently.
+// Provides FpduiKbd widget.
+//
+// Used by: Documentation, command palettes, tooltips.
+// Depends on: fpdui_theme.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

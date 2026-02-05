@@ -1,9 +1,9 @@
-/// Responsible for displaying navigation path hierarchy.
-/// Provides FpduiBreadcrumb and FpduiBreadcrumbItem widgets.
-///
-/// Used by: Deeply nested pages, file browsers.
-/// Depends on: fpdui_theme, lucide_icons.
-/// Assumes: Ordered list of navigation steps.
+// Responsible for displaying navigation path hierarchy.
+// Provides FpduiBreadcrumb and FpduiBreadcrumbItem widgets.
+//
+// Used by: Deeply nested pages, file browsers.
+// Depends on: fpdui_theme, lucide_icons.
+// Assumes: Ordered list of navigation steps.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:gap/gap.dart';
@@ -84,7 +84,7 @@ class FpduiBreadcrumbLink extends StatelessWidget {
         child: DefaultTextStyle.merge(
            style: TextStyle(
              fontSize: 14,
-             color: theme.colorScheme.onBackground.withOpacity(0.6), // muted-foreground
+             color: theme.colorScheme.onSurface.withValues(alpha: 0.6), // muted-foreground
              // We can't easily animate text color here without state.
              // For now, static mute.
            ),
@@ -112,8 +112,8 @@ class _FpduiBreadcrumbLinkInteractiveState extends State<FpduiBreadcrumbLinkInte
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final color = _isHovered 
-        ? theme.colorScheme.onBackground 
-        : theme.colorScheme.onBackground.withOpacity(0.6);
+        ? theme.colorScheme.onSurface 
+        : theme.colorScheme.onSurface.withValues(alpha: 0.6);
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -147,7 +147,7 @@ class FpduiBreadcrumbPage extends StatelessWidget {
       style: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.normal,
-        color: theme.colorScheme.onBackground, // foreground
+        color: theme.colorScheme.onSurface, // foreground
       ),
       child: child,
     );
@@ -164,7 +164,7 @@ class FpduiBreadcrumbSeparator extends StatelessWidget {
     return IconTheme(
       data: IconThemeData(
         size: 14, 
-        color: theme.colorScheme.onBackground.withOpacity(0.6),
+        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
       ),
       child: child ?? const Icon(LucideIcons.chevronRight),
     );
@@ -180,7 +180,7 @@ class FpduiBreadcrumbEllipsis extends StatelessWidget {
     return Icon(
       LucideIcons.moreHorizontal,
       size: 16,
-      color: theme.colorScheme.onBackground.withOpacity(0.6),
+      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
     );
   }
 }

@@ -1,9 +1,9 @@
-/// Responsible for primary screen actions.
-/// Provides FpduiFAB widget.
-///
-/// Used by: Scaffold floatingActionButton.
-/// Depends on: fpdui_theme.
-/// Assumes: Floating positioning.
+// Responsible for primary screen actions.
+// Provides FpduiFAB widget.
+//
+// Used by: Scaffold floatingActionButton.
+// Depends on: fpdui_theme.
+// Assumes: Floating positioning.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -44,8 +44,9 @@ class FpduiFAB extends StatelessWidget {
 
     Color? backgroundColor;
     Color foregroundColor;
-    Border? border;
-    double elevation = 2;
+    double? elevation = 6;
+    ShapeBorder? shape;
+
 
     switch (variant) {
       case FpduiFABVariant.secondary:
@@ -57,76 +58,66 @@ class FpduiFAB extends StatelessWidget {
         foregroundColor = fpduiTheme.destructiveForeground;
         break;
       case FpduiFABVariant.outline:
-        backgroundColor = theme.colorScheme.background;
-        foregroundColor = theme.colorScheme.onBackground;
-        border = Border.all(color: fpduiTheme.input);
+        backgroundColor = theme.colorScheme.surface;
+        foregroundColor = theme.colorScheme.onSurface;
         elevation = 0;
+        shape = CircleBorder(side: BorderSide(color: fpduiTheme.input)); 
+        // Or RoundedRectangle depending on FAB shape preference. FAB is usually circular or squircle.
+        // FPD UI seems to use rounded-lg for FAB?
         break;
       case FpduiFABVariant.ghost:
          backgroundColor = Colors.transparent;
-         foregroundColor = theme.colorScheme.onBackground;
+         foregroundColor = theme.colorScheme.onSurface;
          elevation = 0;
          break;
       case FpduiFABVariant.primary:
-      default:
         backgroundColor = fpduiTheme.primary;
         foregroundColor = fpduiTheme.primaryForeground;
         break;
     }
 
+    // Resolve shape - FPD Theme FAB is typically rounded-lg? No, FABs are usually rounded-xl or full.
+    // Original implementation: `borderRadius: BorderRadius.circular(fpduiTheme.radiusLg)`
+    shape ??= RoundedRectangleBorder(borderRadius: BorderRadius.circular(fpduiTheme.radiusLg));
+
     double dimension;
-    double iconSize;
 
     switch (size) {
       case FpduiFABSize.sm:
-        dimension = 40;
-        iconSize = 20;
+        dimension = 40; // mini
         break;
       case FpduiFABSize.lg:
-        dimension = 64;
-        iconSize = 28;
+        dimension = 64; // large
         break;
       case FpduiFABSize.defaultSize:
-      default:
-        dimension = 56;
-        iconSize = 24;
+        dimension = 56; // default
         break;
     }
 
-    Widget button = Container(
+    // Native FAB has `mini` property which toggles between 40 and 56.
+    // For `lg` (64), we might need `Custom` constraints, but standard FAB is usually strict on Material specs.
+    // However, `SizedBox` wrapper works.
+
+    return SizedBox(
       width: dimension,
       height: dimension,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        // borderRadius: BorderRadius.circular(dimension / 2), // Removed circular
-        borderRadius: BorderRadius.circular(fpduiTheme.radiusLg), 
-        border: border,
-        boxShadow: elevation > 0 ? [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 4 * elevation,
-            offset: Offset(0, 2 * elevation),
-          )
-        ] : null,
-      ),
-      alignment: Alignment.center,
-      child: IconTheme(
-        data: IconThemeData(size: iconSize, color: foregroundColor),
+      child: FloatingActionButton(
+        onPressed: onPressed,
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
+        elevation: elevation,
+        focusElevation: elevation,
+        hoverElevation: elevation,
+        disabledElevation: 0,
+        highlightElevation: elevation, // Keep flat look often desired in modern UI, or allow slight lift
+        tooltip: tooltip,
+        shape: shape,
+        // mini: size == FpduiFABSize.sm, // Controlled by SizedBox, but mini changes internal padding too.
+        // If we use SizedBox, we should probably let FAB expand.
         child: child,
-      ),
-    );
-
-    if (tooltip != null) {
-      button = Tooltip(message: tooltip, child: button);
-    }
-
-    return Material(
-      type: MaterialType.transparency,
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(fpduiTheme.radiusLg),
-        child: button,
       ),
     );
   }
 }
+
+

@@ -1,8 +1,8 @@
-/// Responsible for display tabbed navigation.
-/// Provides FpduiTabBar.
-///
-/// Used by: Scaffolds, TabBarView.
-/// Depends on: fpdui_theme.
+// Responsible for display tabbed navigation.
+// Provides FpduiTabBar.
+//
+// Used by: Scaffolds, TabBarView.
+// Depends on: fpdui_theme.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -27,8 +27,8 @@ class FpduiTabBar extends StatelessWidget {
 
     return TabBarTheme(
       data: TabBarThemeData(
-        labelColor: theme.colorScheme.onBackground,
-        unselectedLabelColor: theme.colorScheme.onBackground.withOpacity(0.7),
+        labelColor: theme.colorScheme.onSurface,
+        unselectedLabelColor: theme.colorScheme.onSurface.withValues(alpha: 0.7),
         indicatorColor: fpduiTheme.primary, // Primary underline
         indicatorSize: TabBarIndicatorSize.tab,
         dividerColor: fpduiTheme.border,

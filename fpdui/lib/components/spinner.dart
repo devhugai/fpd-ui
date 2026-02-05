@@ -1,11 +1,10 @@
-/// Responsible for indicating indeterminate loading state.
-/// Provides FpduiSpinner widget.
-///
-/// Used by: Loading states.
-/// Depends on: fpdui_theme.
-/// Assumes: Circular style.
+// Responsible for indicating indeterminate loading state.
+// Provides FpduiSpinner widget.
+//
+// Used by: Loading states.
+// Depends on: fpdui_theme.
+// Assumes: Circular style.
 import 'package:flutter/material.dart';
-import '../theme/fpdui_theme.dart';
 
 class FpduiSpinner extends StatelessWidget {
   const FpduiSpinner({

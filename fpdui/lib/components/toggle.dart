@@ -1,9 +1,9 @@
-/// Responsible for a two-state button.
-/// Provides FpduiToggle widget.
-///
-/// Used by: Text editors (Bold, Italic), settings.
-/// Depends on: fpdui_theme, button.dart (conceptually).
-/// Assumes: Controlled component.
+// Responsible for a two-state button.
+// Provides FpduiToggle widget.
+//
+// Used by: Text editors (Bold, Italic), settings.
+// Depends on: fpdui_theme, button.dart (conceptually).
+// Assumes: Controlled component.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -39,78 +39,66 @@ class FpduiToggle extends StatelessWidget {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
-    Color? backgroundColor;
-    Color foregroundColor;
-    Border? border;
+    double iconSize;
+    EdgeInsetsGeometry padding;
+    BoxConstraints constraints;
 
-    // Resolve styles based on variant and state
-    if (variant == FpduiToggleVariant.outline) {
-      if (isPressed) {
-        backgroundColor = fpduiTheme.accent;
-        foregroundColor = fpduiTheme.accentForeground;
-        border = Border.all(color: fpduiTheme.input);
-      } else {
-        backgroundColor = Colors.transparent;
-        foregroundColor = fpduiTheme.mutedForeground;
-        border = Border.all(color: fpduiTheme.input);
-      }
-    } else {
-      // Default
-      if (isPressed) {
-        backgroundColor = fpduiTheme.accent;
-        foregroundColor = fpduiTheme.accentForeground;
-      } else {
-        backgroundColor = Colors.transparent;
-        foregroundColor = fpduiTheme.mutedForeground;
-      }
-    }
-
-    EdgeInsets padding;
-    double height;
-    
     switch (size) {
       case FpduiToggleSize.sm:
-        height = 36;
-        padding = const EdgeInsets.symmetric(horizontal: 10);
+        iconSize = 16;
+        padding = const EdgeInsets.all(8); // minimal padding for sm
+        constraints = const BoxConstraints(minWidth: 36, minHeight: 36);
         break;
       case FpduiToggleSize.lg:
-        height = 44;
-        padding = const EdgeInsets.symmetric(horizontal: 20);
+        iconSize = 24;
+        padding = const EdgeInsets.all(12);
+        constraints = const BoxConstraints(minWidth: 44, minHeight: 44);
         break;
       case FpduiToggleSize.defaultSize:
-      default:
-        height = 40;
-        padding = const EdgeInsets.symmetric(horizontal: 12);
+        iconSize = 20;
+        padding = const EdgeInsets.all(10);
+        constraints = const BoxConstraints(minWidth: 40, minHeight: 40);
         break;
     }
 
-    return InkWell(
-      onTap: onPressed,
-      borderRadius: BorderRadius.circular(fpduiTheme.radius),
-      child: Container(
-        height: height,
-        padding: padding,
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(fpduiTheme.radius),
-          border: border,
-        ),
-        child: Center(
-          widthFactor: 1.0, 
-          child: DefaultTextStyle(
-            style: TextStyle(
-              color: foregroundColor,
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-            ),
-            child: IconTheme(
-              data: IconThemeData(
-                color: foregroundColor,
-                size: 20, // slightly larger for icons usually
-              ),
-              child: child,
-            ),
-          ),
+    // Determine colors based on state
+    Color? backgroundColor;
+    Color foregroundColor;
+    BorderSide? side;
+
+    if (variant == FpduiToggleVariant.outline) {
+      side = BorderSide(color: fpduiTheme.input);
+      if (isPressed) {
+        backgroundColor = fpduiTheme.accent;
+        foregroundColor = fpduiTheme.accentForeground;
+      } else {
+        backgroundColor = Colors.transparent;
+        foregroundColor = fpduiTheme.mutedForeground;
+      }
+    } else {
+      if (isPressed) {
+        backgroundColor = fpduiTheme.accent;
+        foregroundColor = fpduiTheme.accentForeground;
+      } else {
+        backgroundColor = Colors.transparent;
+        foregroundColor = fpduiTheme.mutedForeground;
+      }
+    }
+
+    return IconButton(
+      onPressed: onPressed,
+      isSelected: isPressed,
+      icon: child,
+      iconSize: iconSize,
+      padding: padding,
+      constraints: constraints,
+      style: IconButton.styleFrom(
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
+        hoverColor: fpduiTheme.muted.withValues(alpha: 0.5),
+        shape: RoundedRectangleBorder(
+           borderRadius: BorderRadius.circular(fpduiTheme.radius),
+           side: side ?? BorderSide.none,
         ),
       ),
     );

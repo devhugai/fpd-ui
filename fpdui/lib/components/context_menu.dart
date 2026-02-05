@@ -1,12 +1,12 @@
-/// Responsible for displaying contextual actions on right-click/long-press.
-/// Provides FpduiContextMenu wrapper.
-///
-/// Used by: Lists, items requiring secondary actions.
-/// Depends on: context_menus package or custom overlay, fpdui_theme.
-/// Assumes: Positioned relative to mouse/touch.
+// Responsible for displaying contextual actions on right-click/long-press.
+// Provides FpduiContextMenu wrapper.
+//
+// Used by: Lists, items requiring secondary actions.
+// Depends on: context_menus package or custom overlay, fpdui_theme.
+// Assumes: Positioned relative to mouse/touch.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+// import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/fpdui_theme.dart';
 
 import 'package:flutter/services.dart'; // Import services
@@ -57,7 +57,7 @@ class _FpduiContextMenuState extends State<FpduiContextMenu> {
         borderRadius: BorderRadius.circular(fpduiTheme.radius),
         side: BorderSide(color: fpduiTheme.border),
       ),
-      color: theme.colorScheme.background, // bg-popover
+      color: theme.colorScheme.surface, // bg-popover
       surfaceTintColor: Colors.transparent,
       items: widget.items.map((item) {
         if (item is FpduiContextMenuItem) {
@@ -122,12 +122,12 @@ class FpduiContextMenuItem extends StatelessWidget {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
     
-    Color textColor = theme.colorScheme.onBackground;
-    Color iconColor = theme.colorScheme.onBackground;
+    Color textColor = theme.colorScheme.onSurface;
+    Color iconColor = theme.colorScheme.onSurface;
     
     if (disabled) {
-      textColor = textColor.withOpacity(0.5);
-      iconColor = iconColor.withOpacity(0.5);
+      textColor = textColor.withValues(alpha: 0.5);
+      iconColor = iconColor.withValues(alpha: 0.5);
     } else if (isDestructive) {
       textColor = theme.colorScheme.error; // text-destructive
       iconColor = theme.colorScheme.error;

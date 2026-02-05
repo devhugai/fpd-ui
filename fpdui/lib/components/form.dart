@@ -1,9 +1,9 @@
-/// Responsible for form validation and structure.
-/// Provides FpduiForm, FormField, FormLabel, FormMessage.
-///
-/// Used by: Data entry pages.
-/// Depends on: flutter_form_builder (or default Form), fpdui_theme.
-/// Assumes: Manages FormState.
+// Responsible for form validation and structure.
+// Provides FpduiForm, FormField, FormLabel, FormMessage.
+//
+// Used by: Data entry pages.
+// Depends on: flutter_form_builder (or default Form), fpdui_theme.
+// Assumes: Manages FormState.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../theme/fpdui_theme.dart';

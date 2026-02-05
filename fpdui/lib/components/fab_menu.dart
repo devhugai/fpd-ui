@@ -1,9 +1,9 @@
-/// Responsible for displaying expandable FAB actions (Speed Dial).
-/// Provides FpduiFabMenu and FpduiFabAction.
-///
-/// Used by: Screens with multiple primary actions.
-/// Depends on: fpdui_theme, flutter_animate (or native animations), fab.dart.
-/// Assumes: Bottom-right positioning usually.
+// Responsible for displaying expandable FAB actions (Speed Dial).
+// Provides FpduiFabMenu and FpduiFabAction.
+//
+// Used by: Screens with multiple primary actions.
+// Depends on: fpdui_theme, flutter_animate (or native animations), fab.dart.
+// Assumes: Bottom-right positioning usually.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -133,11 +133,11 @@ class _FabMenuItem extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: theme.colorScheme.background,
+              color: theme.colorScheme.surface,
               borderRadius: BorderRadius.circular(fpduiTheme.radius),
               boxShadow: [
                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 4,
                  ),
               ],

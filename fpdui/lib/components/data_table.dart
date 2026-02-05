@@ -1,9 +1,9 @@
-/// Responsible for displaying structured data in rows and columns.
-/// Provides FpduiDataTable widget with sorting and pagination support.
-///
-/// Used by: Admin panels, data reporting.
-/// Depends on: fpdui_theme.
-/// Assumes: Data source is a list of maps or objects.
+// Responsible for displaying structured data in rows and columns.
+// Provides FpduiDataTable widget with sorting and pagination support.
+//
+// Used by: Admin panels, data reporting.
+// Depends on: fpdui_theme.
+// Assumes: Data source is a list of maps or objects.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:gap/gap.dart';

@@ -1,9 +1,9 @@
-/// Responsible for grouping toggle buttons for selection.
-/// Provides FpduiToggleGroup and FpduiToggleGroupItem.
-///
-/// Used by: View switchers, filters.
-/// Depends on: fpdui_theme.
-/// Assumes: Generic type T for values.
+// Responsible for grouping toggle buttons for selection.
+// Provides FpduiToggleGroup and FpduiToggleGroupItem.
+//
+// Used by: View switchers, filters.
+// Depends on: fpdui_theme.
+// Assumes: Generic type T for values.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -33,115 +33,95 @@ class FpduiToggleGroup<T> extends StatelessWidget {
     this.value,
     this.onChanged,
     this.type = FpduiToggleGroupType.single,
+    this.emptySelectionAllowed = true,
   });
 
   final List<FpduiToggleGroupItem<T>> items;
   
-  /// Current value. 
-  /// If type is single, expected T?.
-  /// If type is multiple, expected List<T>.
+  // Current value. 
+  // If type is single, expects `T?` (or `T` if not empty allowed).
+  // If type is multiple, expects `List<T>` or `Set<T>`.
   final dynamic value;
   
-  /// Callback. 
-  /// If type is single, returns T?.
-  /// If type is multiple, returns List<T>.
+  // Callback. 
+  // If type is single, returns `T?`.
+  // If type is multiple, returns `List<T>`.
   final ValueChanged<dynamic>? onChanged;
   
   final FpduiToggleGroupType type;
-
-  void _handleTap(T itemValue) {
-    if (onChanged == null) return;
-
-    if (type == FpduiToggleGroupType.single) {
-      if (value == itemValue) {
-        onChanged!(null); // Deselect if same? Optional behavior, usually segmented buttons enforce one selection if mandatory, but toggle group usually allows none.
-        // Let's assume standard toggle behavior: allows deselecting unless enforced.
-        // Actually, Apple SegmentedControl enforces one. Material SegmentedButton allows empty.
-        // We'll allow deselecting (toggle behavior).
-      } else {
-        onChanged!(itemValue);
-      }
-    } else {
-      final List<T> currentValues = (value as List<T>?) != null ? List.from(value as List<T>) : [];
-      if (currentValues.contains(itemValue)) {
-        currentValues.remove(itemValue);
-      } else {
-        currentValues.add(itemValue);
-      }
-      onChanged!(currentValues);
-    }
-  }
-
-  bool _isSelected(T itemValue) {
-    if (type == FpduiToggleGroupType.single) {
-      return value == itemValue;
-    } else {
-      final list = value as List<T>?;
-      return list?.contains(itemValue) ?? false;
-    }
-  }
+  final bool emptySelectionAllowed;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.background, // or muted/input bg
-        borderRadius: BorderRadius.circular(fpduiTheme.radius),
-        border: Border.all(color: fpduiTheme.input),
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: items.asMap().entries.map((entry) {
-            final index = entry.key;
-            final item = entry.value;
-            final isSelected = _isSelected(item.value);
-            final isLast = index == items.length - 1;
+    // Prepare segments
+    final List<ButtonSegment<T>> segments = items.map((item) {
+      return ButtonSegment<T>(
+        value: item.value,
+        icon: item.child, // FpduiToggleGroup usually just has child (icon/text). SegmentedButton uses icon/label.
+                          // We map child to icon for compact look, or label if text. 
+                          // Let's assume child is the main content.
+        // mapping child to label might be safer if it's text, but child is Widget.
+        // Let's use label for general purpose.
+        label: item.child, 
+        enabled: item.enabled,
+        tooltip: item.tooltip,
+      );
+    }).toList();
 
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                InkWell(
-                  onTap: item.enabled ? () => _handleTap(item.value) : null,
-                  borderRadius: BorderRadius.horizontal(
-                    left: index == 0 ? Radius.circular(fpduiTheme.radius) : Radius.zero,
-                    right: isLast ? Radius.circular(fpduiTheme.radius) : Radius.zero,
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    color: isSelected ? fpduiTheme.accent : Colors.transparent,
-                    child: DefaultTextStyle(
-                      style: theme.textTheme.bodyMedium!.copyWith(
-                        color: isSelected 
-                            ? fpduiTheme.accentForeground 
-                            : (item.enabled ? fpduiTheme.foreground : fpduiTheme.mutedForeground),
-                        fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
-                      ),
-                      child: IconTheme(
-                        data: IconThemeData(
-                          size: 16,
-                          color: isSelected 
-                              ? fpduiTheme.accentForeground 
-                              : (item.enabled ? fpduiTheme.foreground : fpduiTheme.mutedForeground),
-                        ),
-                        child: item.child,
-                      ),
-                    ),
-                  ),
-                ),
-                if (!isLast)
-                  Container(
-                    width: 1,
-                    color: fpduiTheme.input,
-                  ),
-              ],
-            );
-          }).toList(),
+    // Prepare selection
+    Set<T> selected = {};
+    if (type == FpduiToggleGroupType.single) {
+      if (value != null) {
+        selected = {value as T};
+      }
+    } else {
+      if (value != null) {
+        selected = (value as List<T>).toSet();
+      }
+    }
+
+    return SegmentedButton<T>(
+      segments: segments,
+      selected: selected,
+      onSelectionChanged: (newSelection) {
+        if (onChanged == null) return;
+
+        if (type == FpduiToggleGroupType.single) {
+           if (newSelection.isEmpty) {
+             onChanged!(null);
+           } else {
+             onChanged!(newSelection.first);
+           }
+        } else {
+          onChanged!(newSelection.toList());
+        }
+      },
+      multiSelectionEnabled: type == FpduiToggleGroupType.multiple,
+      emptySelectionAllowed: emptySelectionAllowed, // Default true to allow toggle behavior
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return fpduiTheme.accent;
+          }
+          return Colors.transparent;
+        }),
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return fpduiTheme.accentForeground;
+          }
+          return fpduiTheme.foreground;
+        }),
+        side: WidgetStateProperty.all(BorderSide(color: fpduiTheme.input)),
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(fpduiTheme.radius)),
         ),
+        padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 12, vertical: 8)),
+        visualDensity: VisualDensity.compact,
       ),
+      showSelectedIcon: false, // Don't show the checkmark to match toggle group style
     );
   }
 }

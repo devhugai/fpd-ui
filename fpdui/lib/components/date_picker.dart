@@ -1,15 +1,15 @@
-/// Responsible for selecting a date via a calendar popover.
-/// Provides FpduiDatePicker widget.
-///
-/// Used by: Forms, scheduling.
-/// Depends on: calendar.dart, popover.dart, button.dart, intl.
-/// Assumes: Single date selection.
+// Responsible for selecting a date via a calendar popover.
+// Provides FpduiDatePicker widget.
+//
+// Used by: Forms, scheduling.
+// Depends on: calendar.dart, popover.dart, button.dart, intl.
+// Assumes: Single date selection.
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/fpdui_theme.dart';
 import 'button.dart';
-import 'calendar.dart';
+// import 'calendar.dart';
 import 'popover.dart';
 import 'package:gap/gap.dart';
 
@@ -43,15 +43,28 @@ class _FpduiDatePickerState extends State<FpduiDatePicker> {
 
     return FpduiPopover(
       controller: _popoverController,
-      content: FpduiCalendar(
-        focusedDay: widget.value ?? DateTime.now(), // Required param focusedDay was missing too in cal usage!
-        firstDay: DateTime(1900),
-        lastDay: DateTime(2100),
-        selectedDay: widget.value,
-        onDaySelected: (selectedDay, focusedDay) {
-          widget.onChanged(selectedDay);
-          _popoverController.hide();
-        },
+      content: SizedBox(
+        width: 320,
+        height: 320,
+        child: Theme(
+          data: theme.copyWith(
+             colorScheme: theme.colorScheme.copyWith(
+                primary: fpduiTheme.primary,
+                onPrimary: fpduiTheme.primaryForeground,
+                surface: theme.colorScheme.surface,
+                onSurface: theme.colorScheme.onSurface,
+             ),
+          ),
+          child: CalendarDatePicker(
+            initialDate: widget.value ?? DateTime.now(),
+            firstDate: DateTime(1900),
+            lastDate: DateTime(2100),
+            onDateChanged: (value) {
+              widget.onChanged(value);
+              _popoverController.hide();
+            },
+          ),
+        ),
       ),
       child: FpduiButton(
         variant: FpduiButtonVariant.outline,

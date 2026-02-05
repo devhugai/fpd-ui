@@ -1,9 +1,9 @@
-/// Responsible for displaying user profile images or fallbacks.
-/// Provides FpduiAvatar widget with circle clipping.
-///
-/// Used by: User profiles, lists, headers.
-/// Depends on: fpdui_theme.
-/// Assumes: ImageProvider can fail, handles error with fallback.
+// Responsible for displaying user profile images or fallbacks.
+// Provides FpduiAvatar widget with circle clipping.
+//
+// Used by: User profiles, lists, headers.
+// Depends on: fpdui_theme.
+// Assumes: ImageProvider can fail, handles error with fallback.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -65,30 +65,21 @@ class FpduiAvatar extends StatelessWidget {
       fontWeight: FontWeight.w500,
     );
 
-    return Container(
+    return SizedBox(
       width: dimension,
       height: dimension,
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: bgColor,
-        shape: BoxShape.circle,
-      ),
-      child: image != null
-          ? Image(
-              image: image!,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => _buildFallback(textStyle),
-            )
-          : _buildFallback(textStyle),
-    );
-  }
-
-  Widget _buildFallback(TextStyle textStyle) {
-    if (fallback == null) return const SizedBox();
-    return Center(
-      child: DefaultTextStyle(
-        style: textStyle,
-        child: fallback!,
+      child: CircleAvatar(
+        radius: dimension / 2,
+        backgroundColor: bgColor,
+        foregroundImage: image,
+        // When foregroundImage fails or is null, child is shown.
+        // We use child for fallback.
+        child: fallback != null 
+            ? DefaultTextStyle(
+                style: textStyle,
+                child: fallback!,
+              )
+            : null,
       ),
     );
   }

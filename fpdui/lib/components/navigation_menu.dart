@@ -1,9 +1,9 @@
-/// Responsible for displaying hierarchical navigation links.
-/// Provides FpduiNavigationMenu and NavigationMenuItem.
-///
-/// Used by: Header navigation, main menus.
-/// Depends on: fpdui_theme.
-/// Assumes: Hover or click interactions triggers sub-menus.
+// Responsible for displaying hierarchical navigation links.
+// Provides FpduiNavigationMenu and NavigationMenuItem.
+//
+// Used by: Header navigation, main menus.
+// Depends on: fpdui_theme.
+// Assumes: Hover or click interactions triggers sub-menus.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:gap/gap.dart';
@@ -74,9 +74,9 @@ class _NavigationMenuScope extends InheritedWidget {
   final FpduiNavigationMenuController controller;
   final LayerLink viewportLink;
 
-  static _NavigationMenuScope of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<_NavigationMenuScope>()!;
-  }
+  // static _NavigationMenuScope of(BuildContext context) {
+  //   return context.dependOnInheritedWidgetOfExactType<_NavigationMenuScope>()!;
+  // }
 
   @override
   bool updateShouldNotify(_NavigationMenuScope oldWidget) => 
@@ -236,7 +236,7 @@ class FpduiNavigationMenuTrigger extends StatelessWidget {
        child: DefaultTextStyle(
           style: theme.textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.w500,
-            color: isActive ? theme.colorScheme.onSecondary : theme.colorScheme.onBackground,
+            color: isActive ? theme.colorScheme.onSecondary : theme.colorScheme.onSurface,
           ) ?? const TextStyle(),
          child: Row(
            mainAxisSize: MainAxisSize.min,
@@ -333,7 +333,7 @@ class FpduiNavigationMenuLink extends StatelessWidget {
                      Text(
                        description!,
                        style: theme.textTheme.bodySmall?.copyWith(
-                         color: theme.colorScheme.onBackground.withOpacity(0.7),
+                         color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                        ) ?? const TextStyle(),
                      ),
                    ],

@@ -3,9 +3,7 @@
 ///
 /// Used by: Forms, Actions, Dialogs.
 /// Depends on: fpdui_theme.
-/// Assumes: Can be disabled via null onPressed.
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -25,7 +23,7 @@ enum FpduiButtonSize {
   icon,
 }
 
-class FpduiButton extends StatefulWidget {
+class FpduiButton extends StatelessWidget {
   const FpduiButton({
     super.key,
     this.variant = FpduiButtonVariant.primary,
@@ -50,145 +48,237 @@ class FpduiButton extends StatefulWidget {
   final double? height;
 
   @override
-  State<FpduiButton> createState() => _FpduiButtonState();
-}
-
-class _FpduiButtonState extends State<FpduiButton> {
-  bool _isHovered = false;
-
-  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
-    
-    // Determine colors based on variant
-    Color? backgroundColor;
-    Color? foregroundColor;
-    Color? borderColor;
-    
-    switch (widget.variant) {
-      case FpduiButtonVariant.primary:
-        backgroundColor = fpduiTheme.primary;
-        foregroundColor = fpduiTheme.primaryForeground;
-        if (_isHovered) backgroundColor = fpduiTheme.primary.withOpacity(0.9);
-        break;
-      case FpduiButtonVariant.destructive:
-        backgroundColor = fpduiTheme.destructive;
-        foregroundColor = fpduiTheme.destructiveForeground;
-        if (_isHovered) backgroundColor = fpduiTheme.destructive.withOpacity(0.9);
-        break;
-      case FpduiButtonVariant.outline:
-        backgroundColor = fpduiTheme.background; 
-        foregroundColor = theme.colorScheme.onBackground;
-        borderColor = fpduiTheme.border;
-        if (_isHovered) {
-          backgroundColor = fpduiTheme.accent;
-          foregroundColor = fpduiTheme.accentForeground;
-        }
-        break;
-      case FpduiButtonVariant.secondary:
-        backgroundColor = fpduiTheme.secondary;
-        foregroundColor = fpduiTheme.secondaryForeground;
-        if (_isHovered) backgroundColor = fpduiTheme.secondary.withOpacity(0.8);
-        break;
-      case FpduiButtonVariant.ghost:
-        backgroundColor = Colors.transparent;
-        foregroundColor = theme.colorScheme.onBackground;
-        if (_isHovered) {
-          backgroundColor = fpduiTheme.accent;
-          foregroundColor = fpduiTheme.accentForeground;
-        }
-        break;
-      case FpduiButtonVariant.link:
-        backgroundColor = Colors.transparent;
-        foregroundColor = fpduiTheme.primary;
-        break;
-    }
 
-    // Determine dimensions based on size
-    double? height;
-    EdgeInsetsGeometry padding;
-    
-    switch (widget.size) {
-      case FpduiButtonSize.$default:
-        height = 36; 
-        padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 8); 
-        break;
+    // 1. Resolve Dimensions (Height & Padding)
+    double? defaultHeight;
+    EdgeInsetsGeometry defaultPadding;
+    double? minWidth;
+
+    switch (size) {
       case FpduiButtonSize.sm:
-        height = 32; 
-        padding = const EdgeInsets.symmetric(horizontal: 12); 
+        defaultHeight = 36; // h-9
+        defaultPadding = const EdgeInsets.symmetric(horizontal: 12); // px-3
         break;
       case FpduiButtonSize.lg:
-        height = 40; 
-        padding = const EdgeInsets.symmetric(horizontal: 32); 
+        defaultHeight = 44; // h-11
+        defaultPadding = const EdgeInsets.symmetric(horizontal: 32); // px-8
         break;
       case FpduiButtonSize.icon:
-        height = 36; 
-        padding = EdgeInsets.zero;
+        defaultHeight = 40; // h-10
+        defaultPadding = EdgeInsets.zero;
+        minWidth = 40; // w-10
+        break;
+      case FpduiButtonSize.$default:
+      default:
+        defaultHeight = 40; // h-10
+        defaultPadding = const EdgeInsets.symmetric(horizontal: 16, vertical: 8); // px-4 py-2
         break;
     }
 
-    final double effectiveRadius = fpduiTheme.radius;
+    final effectiveHeight = height ?? defaultHeight;
+    final effectivePadding = size == FpduiButtonSize.icon ? EdgeInsets.zero : defaultPadding;
+    // For FixedSize/Width, we might use minimumSize in style
 
-    final bool isDisabled = widget.onPressed == null;
-    if (isDisabled) {
-      backgroundColor = backgroundColor?.withOpacity(0.5);
-      foregroundColor = foregroundColor?.withOpacity(0.5);
-    }
-
-    Widget content = Row(
+    // 2. Build Content
+    Widget effectiveChild = Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (widget.icon != null) ...[
-          IconTheme(data: IconThemeData(size: 16, color: foregroundColor), child: widget.icon!),
-          const Gap(8),
+        if (icon != null) ...[
+          IconTheme(
+            data: IconThemeData(size: 16, color: _getIconColor(variant, fpduiTheme, theme)),
+            child: icon!,
+          ),
+          if (text != null || child != null) const Gap(8),
         ],
-        if (widget.text != null)
-          Text(
-            widget.text!,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: foregroundColor,
-              fontWeight: FontWeight.w500,
-              decoration: widget.variant == FpduiButtonVariant.link && _isHovered 
-                  ? TextDecoration.underline 
-                  : null,
-              decorationColor: foregroundColor,
-            ) ?? const TextStyle(),
-          )
+        if (text != null)
+          Text(text!)
         else
-          widget.child!,
-        if (widget.trailingIcon != null) ...[
+          child!,
+        if (trailingIcon != null) ...[
           const Gap(8),
-          IconTheme(data: IconThemeData(size: 16, color: foregroundColor), child: widget.trailingIcon!),
+          IconTheme(
+            data: IconThemeData(size: 16, color: _getIconColor(variant, fpduiTheme, theme)),
+            child: trailingIcon!,
+          ),
         ],
       ],
     );
 
-    return MouseRegion(
-      cursor: isDisabled ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
-        onTap: widget.onPressed,
-        child: AnimatedContainer(
-          duration: 150.ms,
-          curve: Curves.easeInOut,
-          width: widget.size == FpduiButtonSize.icon ? height : widget.width,
-          height: widget.height ?? height,
-          constraints: BoxConstraints(
-            minWidth: widget.size == FpduiButtonSize.icon ? height : 0, 
-            minHeight: height,
-          ),
-          padding: widget.size == FpduiButtonSize.icon ? EdgeInsets.zero : padding,
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(effectiveRadius),
-            border: borderColor != null ? Border.all(color: borderColor, width: 1) : null,
-          ),
-          child: Center(child: content),
-        ),
-      ),
+    // 3. Select Native Implementation
+    // Common style properties
+    final shape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(fpduiTheme.radius),
     );
+    
+    final textStyle = theme.textTheme.labelMedium?.copyWith( // text-sm
+      fontWeight: FontWeight.w500, // font-medium
+    );
+
+    switch (variant) {
+      case FpduiButtonVariant.primary:
+        return SizedBox(
+          width: width ?? (size == FpduiButtonSize.icon ? effectiveHeight : null),
+          height: effectiveHeight,
+          child: FilledButton(
+            onPressed: onPressed,
+            style: FilledButton.styleFrom(
+              backgroundColor: fpduiTheme.primary,
+              foregroundColor: fpduiTheme.primaryForeground,
+              shape: shape,
+              padding: effectivePadding,
+              textStyle: textStyle,
+              minimumSize: Size(minWidth ?? 0, effectiveHeight),
+              elevation: 0,
+            ),
+            child: effectiveChild,
+          ),
+        );
+
+      case FpduiButtonVariant.secondary:
+        return SizedBox(
+           width: width ?? (size == FpduiButtonSize.icon ? effectiveHeight : null),
+           height: effectiveHeight,
+           child: FilledButton(
+            onPressed: onPressed,
+            style: FilledButton.styleFrom(
+              backgroundColor: fpduiTheme.secondary,
+              foregroundColor: fpduiTheme.secondaryForeground,
+              shape: shape,
+              padding: effectivePadding,
+              textStyle: textStyle,
+              minimumSize: Size(minWidth ?? 0, effectiveHeight),
+              elevation: 0,
+            ).copyWith(
+              overlayColor: WidgetStateProperty.all(fpduiTheme.secondaryForeground.withOpacity(0.1)),
+            ),
+            child: effectiveChild,
+          ),
+        );
+
+      case FpduiButtonVariant.destructive:
+        return SizedBox(
+           width: width ?? (size == FpduiButtonSize.icon ? effectiveHeight : null),
+           height: effectiveHeight,
+           child: FilledButton(
+             onPressed: onPressed,
+            style: FilledButton.styleFrom(
+              backgroundColor: fpduiTheme.destructive,
+              foregroundColor: fpduiTheme.destructiveForeground,
+              shape: shape,
+              padding: effectivePadding,
+              textStyle: textStyle,
+              minimumSize: Size(minWidth ?? 0, effectiveHeight),
+              elevation: 0,
+            ),
+            child: effectiveChild,
+          ),
+        );
+
+      case FpduiButtonVariant.outline:
+        return SizedBox(
+           width: width ?? (size == FpduiButtonSize.icon ? effectiveHeight : null),
+           height: effectiveHeight,
+           child: OutlinedButton(
+            onPressed: onPressed,
+            style: OutlinedButton.styleFrom(
+              backgroundColor: theme.colorScheme.surface,
+              foregroundColor: theme.colorScheme.onSurface,
+              side: BorderSide(color: fpduiTheme.input), // border-input
+              shape: shape,
+              padding: effectivePadding,
+              textStyle: textStyle,
+              minimumSize: Size(minWidth ?? 0, effectiveHeight),
+              elevation: 0,
+            ).copyWith(
+              overlayColor: WidgetStateProperty.all(fpduiTheme.accent.withOpacity(0.5)),
+              backgroundColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.hovered)) {
+                  return fpduiTheme.accent;
+                }
+                return theme.colorScheme.surface;
+              }),
+              foregroundColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.hovered)) {
+                  return fpduiTheme.accentForeground;
+                }
+                return theme.colorScheme.onSurface;
+              }),
+            ),
+            child: effectiveChild,
+          ),
+        );
+
+      case FpduiButtonVariant.ghost:
+        return SizedBox(
+           width: width ?? (size == FpduiButtonSize.icon ? effectiveHeight : null),
+           height: effectiveHeight,
+           child: TextButton(
+            onPressed: onPressed,
+            style: TextButton.styleFrom(
+              foregroundColor: theme.colorScheme.onSurface,
+              shape: shape,
+              padding: effectivePadding,
+              textStyle: textStyle,
+              minimumSize: Size(minWidth ?? 0, effectiveHeight),
+            ).copyWith(
+              overlayColor: WidgetStateProperty.all(Colors.transparent), // We handle hover bg
+              backgroundColor: WidgetStateProperty.resolveWith((states) {
+                 if (states.contains(WidgetState.hovered)) {
+                   return fpduiTheme.accent;
+                 }
+                 return Colors.transparent;
+              }),
+              foregroundColor: WidgetStateProperty.resolveWith((states) {
+                 if (states.contains(WidgetState.hovered)) {
+                   return fpduiTheme.accentForeground;
+                 }
+                 return theme.colorScheme.onSurface;
+              }),
+            ),
+            child: effectiveChild,
+          ),
+        );
+
+      case FpduiButtonVariant.link:
+        return SizedBox(
+           width: width ?? (size == FpduiButtonSize.icon ? effectiveHeight : null),
+           height: effectiveHeight,
+           child: TextButton(
+            onPressed: onPressed,
+            style: TextButton.styleFrom(
+              foregroundColor: fpduiTheme.primary,
+              shape: shape,
+              padding: effectivePadding,
+              textStyle: textStyle?.copyWith(decoration: TextDecoration.underline), 
+              // Shadcn link is underline on hover usually, but material text button generic.
+              // Let's stick to standard TextButton logic but ensure spacing.
+              minimumSize: Size(minWidth ?? 0, effectiveHeight),
+            ).copyWith(
+               overlayColor: WidgetStateProperty.all(Colors.transparent),
+               // Link variant usually doesn't have background hover
+            ),
+            child: effectiveChild,
+          ),
+        );
+    }
+  }
+
+  Color? _getIconColor(FpduiButtonVariant variant, FpduiTheme fpdui, ThemeData theme) {
+    // This is optional since usually icon inherits context color, but explicit for safety
+    switch (variant) {
+      case FpduiButtonVariant.primary: return fpdui.primaryForeground;
+      case FpduiButtonVariant.destructive: return fpdui.destructiveForeground;
+      case FpduiButtonVariant.secondary: return fpdui.secondaryForeground;
+      case FpduiButtonVariant.outline: // interactive color depends on hover, assume null to inherit from button
+      case FpduiButtonVariant.ghost: 
+      case FpduiButtonVariant.link:
+      return null; // Inherit
+    }
   }
 }
+
+

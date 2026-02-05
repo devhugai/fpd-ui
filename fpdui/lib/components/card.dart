@@ -1,11 +1,11 @@
-/// Responsible for containerizing content with standard styling.
-/// Provides FpduiCard, CardHeader, CardTitle, CardContent, CardFooter.
-///
-/// Used by: Dashboards, complex lists, data display.
-/// Depends on: fpdui_theme.
-/// Assumes: Modular composition of sub-widgets.
+// Responsible for containerizing content with standard styling.
+// Provides FpduiCard, CardHeader, CardTitle, CardContent, CardFooter.
+//
+// Used by: Dashboards, complex lists, data display.
+// Depends on: fpdui_theme.
+// Assumes: Modular composition of sub-widgets.
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+// import 'package:gap/gap.dart';
 import '../theme/fpdui_theme.dart';
 
 class FpduiCard extends StatelessWidget {
@@ -23,18 +23,13 @@ class FpduiCard extends StatelessWidget {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: backgroundColor ?? fpduiTheme.card,
-        borderRadius: BorderRadius.circular(fpduiTheme.radiusXl), // rounded-xl usually larger but we use theme radius
-        border: Border.all(color: fpduiTheme.border),
-        boxShadow: [
-          BoxShadow(
-            color: fpduiTheme.shadow,
-            blurRadius: 2,
-            offset: const Offset(0, 1),
-          ),
-        ],
+    return Card(
+      color: backgroundColor ?? fpduiTheme.card,
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(fpduiTheme.radiusXl),
+        side: BorderSide(color: fpduiTheme.border),
       ),
       clipBehavior: Clip.antiAlias,
       child: child,

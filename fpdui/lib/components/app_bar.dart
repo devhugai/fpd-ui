@@ -1,8 +1,8 @@
-/// Responsible for top and bottom app bars.
-/// Provides FpduiAppBar and FpduiBottomAppBar.
-///
-/// Used by: Scaffolds.
-/// Depends on: fpdui_theme.
+// Responsible for top and bottom app bars.
+// Provides FpduiAppBar and FpduiBottomAppBar.
+//
+// Used by: Scaffolds.
+// Depends on: fpdui_theme.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -33,8 +33,8 @@ class FpduiAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       leading: leading,
       bottom: bottom,
-      backgroundColor: theme.colorScheme.background,
-      foregroundColor: theme.colorScheme.onBackground,
+      backgroundColor: theme.colorScheme.surface,
+      foregroundColor: theme.colorScheme.onSurface,
       elevation: 0,
       scrolledUnderElevation: 0,
       shape: Border(
@@ -45,10 +45,10 @@ class FpduiAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       titleTextStyle: theme.textTheme.titleLarge?.copyWith(
         fontWeight: FontWeight.w600,
-        color: theme.colorScheme.onBackground,
+        color: theme.colorScheme.onSurface,
       ),
       iconTheme: IconThemeData(
-        color: theme.colorScheme.onBackground,
+        color: theme.colorScheme.onSurface,
       ),
     );
   }
@@ -74,7 +74,7 @@ class FpduiBottomAppBar extends StatelessWidget {
 
     return BottomAppBar(
       height: height,
-      color: theme.colorScheme.background,
+      color: theme.colorScheme.surface,
       surfaceTintColor: Colors.transparent, // Disable tint
       elevation: 0,
       padding: EdgeInsets.zero,

@@ -1,9 +1,9 @@
-/// Responsible for displaying lists of items with optional search.
-/// Provides FpduiList and FpduiListItem.
-///
-/// Used by: Settings, Master-Detail views, Directories.
-/// Depends on: fpdui_theme, input.dart.
-/// Assumes: Vertical scrolling.
+// Responsible for displaying lists of items with optional search.
+// Provides FpduiList and FpduiListItem.
+//
+// Used by: Settings, Master-Detail views, Directories.
+// Depends on: fpdui_theme, input.dart.
+// Assumes: Vertical scrolling.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -58,7 +58,7 @@ class FpduiList extends StatelessWidget {
         Expanded(
           child: Container(
             decoration: BoxDecoration(
-              color: theme.colorScheme.background,
+              color: theme.colorScheme.surface,
               borderRadius: BorderRadius.circular(fpduiTheme.radius),
               border: Border.all(color: fpduiTheme.border),
             ),
@@ -66,7 +66,7 @@ class FpduiList extends StatelessWidget {
               padding: padding ?? const EdgeInsets.symmetric(vertical: 4),
               itemCount: children.length,
               separatorBuilder: (context, index) => separator ?? 
-                 Container(height: 1, color: fpduiTheme.border.withOpacity(0.5)),
+                 Container(height: 1, color: fpduiTheme.border.withValues(alpha: 0.5)),
               itemBuilder: (context, index) => children[index],
             ),
           ),

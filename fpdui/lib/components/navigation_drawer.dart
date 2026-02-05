@@ -1,8 +1,8 @@
-/// Responsible for side drawer navigation.
-/// Provides FpduiNavigationDrawer.
-///
-/// Used by: Scaffolds (drawer).
-/// Depends on: fpdui_theme.
+// Responsible for side drawer navigation.
+// Provides FpduiNavigationDrawer.
+//
+// Used by: Scaffolds (drawer).
+// Depends on: fpdui_theme.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -25,35 +25,34 @@ class FpduiNavigationDrawer extends StatelessWidget {
 
     return NavigationDrawerTheme(
       data: NavigationDrawerThemeData(
-        backgroundColor: theme.colorScheme.background,
+        backgroundColor: theme.colorScheme.surface,
         indicatorColor: fpduiTheme.accent,
         surfaceTintColor: Colors.transparent,
-        iconTheme: MaterialStateProperty.resolveWith((states) {
-           if (states.contains(MaterialState.selected)) {
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+           if (states.contains(WidgetState.selected)) {
               return IconThemeData(color: fpduiTheme.accentForeground);
            }
-           return IconThemeData(color: theme.colorScheme.onBackground.withOpacity(0.7));
+           return IconThemeData(color: theme.colorScheme.onSurface.withValues(alpha: 0.7));
         }),
-        labelTextStyle: MaterialStateProperty.resolveWith((states) {
-           if (states.contains(MaterialState.selected)) {
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+           if (states.contains(WidgetState.selected)) {
               return theme.textTheme.labelMedium?.copyWith(
-                color: theme.colorScheme.onBackground,
+                color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w600,
               );
            }
            return theme.textTheme.labelMedium?.copyWith(
-              color: theme.colorScheme.onBackground.withOpacity(0.7),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
            );
         }),
       ),
       child: NavigationDrawer(
         selectedIndex: selectedIndex,
         onDestinationSelected: onDestinationSelected,
-        children: children,
-        backgroundColor: theme.colorScheme.background, // Redundant but safe
+        backgroundColor: theme.colorScheme.surface, // Redundant but safe
         elevation: 0,
-
         tilePadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+        children: children,
       ),
     );
   }

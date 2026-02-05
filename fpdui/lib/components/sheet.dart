@@ -1,9 +1,9 @@
-/// Responsible for displaying side drawers or modal sheets.
-/// Provides FpduiSheet, SheetContent, etc.
-///
-/// Used by: Mobile navigation, detailed forms in drawers.
-/// Depends on: fpdui_theme.
-/// Assumes: Slides in from edge.
+// Responsible for displaying side drawers or modal sheets.
+// Provides FpduiSheet, SheetContent, etc.
+//
+// Used by: Mobile navigation, detailed forms in drawers.
+// Depends on: fpdui_theme.
+// Assumes: Slides in from edge.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -159,7 +159,7 @@ class _FpduiSheetContainer extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      color: theme.colorScheme.background,
+      color: theme.colorScheme.surface,
       child: Column(
         mainAxisSize: MainAxisSize.min, // For top/bottom to auto-size
         crossAxisAlignment: CrossAxisAlignment.stretch,

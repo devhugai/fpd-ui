@@ -1,13 +1,12 @@
-/// Responsible for page navigation controls.
-/// Provides FpduiPagination widget.
-///
-/// Used by: DataTables, Lists.
-/// Depends on: fpdui_theme, button.dart.
-/// Assumes: 1-based indexing.
+// Responsible for page navigation controls.
+// Provides FpduiPagination widget.
+//
+// Used by: DataTables, Lists.
+// Depends on: fpdui_theme, button.dart.
+// Assumes: 1-based indexing.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import '../theme/fpdui_theme.dart';
 import 'button.dart';
 
 class FpduiPagination extends StatelessWidget {
@@ -77,8 +76,6 @@ class FpduiPagination extends StatelessWidget {
   }
 
   List<Widget> _buildPageNumbers(BuildContext context) {
-    final theme = Theme.of(context);
-    final fpduiTheme = theme.extension<FpduiTheme>()!;
     final items = <Widget>[];
 
     // Logic to calculate range
@@ -87,10 +84,10 @@ class FpduiPagination extends StatelessWidget {
 
     // Range start/end
     final int leftSiblingIndex = (currentPage - siblingCount).clamp(1, totalPages);
-    final int rightSiblingIndex = (currentPage + siblingCount).clamp(1, totalPages);
+    // final int rightSiblingIndex = (currentPage + siblingCount).clamp(1, totalPages); // Unused
 
     final bool showLeftEllipsis = leftSiblingIndex > 2;
-    final bool showRightEllipsis = rightSiblingIndex < totalPages - 1;
+    // final bool showRightEllipsis = rightSiblingIndex < totalPages - 1; // Unused
 
     // First Page
     if (leftSiblingIndex > 1) {
@@ -108,40 +105,7 @@ class FpduiPagination extends StatelessWidget {
 
     // Siblings + Current
     // Ensure we at least show 1 if logic above skipped it (e.g. current=1)
-    final start = showLeftEllipsis ? leftSiblingIndex : 1;
-    final end = showRightEllipsis ? rightSiblingIndex : totalPages;
-    
-    // Simplification of logic:
-    // Just iterate 1 to totalPages and filter? No, too many.
-    // Let's rely on range.
-    
-    // Correct logic:
-    // If total pages is small (e.g. 7), just show all.
-    if (totalPages <= 7) {
-      for (int i = 1; i <= totalPages; i++) {
-        items.add(_PaginationItem(
-          page: i,
-          isActive: i == currentPage,
-          onTap: () => onPageChanged(i),
-        ));
-      }
-      return items;
-    }
-
-    // Complex logic
-    items.clear();
-    
-    // Always 1
-    items.add(_PaginationItem(page: 1, isActive: currentPage == 1, onTap: () => onPageChanged(1)));
-
-    if (currentPage > 3) {
-      items.add(_PaginationEllipsis());
-    }
-
     // Range around current
-    final rangeStart = (currentPage - 1).clamp(2, totalPages - 1);
-    final rangeEnd = (currentPage + 1).clamp(2, totalPages - 1);
-    
     // If current is near start (e.g. 1, 2, 3), show 2, 3...
     // This logic is tricky to get perfect standard shadcn feel.
     // Standard approach: 1 ... 4 5 6 ... 10

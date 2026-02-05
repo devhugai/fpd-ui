@@ -1,9 +1,9 @@
-/// Responsible for displaying draggable bottom sheets.
-/// Provides FpduiDrawer utils and widgets.
-///
-/// Used by: Mobile interactions, detail views on small screens.
-/// Depends on: fpdui_theme.
-/// Assumes: Bottom anchorage.
+// Responsible for displaying draggable bottom sheets.
+// Provides FpduiDrawer utils and widgets.
+//
+// Used by: Mobile interactions, detail views on small screens.
+// Depends on: fpdui_theme.
+// Assumes: Bottom anchorage.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../theme/fpdui_theme.dart';
@@ -14,8 +14,8 @@ class FpduiDrawer {
     required Widget content,
     bool isScrollControlled = true,
   }) {
-    final theme = Theme.of(context);
-    final fpduiTheme = theme.extension<FpduiTheme>()!;
+
+
 
     return showModalBottomSheet<T>(
       context: context,
@@ -37,7 +37,7 @@ class _DrawerContainer extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.vertical(top: Radius.circular(fpduiTheme.radiusLg)),
         border: Border(
            top: BorderSide(color: fpduiTheme.border),
@@ -91,7 +91,7 @@ class FpduiDrawerHeader extends StatelessWidget {
             title,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w600,
-              color: theme.colorScheme.onBackground,
+              color: theme.colorScheme.onSurface,
             ),
             textAlign: TextAlign.center,
           ),

@@ -1,8 +1,8 @@
-/// Responsible for side navigation.
-/// Provides FpduiNavigationRail.
-///
-/// Used by: Scaffolds on larger screens.
-/// Depends on: fpdui_theme.
+// Responsible for side navigation.
+// Provides FpduiNavigationRail.
+//
+// Used by: Scaffolds on larger screens.
+// Depends on: fpdui_theme.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -31,17 +31,17 @@ class FpduiNavigationRail extends StatelessWidget {
 
     return NavigationRailTheme(
       data: NavigationRailThemeData(
-        backgroundColor: theme.colorScheme.background,
+        backgroundColor: theme.colorScheme.surface,
         indicatorColor: fpduiTheme.accent,
         selectedIconTheme: IconThemeData(color: fpduiTheme.accentForeground),
-        unselectedIconTheme: IconThemeData(color: theme.colorScheme.onBackground.withOpacity(0.7)),
+        unselectedIconTheme: IconThemeData(color: theme.colorScheme.onSurface.withValues(alpha: 0.7)),
         selectedLabelTextStyle: TextStyle(
-          color: theme.colorScheme.onBackground,
+          color: theme.colorScheme.onSurface,
           fontWeight: FontWeight.w600,
           fontSize: 12,
         ),
         unselectedLabelTextStyle: TextStyle(
-          color: theme.colorScheme.onBackground.withOpacity(0.7),
+          color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
           fontSize: 12,
         ),
       ),

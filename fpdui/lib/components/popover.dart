@@ -1,9 +1,9 @@
-/// Responsible for displaying contextual content in a floating layer.
-/// Provides FpduiPopover and FpduiPopoverContent.
-///
-/// Used by: Help tooltips (complex), small forms.
-/// Depends on: fpdui_theme.
-/// Assumes: Anchored to a trigger widget.
+// Responsible for displaying contextual content in a floating layer.
+// Provides FpduiPopover and FpduiPopoverContent.
+//
+// Used by: Help tooltips (complex), small forms.
+// Depends on: fpdui_theme.
+// Assumes: Anchored to a trigger widget.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -35,130 +35,70 @@ class FpduiPopover extends StatefulWidget {
   State<FpduiPopover> createState() => _FpduiPopoverState();
 }
 
+class FpduiPopoverController {
+  final MenuController _menuController = MenuController();
+  
+  void show() => _menuController.open();
+  void hide() => _menuController.close();
+  void toggle() {
+    if (_menuController.isOpen) {
+      _menuController.close();
+    } else {
+      _menuController.open();
+    }
+  }
+}
+
 class _FpduiPopoverState extends State<FpduiPopover> {
-  final LayerLink _layerLink = LayerLink();
-  final OverlayPortalController _overlayController = OverlayPortalController();
   late FpduiPopoverController _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = widget.controller ?? FpduiPopoverController();
-    _controller._attach(this);
   }
-
-  @override
-  void dispose() {
-    _controller._detach();
-    super.dispose();
-  }
-
-  void _toggle() {
-    _overlayController.toggle();
-    widget.onOpenChange?.call(_overlayController.isShowing);
-  }
-
-  void _show() {
-    _overlayController.show();
-    widget.onOpenChange?.call(true);
-  }
-
-  void _hide() {
-    _overlayController.hide();
-    widget.onOpenChange?.call(false);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return CompositedTransformTarget(
-      link: _layerLink,
-      child: OverlayPortal(
-        controller: _overlayController,
-        overlayChildBuilder: (context) {
-          return Positioned(
-            height: null, // Let content define height
-            width: null,  // Let content define width
-            child: CompositedTransformFollower(
-              link: _layerLink,
-              showWhenUnlinked: false,
-              targetAnchor: widget.targetAnchor,
-              followerAnchor: widget.followerAnchor,
-              offset: const Offset(0, 4),
-              child: Align(
-                alignment: widget.followerAnchor,
-                child: TapRegion(
-                  groupId: _layerLink, // Use layerLink as unique ID
-                  onTapOutside: (event) => _hide(),
-                  child: _PopoverContent(
-                    width: widget.width,
-                    child: widget.content,
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-        child: TapRegion(
-          groupId: _layerLink, // Same group ID
-          child: GestureDetector(
-            onTap: _toggle,
-            child: widget.child,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class FpduiPopoverController {
-  _FpduiPopoverState? _state;
-
-  void _attach(_FpduiPopoverState state) {
-    _state = state;
-  }
-
-  void _detach() {
-    _state = null;
-  }
-
-  void show() => _state?._show();
-  void hide() => _state?._hide();
-  void toggle() => _state?._toggle();
-}
-
-class _PopoverContent extends StatelessWidget {
-  const _PopoverContent({
-    required this.child,
-    this.width,
-  });
-
-  final Widget child;
-  final double? width;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
-    return Material(
-      color: Colors.transparent,
-      child: Container(
-        width: width ?? 288, // w-72 default if null
-        padding: const EdgeInsets.all(16), // p-4
-        decoration: BoxDecoration(
-          color: fpduiTheme.popover, 
-          borderRadius: BorderRadius.circular(fpduiTheme.radius), // rounded-md
-          border: Border.all(color: fpduiTheme.border),
-          boxShadow: [
-            BoxShadow(
-              color: fpduiTheme.shadow,
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
+    return MenuAnchor(
+      controller: _controller._menuController,
+      style: MenuStyle(
+        backgroundColor: WidgetStatePropertyAll(fpduiTheme.popover),
+        surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(fpduiTheme.radius),
+              side: BorderSide(color: fpduiTheme.border),
+          ),
         ),
-        child: child,
+        elevation: const WidgetStatePropertyAll(4),
+        padding: const WidgetStatePropertyAll(EdgeInsets.all(16)),
       ),
+      menuChildren: [
+        SizedBox(
+          width: widget.width ?? 288,
+          child: widget.content,
+        ),
+      ],
+      builder: (context, controller, child) {
+        return GestureDetector(
+          onTap: () {
+            if (controller.isOpen) {
+              controller.close();
+              widget.onOpenChange?.call(false);
+            } else {
+              controller.open();
+              widget.onOpenChange?.call(true);
+            }
+          },
+          child: widget.child,
+        );
+      },
     );
   }
 }
+
+

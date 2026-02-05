@@ -29,6 +29,10 @@ class _DocsSidebarContentState extends State<DocsSidebarContent> {
         _SidebarItem(title: "Introduction", path: "/docs/introduction"),
         _SidebarItem(title: "Installation", path: "/docs/installation"),
         _SidebarItem(title: "Typography", path: "/docs/typography"),
+        _SidebarItem(title: "Colors", path: "/docs/colors"),
+        _SidebarItem(title: "Radius", path: "/docs/radius"),
+        _SidebarItem(title: "Spacing", path: "/docs/spacing"),
+        _SidebarItem(title: "Sizes", path: "/docs/sizes"),
       ],
     ),
     _SidebarGroupData(

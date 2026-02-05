@@ -1,9 +1,9 @@
-/// Responsible for static or dismissible feedback boxes.
-/// Provides FpduiAlert, AlertTitle, and AlertDescription widgets.
-///
-/// Used by: Forms, content areas for warnings/info.
-/// Depends on: fpdui_theme, lucide_icons.
-/// Assumes: Inline display (not modal).
+// Responsible for static or dismissible feedback boxes.
+// Provides FpduiAlert, AlertTitle, and AlertDescription widgets.
+//
+// Used by: Forms, content areas for warnings/info.
+// Depends on: fpdui_theme, lucide_icons.
+// Assumes: Inline display (not modal).
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -40,29 +40,29 @@ class FpduiAlert extends StatelessWidget {
 
     switch (variant) {
       case FpduiAlertVariant.destructive:
-        borderColor = fpduiTheme.destructive.withOpacity(0.5);
+        borderColor = fpduiTheme.destructive.withValues(alpha: 0.5);
         iconColor = fpduiTheme.destructive;
         textColor = fpduiTheme.destructive;
-        backgroundColor = fpduiTheme.destructive.withOpacity(0.05); // Subtle tint
+        backgroundColor = fpduiTheme.destructive.withValues(alpha: 0.05); // Subtle tint
         break;
       case FpduiAlertVariant.warning:
-        borderColor = fpduiTheme.warning.withOpacity(0.5);
+        borderColor = fpduiTheme.warning.withValues(alpha: 0.5);
         iconColor = fpduiTheme.warning;
         textColor = fpduiTheme.warning;
-        backgroundColor = fpduiTheme.warning.withOpacity(0.05);
+        backgroundColor = fpduiTheme.warning.withValues(alpha: 0.05);
         break;
       case FpduiAlertVariant.success:
-        borderColor = fpduiTheme.success.withOpacity(0.5);
+        borderColor = fpduiTheme.success.withValues(alpha: 0.5);
         iconColor = fpduiTheme.success;
         textColor = fpduiTheme.success;
-        backgroundColor = fpduiTheme.success.withOpacity(0.05);
+        backgroundColor = fpduiTheme.success.withValues(alpha: 0.05);
         break;
       case FpduiAlertVariant.defaultVariant:
       default:
         borderColor = fpduiTheme.border;
-        iconColor = theme.colorScheme.onBackground;
-        textColor = theme.colorScheme.onBackground;
-        backgroundColor = theme.colorScheme.background;
+        iconColor = theme.colorScheme.onSurface;
+        textColor = theme.colorScheme.onSurface;
+        backgroundColor = theme.colorScheme.surface;
         break;
     }
 

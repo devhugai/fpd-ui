@@ -1,8 +1,8 @@
-/// Responsible for display persistent bottom navigation.
-/// Provides FpduiNavigationBar.
-///
-/// Used by: Scaffolds (bottomNavigationBar).
-/// Depends on: fpdui_theme.
+// Responsible for display persistent bottom navigation.
+// Provides FpduiNavigationBar.
+//
+// Used by: Scaffolds (bottomNavigationBar).
+// Depends on: fpdui_theme.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -27,25 +27,25 @@ class FpduiNavigationBar extends StatelessWidget {
 
     return NavigationBarTheme(
       data: NavigationBarThemeData(
-        backgroundColor: theme.colorScheme.background,
+        backgroundColor: theme.colorScheme.surface,
         indicatorColor: fpduiTheme.accent, // Selected background
         surfaceTintColor: Colors.transparent,
-        labelTextStyle: MaterialStateProperty.resolveWith((states) {
-           if (states.contains(MaterialState.selected)) {
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+           if (states.contains(WidgetState.selected)) {
              return theme.textTheme.labelSmall?.copyWith(
-               color: theme.colorScheme.onBackground,
+               color: theme.colorScheme.onSurface,
                fontWeight: FontWeight.w600,
              );
            }
            return theme.textTheme.labelSmall?.copyWith(
-             color: theme.colorScheme.onBackground.withOpacity(0.7),
+             color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
            );
         }),
-        iconTheme: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return IconThemeData(color: fpduiTheme.accentForeground);
           }
-           return IconThemeData(color: theme.colorScheme.onBackground.withOpacity(0.7));
+           return IconThemeData(color: theme.colorScheme.onSurface.withValues(alpha: 0.7));
         }),
       ),
       child: Container(

@@ -1,9 +1,9 @@
-/// Responsible for custom scrolling with styled scrollbars.
-/// Provides FpduiScrollArea widget.
-///
-/// Used by: Long content lists, constrained containers.
-/// Depends on: fpdui_theme.
-/// Assumes: Wraps a scrollable or single child.
+// Responsible for custom scrolling with styled scrollbars.
+// Provides FpduiScrollArea widget.
+//
+// Used by: Long content lists, constrained containers.
+// Depends on: fpdui_theme.
+// Assumes: Wraps a scrollable or single child.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

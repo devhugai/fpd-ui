@@ -1,9 +1,9 @@
-/// Responsible for the application's main navigation sidebar.
-/// Provides FpduiSidebar container and items.
-///
-/// Used by: AppShell, main layout.
-/// Depends on: fpdui_theme, lucide_icons.
-/// Assumes: Collapsible state management.
+// Responsible for the application's main navigation sidebar.
+// Provides FpduiSidebar container and items.
+//
+// Used by: AppShell, main layout.
+// Depends on: fpdui_theme, lucide_icons.
+// Assumes: Collapsible state management.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:gap/gap.dart';
@@ -12,11 +12,9 @@ import 'button.dart';
 import 'sheet.dart';
 import 'tooltip.dart';
 import 'separator.dart';
-import 'input.dart';
 
 // Constants
 const double _kSidebarWidth = 256.0; // 16rem
-const double _kSidebarWidthMobile = 288.0; // 18rem
 const double _kSidebarWidthIcon = 48.0; // 3rem
 
 class FpduiSidebarProvider extends StatefulWidget {
@@ -177,7 +175,7 @@ class FpduiSidebar extends StatelessWidget {
       duration: const Duration(milliseconds: 200),
       width: width,
       decoration: BoxDecoration(
-        color: theme.colorScheme.background, // bg-sidebar
+        color: theme.colorScheme.surface, // bg-sidebar
         border: Border(
           right: side == FpduiSidebarSide.left ? BorderSide(color: fpduiTheme.border) : BorderSide.none,
           left: side == FpduiSidebarSide.right ? BorderSide(color: fpduiTheme.border) : BorderSide.none,
@@ -329,7 +327,7 @@ class FpduiSidebarMenuButton extends StatelessWidget {
           IconTheme(
             data: IconThemeData(
               size: 16,
-              color: isActive ? theme.colorScheme.onSecondary : theme.colorScheme.onBackground,
+              color: isActive ? theme.colorScheme.onSecondary : theme.colorScheme.onSurface,
             ),
             child: icon!,
           ),
@@ -341,7 +339,7 @@ class FpduiSidebarMenuButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
-                color: isActive ? theme.colorScheme.onSecondary : theme.colorScheme.onBackground,
+                color: isActive ? theme.colorScheme.onSecondary : theme.colorScheme.onSurface,
               ),
               child: child,
             ),
@@ -409,7 +407,7 @@ class FpduiSidebarGroupLabel extends StatelessWidget {
         style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w500,
-          color: theme.colorScheme.onBackground.withOpacity(0.5),
+          color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
         ),
       ),
     );

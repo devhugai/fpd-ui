@@ -1,14 +1,13 @@
-/// Responsible for displaying helper text on hover.
-/// Provides FpduiTooltip widget.
-///
-/// Used by: Icon buttons, dense UIs.
-/// Depends on: fpdui_theme.
-/// Assumes: Triggered on hover/long-press.
+// Responsible for displaying helper text on hover.
+// Provides FpduiTooltip widget.
+//
+// Used by: Icon buttons, dense UIs.
+// Depends on: fpdui_theme.
+// Assumes: Triggered on hover/long-press.
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import '../theme/fpdui_theme.dart';
 
-class FpduiTooltip extends StatefulWidget {
+class FpduiTooltip extends StatelessWidget {
   const FpduiTooltip({
     super.key,
     required this.child,
@@ -21,156 +20,45 @@ class FpduiTooltip extends StatefulWidget {
 
   final Widget child;
   final String? message;
-  final Widget? content;
+  final Widget? content; // Tooltip currently only supports richMessage (InlineSpan) or string message. 
+                         // Native Tooltip doesn't support arbitrary widget content easily without `richMessage` hack or just sticking to text.
+                         // However, for FPDUI parity, if valid `content` widget is passed that isn't text, we might need a workaround or just support text.
+                         // But `Tooltip` in Flutter supports `richMessage`.
+                         // If `content` is provided, we should probably stick to `message` if possible or warn. 
+                         // Actually, let's keep it simple: Map message to message. If content is supplied we try to use it if it's text, or ignore/warn.
+                         // WAIT: `Tooltip` supports `richMessage` which takes an `InlineSpan`.
+                         // If `content` passed is intricate, native Tooltip might be limited.
+                         // But the instruction is to use native components. 
+                         // Let's implement using `message`.
   final AxisDirection side;
   final Duration waitDuration;
   final Duration showDuration;
-
-  @override
-  State<FpduiTooltip> createState() => _FpduiTooltipState();
-}
-
-class _FpduiTooltipState extends State<FpduiTooltip> {
-  final OverlayPortalController _overlayController = OverlayPortalController();
-  final LayerLink _layerLink = LayerLink();
-  
-  bool _isHovering = false;
-  
-  // Timer for wait duration
-  Future<void>? _waitTimer;
-  
-  void _onEnter(PointerEvent event) {
-    _isHovering = true;
-    _startWaitTimer();
-  }
-  
-  void _onExit(PointerEvent event) {
-    _isHovering = false;
-    _cancelWaitTimer();
-    _hide();
-  }
-
-  void _startWaitTimer() {
-    _waitTimer = Future.delayed(widget.waitDuration, () {
-      if (mounted && _isHovering) {
-        _show();
-      }
-    });
-  }
-
-  void _cancelWaitTimer() {
-    // Dart Futures cannot be cancelled easily without a wrapper, 
-    // but we check _isHovering flag in the callback.
-  }
-
-  void _show() {
-    _overlayController.show();
-  }
-
-  void _hide() {
-    _overlayController.hide();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return CompositedTransformTarget(
-      link: _layerLink,
-      child: MouseRegion(
-        onEnter: _onEnter,
-        onExit: _onExit,
-        child: GestureDetector(
-          onLongPress: _show, // Mobile support
-          onLongPressUp: _hide,
-          child: OverlayPortal(
-            controller: _overlayController,
-            overlayChildBuilder: (context) {
-              // Remove Positioned. CompositedTransformFollower handles positioning relative to link.
-              // We use Align to prevent it from stretching if Overlay forces stretch (unlikely but safe).
-              return Align(
-                alignment: Alignment.topLeft, // Default to top-left of overlay, follower moves from there.
-                child: CompositedTransformFollower(
-                  link: _layerLink,
-                  showWhenUnlinked: false,
-                  targetAnchor: _getTargetAnchor(widget.side),
-                  followerAnchor: _getFollowerAnchor(widget.side),
-                  offset: _getOffset(widget.side),
-                  child: _TooltipContent(
-                    message: widget.message,
-                    content: widget.content,
-                    side: widget.side,
-                  ).animate().fade(duration: 200.ms).scaleXY(begin: 0.95, end: 1.0, duration: 200.ms),
-                ),
-              );
-            },
-            child: widget.child,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Alignment _getTargetAnchor(AxisDirection side) {
-    switch (side) {
-      case AxisDirection.up: return Alignment.topCenter;
-      case AxisDirection.down: return Alignment.bottomCenter;
-      case AxisDirection.left: return Alignment.centerLeft;
-      case AxisDirection.right: return Alignment.centerRight;
-    }
-  }
-
-  Alignment _getFollowerAnchor(AxisDirection side) {
-    switch (side) {
-      case AxisDirection.up: return Alignment.bottomCenter;
-      case AxisDirection.down: return Alignment.topCenter;
-      case AxisDirection.left: return Alignment.centerRight;
-      case AxisDirection.right: return Alignment.centerLeft;
-    }
-  }
-
-  Offset _getOffset(AxisDirection side) {
-    const double gap = 8.0;
-    switch (side) {
-      case AxisDirection.up: return const Offset(0, -gap);
-      case AxisDirection.down: return const Offset(0, gap);
-      case AxisDirection.left: return const Offset(-gap, 0);
-      case AxisDirection.right: return const Offset(gap, 0);
-    }
-  }
-}
-
-class _TooltipContent extends StatelessWidget {
-  const _TooltipContent({
-    this.message,
-    this.content,
-    required this.side,
-  });
-
-  final String? message;
-  final Widget? content;
-  final AxisDirection side;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 300), // Max width to prevent screen overflow
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6), // px-3 py-1.5
+    return Tooltip(
+      message: message ?? '',
+      richMessage: content is Text 
+          ? TextSpan(text: (content as Text).data, style: (content as Text).style) 
+          : null, // Simplified mapping. Real arbitrary widget content isn't fully supported by native Tooltip cleanly.
+      waitDuration: waitDuration,
+      showDuration: showDuration,
+      preferBelow: side == AxisDirection.down,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      margin: const EdgeInsets.all(8),
+      verticalOffset: 12, // Gap approximation
       decoration: BoxDecoration(
-        color: theme.colorScheme.onBackground, // bg-foreground (inverse)
-        borderRadius: BorderRadius.circular(fpduiTheme.radius), // rounded-md
+        color: theme.colorScheme.onSurface,
+        borderRadius: BorderRadius.circular(fpduiTheme.radius),
       ),
-      child: DefaultTextStyle(
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: theme.colorScheme.background, // text-background (inverse)
-          fontWeight: FontWeight.w500,
-        ) ?? const TextStyle(),
-        child: content ?? Text(
-          message!,
-          textAlign: TextAlign.center,
-        ),
+      textStyle: theme.textTheme.labelSmall?.copyWith(
+        color: theme.colorScheme.surface,
+        fontWeight: FontWeight.w500,
       ),
+      child: child,
     );
   }
 }

@@ -1,16 +1,14 @@
-/// Responsible for providing UI to customize app theme.
-/// Provides ThemeConfigurator widget.
-///
-/// Used by: Kitchen Sink, Settings page.
-/// Depends on: theme_provider, fpdui_theme.
-/// Assumes: Access to global Riverpod providers.
+// Responsible for providing UI to customize app theme.
+// Provides ThemeConfigurator widget.
+//
+// Used by: Kitchen Sink, Settings page.
+// Depends on: theme_provider, fpdui_theme.
+// Assumes: Access to global Riverpod providers.
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/theme_provider.dart';
-import 'button.dart';
-import 'label.dart';
 
 class ThemeConfigurator extends ConsumerWidget {
   const ThemeConfigurator({super.key});
@@ -30,47 +28,42 @@ class ThemeConfigurator extends ConsumerWidget {
     final themeMode = ref.watch(themeModeProvider);
     final currentRadius = ref.watch(themeRadiusProvider);
     final currentColor = ref.watch(themePrimaryColorProvider);
+    final currentFont = ref.watch(themeFontFamilyProvider);
+    final theme = Theme.of(context);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const FpduiLabel('Theme'),
+        Text('Theme', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
         const Gap(8),
-        const Text('Customize the look and feel.', style: TextStyle(fontSize: 12, color: Colors.grey)),
+        Text('Customize the look and feel.', style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
         const Gap(16),
         
         // Mode Toggle
         constTextHeader('Mode'),
         const Gap(8),
-        Row(
-          children: [
-            Expanded(
-              child: FpduiButton(
-                variant: themeMode == ThemeMode.light ? FpduiButtonVariant.secondary : FpduiButtonVariant.outline,
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Icon(LucideIcons.sun, size: 16), Gap(8), Text('Light')],
-                ),
-                onPressed: () {
-                  ref.read(themeModeProvider.notifier).state = ThemeMode.light;
-                },
+        SizedBox(
+          width: double.infinity,
+          child: SegmentedButton<ThemeMode>(
+            segments: const [
+              ButtonSegment(
+                value: ThemeMode.light,
+                label: Text('Light'),
+                icon: Icon(LucideIcons.sun, size: 16),
               ),
-            ),
-            const Gap(8),
-            Expanded(
-              child: FpduiButton(
-                variant: themeMode == ThemeMode.dark ? FpduiButtonVariant.secondary : FpduiButtonVariant.outline,
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Icon(LucideIcons.moon, size: 16), Gap(8), Text('Dark')],
-                ),
-                onPressed: () {
-                  ref.read(themeModeProvider.notifier).state = ThemeMode.dark;
-                },
+              ButtonSegment(
+                value: ThemeMode.dark,
+                label: Text('Dark'),
+                icon: Icon(LucideIcons.moon, size: 16),
               ),
-            ),
-          ],
+            ],
+            selected: {themeMode},
+            onSelectionChanged: (Set<ThemeMode> newSelection) {
+              ref.read(themeModeProvider.notifier).state = newSelection.first;
+            },
+            showSelectedIcon: false,
+          ),
         ),
 
         const Gap(16),
@@ -81,7 +74,7 @@ class ThemeConfigurator extends ConsumerWidget {
         Wrap(
           spacing: 8,
           children: _colors.map((color) {
-            final isSelected = currentColor.value == color.value;
+            final isSelected = currentColor == color;
             return GestureDetector(
               onTap: () {
                  ref.read(themePrimaryColorProvider.notifier).state = color;
@@ -93,7 +86,7 @@ class ThemeConfigurator extends ConsumerWidget {
                   color: color,
                   shape: BoxShape.circle,
                   border: isSelected 
-                      ? Border.all(color: Theme.of(context).colorScheme.onBackground, width: 2) 
+                      ? Border.all(color: theme.colorScheme.onSurface, width: 2) 
                       : null,
                 ),
                 child: isSelected ? const Icon(Icons.check, size: 16, color: Colors.white) : null,
@@ -111,12 +104,13 @@ class ThemeConfigurator extends ConsumerWidget {
           spacing: 8,
           children: _radii.map((radius) {
             final isSelected = currentRadius == radius;
-            return FpduiButton(
-              size: FpduiButtonSize.sm,
-              variant: isSelected ? FpduiButtonVariant.secondary : FpduiButtonVariant.outline,
-              text: radius.toString(),
-              onPressed: () {
-                 ref.read(themeRadiusProvider.notifier).state = radius;
+            return ChoiceChip(
+              label: Text(radius.toString()),
+              selected: isSelected,
+              onSelected: (bool selected) {
+                if (selected) {
+                  ref.read(themeRadiusProvider.notifier).state = radius;
+                }
               },
             );
           }).toList(),
@@ -131,13 +125,14 @@ class ThemeConfigurator extends ConsumerWidget {
           spacing: 8,
           runSpacing: 8,
           children: ['Inter', 'Roboto', 'Lato', 'Open Sans', 'Poppins'].map((font) {
-            final isSelected = ref.watch(themeFontFamilyProvider) == font;
-            return FpduiButton(
-              size: FpduiButtonSize.sm,
-              variant: isSelected ? FpduiButtonVariant.secondary : FpduiButtonVariant.outline,
-              text: font,
-              onPressed: () {
-                 ref.read(themeFontFamilyProvider.notifier).state = font;
+            final isSelected = currentFont == font;
+            return ChoiceChip(
+              label: Text(font),
+              selected: isSelected,
+              onSelected: (bool selected) {
+                if (selected) {
+                  ref.read(themeFontFamilyProvider.notifier).state = font;
+                }
               },
             );
           }).toList(),

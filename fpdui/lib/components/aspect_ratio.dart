@@ -1,8 +1,8 @@
-/// Responsible for displaying content within a desired ratio.
-/// Provides FpduiAspectRatio widget.
-///
-/// Used by: Images, video players, maps.
-/// Depends on: flutter/material.
+// Responsible for displaying content within a desired ratio.
+// Provides FpduiAspectRatio widget.
+//
+// Used by: Images, video players, maps.
+// Depends on: flutter/material.
 import 'package:flutter/material.dart';
 
 class FpduiAspectRatio extends StatelessWidget {

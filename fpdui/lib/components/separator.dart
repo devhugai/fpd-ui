@@ -1,9 +1,9 @@
-/// Responsible for visual separation of content.
-/// Provides FpduiSeparator (divider).
-///
-/// Used by: Lists, layouts.
-/// Depends on: fpdui_theme.
-/// Assumes: Horizontal or vertical orientation.
+// Responsible for visual separation of content.
+// Provides FpduiSeparator (divider).
+//
+// Used by: Lists, layouts.
+// Depends on: fpdui_theme.
+// Assumes: Horizontal or vertical orientation.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -24,15 +24,15 @@ class FpduiSeparator extends StatelessWidget {
     final effectiveColor = color ?? fpduiTheme.border;
 
     if (orientation == Axis.horizontal) {
-      return Container(
+      return Divider(
         height: 1,
-        width: double.infinity,
+        thickness: 1,
         color: effectiveColor,
       );
     } else {
-      return Container(
+      return VerticalDivider(
         width: 1,
-        height: double.infinity,
+        thickness: 1,
         color: effectiveColor,
       );
     }

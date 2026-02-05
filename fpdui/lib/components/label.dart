@@ -1,9 +1,9 @@
-/// Responsible for labeling form fields or sections.
-/// Provides FpduiLabel widget with consistent typography.
-///
-/// Used by: Forms.
-/// Depends on: fpdui_theme.
-/// Assumes: Associated with an input usually.
+// Responsible for labeling form fields or sections.
+// Provides FpduiLabel widget with consistent typography.
+//
+// Used by: Forms.
+// Depends on: fpdui_theme.
+// Assumes: Associated with an input usually.
 import 'package:flutter/material.dart';
 
 class FpduiLabel extends StatelessWidget {
@@ -36,7 +36,7 @@ class FpduiLabel extends StatelessWidget {
 
     final baseStyle = theme.textTheme.bodyMedium?.copyWith(
       fontWeight: FontWeight.w500,
-      color: theme.colorScheme.onBackground,
+      color: theme.colorScheme.onSurface,
       height: 1.0, 
     ) ?? const TextStyle();
 

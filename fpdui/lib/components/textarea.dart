@@ -1,13 +1,13 @@
-/// Responsible for multi-line text input.
-/// Provides FpduiTextarea widget.
-///
-/// Used by: Forms, comments, messages.
-/// Depends on: fpdui_theme.
-/// Assumes: Unlimited or constrained lines.
+// Responsible for multi-line text input.
+// Provides FpduiTextarea widget.
+//
+// Used by: Forms, comments, messages.
+// Depends on: fpdui_theme.
+// Assumes: Unlimited or constrained lines.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
-class FpduiTextarea extends StatefulWidget {
+class FpduiTextarea extends StatelessWidget {
   const FpduiTextarea({
     super.key,
     this.controller,
@@ -26,54 +26,31 @@ class FpduiTextarea extends StatefulWidget {
   final ValueChanged<String>? onChanged;
 
   @override
-  State<FpduiTextarea> createState() => _FpduiTextareaState();
-}
-
-class _FpduiTextareaState extends State<FpduiTextarea> {
-  late FocusNode _focusNode;
-  
-  @override
-  void initState() {
-    super.initState();
-    _focusNode = FocusNode();
-    _focusNode.addListener(() {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final fpduiTheme = theme.extension<FpduiTheme>()!;
 
-    return TextField(
-      controller: widget.controller,
-      focusNode: _focusNode,
-      enabled: widget.enabled,
-      minLines: widget.minLines,
-      maxLines: widget.maxLines, // null means unbounded (grow)
-      onChanged: widget.onChanged,
+    return TextFormField(
+      controller: controller,
+      enabled: enabled,
+      minLines: minLines,
+      maxLines: maxLines, // null means unbounded (grow)
+      onChanged: onChanged,
       textAlignVertical: TextAlignVertical.top, // Start text at top
       style: theme.textTheme.bodyMedium?.copyWith(
         fontWeight: FontWeight.w400,
-        color: theme.colorScheme.onBackground,
+        color: theme.colorScheme.onSurface,
       ),
       cursorColor: theme.colorScheme.primary,
       decoration: InputDecoration(
-        hintText: widget.hintText,
+        hintText: hintText,
         hintStyle: theme.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w400,
           color: fpduiTheme.mutedForeground,
-        ) ?? const TextStyle(),
+        ),
         filled: true,
         fillColor: Colors.transparent,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8), // px-3 py-2
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         isDense: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(fpduiTheme.radius),
@@ -96,10 +73,10 @@ class _FpduiTextareaState extends State<FpduiTextarea> {
             width: 1.5,
           ),
         ),
-         disabledBorder: OutlineInputBorder(
+        disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(fpduiTheme.radius),
           borderSide: BorderSide(
-            color: fpduiTheme.input.withOpacity(0.5),
+            color: fpduiTheme.input.withValues(alpha: 0.5),
             width: 1,
           ),
         ),

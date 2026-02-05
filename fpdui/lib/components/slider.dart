@@ -1,9 +1,9 @@
-/// Responsible for value selection from a range.
-/// Provides FpduiSlider widget.
-///
-/// Used by: Settings, media controls.
-/// Depends on: fpdui_theme.
-/// Assumes: Range min/max and current value.
+// Responsible for value selection from a range.
+// Provides FpduiSlider widget.
+//
+// Used by: Settings, media controls.
+// Depends on: fpdui_theme.
+// Assumes: Range min/max and current value.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -56,11 +56,11 @@ class FpduiSlider extends StatelessWidget {
           borderThickness: 1, // border-1
           shadowColor: fpduiTheme.shadow,
         ),
-        thumbColor: theme.colorScheme.background, // inner fill
+        thumbColor: theme.colorScheme.surface, // inner fill
         
         // Overlay (Focus ring/Hovers)
         overlayShape: const RoundSliderOverlayShape(overlayRadius: 16),
-        overlayColor: theme.colorScheme.primary.withOpacity(0.1),
+        overlayColor: theme.colorScheme.primary.withValues(alpha: 0.1),
         
         // Track shape
         trackShape: const RoundedRectSliderTrackShape(),

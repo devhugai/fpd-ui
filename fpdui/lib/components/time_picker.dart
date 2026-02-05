@@ -1,8 +1,8 @@
-/// Responsible for time selection.
-/// Provides showFpduiTimePicker utility.
-///
-/// Used by: Forms, scheduling.
-/// Depends on: fpdui_theme.
+// Responsible for time selection.
+// Provides showFpduiTimePicker utility.
+//
+// Used by: Forms, scheduling.
+// Depends on: fpdui_theme.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -25,27 +25,27 @@ Future<TimeOfDay?> showFpduiTimePicker({
             dialHandColor: fpduiTheme.primary,
             dialBackgroundColor: fpduiTheme.muted,
             hourMinuteTextColor: fpduiTheme.foreground,
-            hourMinuteColor: MaterialStateColor.resolveWith((states) {
-               if (states.contains(MaterialState.selected)) {
-                 return fpduiTheme.primary.withOpacity(0.1);
+            hourMinuteColor: WidgetStateColor.resolveWith((states) {
+               if (states.contains(WidgetState.selected)) {
+                 return fpduiTheme.primary.withValues(alpha: 0.1);
                }
                return fpduiTheme.muted;
             }),
             hourMinuteTextStyle: theme.textTheme.displayMedium?.copyWith(fontWeight: FontWeight.bold),
-            dayPeriodColor: MaterialStateColor.resolveWith((states) {
-               if (states.contains(MaterialState.selected)) {
-                 return fpduiTheme.primary.withOpacity(0.1);
+            dayPeriodColor: WidgetStateColor.resolveWith((states) {
+               if (states.contains(WidgetState.selected)) {
+                 return fpduiTheme.primary.withValues(alpha: 0.1);
                }
                return Colors.transparent;
             }),
-            dayPeriodTextColor: MaterialStateColor.resolveWith((states) {
-               if (states.contains(MaterialState.selected)) {
+            dayPeriodTextColor: WidgetStateColor.resolveWith((states) {
+               if (states.contains(WidgetState.selected)) {
                  return fpduiTheme.primary;
                }
                return fpduiTheme.mutedForeground;
             }),
-            dialTextColor: MaterialStateColor.resolveWith((states) {
-               if (states.contains(MaterialState.selected)) {
+            dialTextColor: WidgetStateColor.resolveWith((states) {
+               if (states.contains(WidgetState.selected)) {
                  return theme.colorScheme.onPrimary;
                }
                return fpduiTheme.foreground;
@@ -54,10 +54,10 @@ Future<TimeOfDay?> showFpduiTimePicker({
             helpTextStyle: theme.textTheme.labelSmall?.copyWith(color: fpduiTheme.mutedForeground),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(fpduiTheme.radius)),
             confirmButtonStyle: ButtonStyle(
-               foregroundColor: MaterialStateProperty.all(fpduiTheme.primary),
+               foregroundColor: WidgetStateProperty.all(fpduiTheme.primary),
             ),
             cancelButtonStyle: ButtonStyle(
-               foregroundColor: MaterialStateProperty.all(fpduiTheme.mutedForeground),
+               foregroundColor: WidgetStateProperty.all(fpduiTheme.mutedForeground),
             ),
           ),
           textButtonTheme: TextButtonThemeData(

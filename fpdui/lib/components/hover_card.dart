@@ -1,9 +1,9 @@
-/// Responsible for displaying interactive content on hover.
-/// Provides FpduiHoverCard widget.
-///
-/// Used by: User profiles, product previews.
-/// Depends on: fpdui_theme.
-/// Assumes: Mouse environment (Hover).
+// Responsible for displaying interactive content on hover.
+// Provides FpduiHoverCard widget.
+//
+// Used by: User profiles, product previews.
+// Depends on: fpdui_theme.
+// Assumes: Mouse environment (Hover).
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -180,12 +180,12 @@ class _HoverCardContent extends StatelessWidget {
       width: width,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(fpduiTheme.radius),
         border: Border.all(color: fpduiTheme.border),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),

@@ -1,9 +1,9 @@
-/// Responsible for displaying a horizontal menu bar.
-/// Provides FpduiMenubar and FpduiMenubarItem.
-///
-/// Used by: Desktop applications, complex web apps.
-/// Depends on: fpdui_theme, dropdown_menu.dart.
-/// Assumes: Application Header usage.
+// Responsible for displaying a horizontal menu bar.
+// Provides FpduiMenubar and FpduiMenubarItem.
+//
+// Used by: Desktop applications, complex web apps.
+// Depends on: fpdui_theme, dropdown_menu.dart.
+// Assumes: Application Header usage.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 import 'dropdown_menu.dart';
@@ -24,7 +24,7 @@ class FpduiMenubar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(4), // p-1
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: theme.colorScheme.surface,
         border: Border.all(color: fpduiTheme.border),
         borderRadius: BorderRadius.circular(fpduiTheme.radius),
       ),
@@ -68,7 +68,7 @@ class FpduiMenubarItem extends StatelessWidget {
               label,
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
-                color: isHovered ? fpduiTheme.accentForeground : theme.colorScheme.onBackground,
+                color: isHovered ? fpduiTheme.accentForeground : theme.colorScheme.onSurface,
               ),
             ),
           );

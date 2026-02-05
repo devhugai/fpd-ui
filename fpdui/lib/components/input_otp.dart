@@ -1,12 +1,12 @@
-/// Responsible for capturing one-time passwords or verification codes.
-/// Provides FpduiInputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator.
-///
-/// Used by: Auth screens, verification flows.
-/// Depends on: fpdui_theme.
-/// Assumes: Fixed length numeric input.
+// Responsible for capturing one-time passwords or verification codes.
+// Provides FpduiInputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator.
+//
+// Used by: Auth screens, verification flows.
+// Depends on: fpdui_theme.
+// Assumes: Fixed length numeric input.
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gap/gap.dart';
+// import 'package:gap/gap.dart';
 import '../theme/fpdui_theme.dart';
 
 class FpduiInputOTP extends StatefulWidget {
@@ -133,7 +133,7 @@ class FpduiInputOTPSlot extends StatelessWidget {
       height: 40,
       alignment: Alignment.center, // justify-center items-center
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: theme.colorScheme.surface,
         border: Border(
            top: BorderSide(color: isActive ? fpduiTheme.ring : fpduiTheme.input, width: isActive ? 2 : 1),
            bottom: BorderSide(color: isActive ? fpduiTheme.ring : fpduiTheme.input, width: isActive ? 2 : 1),

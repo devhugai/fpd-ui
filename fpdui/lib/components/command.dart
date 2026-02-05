@@ -1,14 +1,14 @@
-/// Responsible for command palette / combo box functionality.
-/// Provides FpduiCommand, CommandInput, CommandList, etc.
-///
-/// Used by: Global search, complex selection.
-/// Depends on: fpdui_theme, lucide_icons.
-/// Assumes: Filtering logic handles large lists efficiently.
+// Responsible for command palette / combo box functionality.
+// Provides FpduiCommand, CommandInput, CommandList, etc.
+//
+// Used by: Global search, complex selection.
+// Depends on: fpdui_theme, lucide_icons.
+// Assumes: Filtering logic handles large lists efficiently.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:gap/gap.dart';
 import '../theme/fpdui_theme.dart';
-import 'dialog.dart'; // For CommandDialog base
+// import 'dialog.dart'; // For CommandDialog base
 
 class FpduiCommand extends StatelessWidget {
   const FpduiCommand({
@@ -100,7 +100,7 @@ class FpduiCommandInput extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
         children: [
-          Icon(LucideIcons.search, size: 18, color: theme.colorScheme.onBackground.withOpacity(0.5)),
+          Icon(LucideIcons.search, size: 18, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
           const Gap(8),
           Expanded(
             child: TextField(
@@ -112,7 +112,7 @@ class FpduiCommandInput extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: placeholder,
                 hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onBackground.withOpacity(0.5),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                 ),
                 border: InputBorder.none,
                 isDense: true,
@@ -183,7 +183,7 @@ class FpduiCommandGroup extends StatelessWidget {
             heading,
             style: theme.textTheme.labelSmall?.copyWith(
               fontWeight: FontWeight.w500,
-              color: theme.colorScheme.onBackground.withOpacity(0.6),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
             ),
           ),
         ),
@@ -239,12 +239,12 @@ class FpduiCommandItem extends StatelessWidget {
         ),
         child: DefaultTextStyle.merge(
            style: theme.textTheme.bodyMedium?.copyWith(
-             color: selected ? fpduiTheme.accentForeground : theme.colorScheme.onBackground,
+             color: selected ? fpduiTheme.accentForeground : theme.colorScheme.onSurface,
            ) ?? const TextStyle(),
            child: IconTheme(
              data: IconThemeData(
                size: 16,
-               color: selected ? fpduiTheme.accentForeground : theme.colorScheme.onBackground.withOpacity(0.7),
+               color: selected ? fpduiTheme.accentForeground : theme.colorScheme.onSurface.withValues(alpha: 0.7),
              ),
              child: child,
            ),
@@ -264,7 +264,7 @@ class FpduiCommandShortcut extends StatelessWidget {
     return Text(
       text,
       style: theme.textTheme.labelSmall?.copyWith(
-        color: theme.colorScheme.onBackground.withOpacity(0.5),
+        color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
         letterSpacing: 0.5,
       ),
     );

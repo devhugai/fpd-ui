@@ -1,9 +1,9 @@
-/// Responsible for visualizing data graphically.
-/// Provides FpduiChart (and likely wraps fl_chart or similar).
-///
-/// Used by: Analytics dashboards.
-/// Depends on: fl_chart, fpdui_theme.
-/// Assumes: Data provided in compatible format.
+// Responsible for visualizing data graphically.
+// Provides FpduiChart (and likely wraps fl_chart or similar).
+//
+// Used by: Analytics dashboards.
+// Depends on: fl_chart, fpdui_theme.
+// Assumes: Data provided in compatible format.
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
@@ -66,7 +66,7 @@ class FpduiChartInfo {
       show: true,
       drawVerticalLine: false,
       getDrawingHorizontalLine: (value) => FlLine(
-        color: fpduiTheme.border.withOpacity(0.5),
+        color: fpduiTheme.border.withValues(alpha: 0.5),
         strokeWidth: 1,
         dashArray: [5, 5], // Dashed grid
       ),
@@ -159,7 +159,7 @@ class FpduiLineChart extends StatelessWidget {
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(
                 show: true,
-                color: chartColor.withOpacity(0.1), // fill-primary/10
+                color: chartColor.withValues(alpha: 0.1), // fill-primary/10
               ),
             ),
           ],

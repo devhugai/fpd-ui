@@ -1,9 +1,9 @@
-/// Responsible for showing snackbars via ScaffoldMessenger.
-/// Provides FpduiSnackbar utility.
-///
-/// Used by: Material Scaffold integration.
-/// Depends on: fpdui_theme.
-/// Assumes: Scaffold context available.
+// Responsible for showing snackbars via ScaffoldMessenger.
+// Provides FpduiSnackbar utility.
+//
+// Used by: Material Scaffold integration.
+// Depends on: fpdui_theme.
+// Assumes: Scaffold context available.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 
@@ -42,35 +42,21 @@ class FpduiSnackbar {
         actionColor = fpduiTheme.successForeground;
         break;
       case FpduiSnackbarVariant.defaultVariant:
-      default:
         // Inverse colors usually for snackbars to stand out
-        bgColor = theme.colorScheme.onBackground;
-        fgColor = theme.colorScheme.background;
+        bgColor = theme.colorScheme.onSurface;
+        fgColor = theme.colorScheme.surface;
         actionColor = fpduiTheme.primary;
         break;
     }
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: fgColor,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            if (description != null)
-              Text(
-                description,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: fgColor.withOpacity(0.8),
-                ),
-              ),
-          ],
+        content: Text(
+          description != null ? '$title\n$description' : title,
+           style: theme.textTheme.bodyMedium?.copyWith(
+            color: fgColor,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         backgroundColor: bgColor,
         behavior: SnackBarBehavior.floating,
