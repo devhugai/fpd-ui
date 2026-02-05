@@ -62,6 +62,7 @@ class _DocsSidebarContentState extends State<DocsSidebarContent> {
          // _SidebarItem(title: "Progress", path: "/docs/components/progress"), 
         _SidebarItem(title: "Form", path: "/docs/components/form"),
         _SidebarItem(title: "Date Picker", path: "/docs/components/date-picker"),
+        _SidebarItem(title: "Time Picker", path: "/docs/components/time-picker"),
       ],
     ),
     _SidebarGroupData(
@@ -85,6 +86,11 @@ class _DocsSidebarContentState extends State<DocsSidebarContent> {
     _SidebarGroupData(
       title: "Navigation & Layout",
       items: [
+        _SidebarItem(title: "App Bar", path: "/docs/components/app-bar"),
+        _SidebarItem(title: "Navigation Bar", path: "/docs/components/navigation-bar"),
+        _SidebarItem(title: "Navigation Rail", path: "/docs/components/navigation-rail"),
+        _SidebarItem(title: "Navigation Drawer", path: "/docs/components/navigation-drawer"),
+        _SidebarItem(title: "Tab Bar", path: "/docs/components/tab-bar"),
         _SidebarItem(title: "Accordion", path: "/docs/components/accordion"),
         _SidebarItem(title: "Aspect Ratio", path: "/docs/components/aspect-ratio"),
         _SidebarItem(title: "Collapsible", path: "/docs/components/collapsible"),

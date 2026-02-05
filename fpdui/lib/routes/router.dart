@@ -47,6 +47,12 @@ import '../pages/docs/hover_card_page.dart';
 import '../pages/docs/combobox_page.dart';
 import '../pages/docs/aspect_ratio_page.dart';
 import '../pages/docs/kbd_page.dart';
+import '../pages/docs/app_bar_page.dart';
+import '../pages/docs/navigation_bar_page.dart';
+import '../pages/docs/navigation_rail_page.dart';
+import '../pages/docs/navigation_drawer_page.dart';
+import '../pages/docs/tab_bar_page.dart';
+import '../pages/docs/time_picker_page.dart';
 import '../pages/docs/tooltip_page.dart';
 import '../pages/docs/toast_page.dart';
 import '../pages/docs/context_menu_page.dart';
@@ -306,6 +312,36 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/components/kbd',
             builder: (context, state) => const KbdPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/app-bar',
+            builder: (context, state) => const AppBarPage(),
+          ),
+
+          GoRoute(
+            path: '/docs/components/navigation-bar',
+            builder: (context, state) => const NavigationBarPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/navigation-rail',
+            builder: (context, state) => const NavigationRailPage(),
+          ),
+
+          GoRoute(
+            path: '/docs/components/navigation-drawer',
+            builder: (context, state) => const NavigationDrawerPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/tab-bar',
+            builder: (context, state) => const TabBarPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/tab-bar',
+            builder: (context, state) => const TabBarPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/time-picker',
+            builder: (context, state) => const TimePickerPage(),
           ),
           GoRoute(
             path: '/docs/components/command',
