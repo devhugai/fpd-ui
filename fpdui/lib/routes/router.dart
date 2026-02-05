@@ -27,7 +27,13 @@ import '../pages/docs/slider_page.dart';
 import '../pages/docs/progress_page.dart';
 import '../pages/docs/form_page.dart';
 import '../pages/docs/dialog_page.dart';
+import '../pages/docs/alert_page.dart'; 
 import '../pages/docs/alert_dialog_page.dart';
+import '../pages/docs/select_page.dart';
+import '../pages/docs/toggle_page.dart';
+import '../pages/docs/spinner_page.dart';
+import '../pages/docs/input_otp_page.dart';
+import '../pages/docs/date_picker_page.dart';
 import '../pages/docs/sheet_page.dart';
 import '../pages/docs/popover_page.dart';
 import '../pages/docs/tooltip_page.dart';
@@ -147,6 +153,10 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const DialogPage(),
           ),
           GoRoute(
+            path: '/docs/components/alert',
+            builder: (context, state) => const AlertPage(),
+          ),
+          GoRoute(
             path: '/docs/components/alert-dialog',
             builder: (context, state) => const AlertDialogPage(),
           ),
@@ -165,6 +175,22 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/components/toast',
             builder: (context, state) => const ToastPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/select',
+            builder: (context, state) => const SelectPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/toggle',
+            builder: (context, state) => const TogglePage(),
+          ),
+          GoRoute(
+            path: '/docs/components/input-otp',
+            builder: (context, state) => const InputOTPPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/spinner',
+            builder: (context, state) => const SpinnerPage(),
           ),
           GoRoute(
             path: '/docs/components/context-menu',
@@ -213,6 +239,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/components/data-table',
             builder: (context, state) => const DataTablePage(),
+          ),
+          GoRoute(
+            path: '/docs/components/date-picker',
+            builder: (context, state) => const DatePickerPage(),
           ),
           GoRoute(
             path: '/docs/components/command',

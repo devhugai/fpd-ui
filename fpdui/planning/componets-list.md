@@ -1,5 +1,5 @@
 ~~Accordion~~
-Alert
+~~Alert~~
 ~~Alert Dialog~~
 Aspect Ratio
 ~~Avatar~~
@@ -17,7 +17,7 @@ Combobox
 ~~Command~~
 ~~Context Menu~~
 ~~Data Table~~
-Date Picker
+~~Date Picker~~
 ~~Dialog~~
 Direction
 Drawer
@@ -27,7 +27,7 @@ Field
 Hover Card
 ~~Input~~
 Input Group
-Input OTP
+~~Input OTP~~
 Item
 Kbd
 ~~Label~~
@@ -40,20 +40,20 @@ Pagination
 ~~Radio Group~~
 ~~Resizable~~
 ~~Scroll Area~~
-Select
+~~Select~~
 ~~Separator~~
 ~~Sheet~~
 ~~Sidebar~~
 ~~Skeleton~~
 ~~Slider~~
 Sonner
-Spinner
+~~Spinner~~
 ~~Switch~~
 ~~Table~~
 ~~Tabs~~
 ~~Textarea~~
 ~~Toast~~
-Toggle
+~~Toggle~~
 Toggle Group
 ~~Tooltip~~
 ~~Typography~~
