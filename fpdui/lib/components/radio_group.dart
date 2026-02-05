@@ -1,3 +1,9 @@
+/// Responsible for single choice selection from a set.
+/// Provides FpduiRadioGroup and FpduiRadioGroupItem.
+///
+/// Used by: Forms, settings.
+/// Depends on: fpdui_theme.
+/// Assumes: Only one item selected at a time.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/fpdui_theme.dart';

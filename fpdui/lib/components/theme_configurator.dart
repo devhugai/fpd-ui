@@ -1,3 +1,9 @@
+/// Responsible for providing UI to customize app theme.
+/// Provides ThemeConfigurator widget.
+///
+/// Used by: Kitchen Sink, Settings page.
+/// Depends on: theme_provider, fpdui_theme.
+/// Assumes: Access to global Riverpod providers.
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';

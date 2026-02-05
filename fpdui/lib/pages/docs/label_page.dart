@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Label component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: label.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../components/label.dart';

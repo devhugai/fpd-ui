@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Resizable component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: resizable.dart, component_page.
 import 'package:flutter/material.dart';
 import '../../components/resizable.dart';
 

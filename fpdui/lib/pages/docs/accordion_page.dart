@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Accordion component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: accordion.dart, component_page.
 import 'package:flutter/material.dart';
 import '../../components/accordion.dart';
 

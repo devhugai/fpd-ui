@@ -1,3 +1,9 @@
+/// Responsible for showing modal alerts to the user requiring action.
+/// Provides FpduiAlertDialog, FpduiAlertDialogContent, etc.
+///
+/// Used by: Critical confirmations, warnings.
+/// Depends on: fpdui_theme, button.dart.
+/// Assumes: Triggered usually via showDialog or equivalent.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../theme/fpdui_theme.dart';

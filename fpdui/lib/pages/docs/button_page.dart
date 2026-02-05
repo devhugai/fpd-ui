@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Button component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: button.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';

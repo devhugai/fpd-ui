@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Context Menu component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: context_menu.dart, component_page.
 import 'package:flutter/material.dart';
 import '../../components/context_menu.dart';
 import 'package:lucide_icons/lucide_icons.dart';

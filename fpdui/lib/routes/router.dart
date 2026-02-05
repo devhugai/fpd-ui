@@ -1,3 +1,9 @@
+/// Responsible for application routing configuration.
+/// Provides GoRouter provider with all defined routes.
+///
+/// Used by: MyApp (main.dart).
+/// Depends on: go_router, flutter_riverpod.
+/// Assumes: URL-based navigation strategy.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

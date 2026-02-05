@@ -1,3 +1,9 @@
+/// Responsible for managing global theme state (mode, radius, color).
+/// Provides Riverpod providers for theme configuration.
+///
+/// Used by: MyApp, ThemeConfigurator, AppTheme.
+/// Depends on: flutter_riverpod.
+/// Assumes: User preferences are ephemeral (unless storage added later).
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

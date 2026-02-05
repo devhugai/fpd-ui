@@ -1,4 +1,10 @@
 import 'dart:async';
+/// Responsible for displaying transient notifications.
+/// Provides FpduiToast, ToastProvider, useToast hook.
+///
+/// Used by: Global app notifications.
+/// Depends on: fpdui_theme, flutter_animate.
+/// Assumes: Toaster widget wraps the app.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';

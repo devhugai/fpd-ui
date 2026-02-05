@@ -1,3 +1,9 @@
+/// Responsible for the application's main navigation sidebar.
+/// Provides FpduiSidebar container and items.
+///
+/// Used by: AppShell, main layout.
+/// Depends on: fpdui_theme, lucide_icons.
+/// Assumes: Collapsible state management.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:gap/gap.dart';

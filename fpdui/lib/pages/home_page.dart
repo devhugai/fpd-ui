@@ -1,3 +1,9 @@
+/// Responsible for the landing page view.
+/// Provides entry point buttons to docs and sink.
+///
+/// Used by: Root route ('/').
+/// Depends on: fpdui components.
+/// Assumes: Marketing-style layout.
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

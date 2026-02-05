@@ -1,3 +1,9 @@
+/// Responsible for visualizing data graphically.
+/// Provides FpduiChart (and likely wraps fl_chart or similar).
+///
+/// Used by: Analytics dashboards.
+/// Depends on: fl_chart, fpdui_theme.
+/// Assumes: Data provided in compatible format.
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';

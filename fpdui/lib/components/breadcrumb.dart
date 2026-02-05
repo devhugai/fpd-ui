@@ -1,3 +1,9 @@
+/// Responsible for displaying navigation path hierarchy.
+/// Provides FpduiBreadcrumb and FpduiBreadcrumbItem widgets.
+///
+/// Used by: Deeply nested pages, file browsers.
+/// Depends on: fpdui_theme, lucide_icons.
+/// Assumes: Ordered list of navigation steps.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:gap/gap.dart';

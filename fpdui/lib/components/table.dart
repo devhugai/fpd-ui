@@ -1,3 +1,9 @@
+/// Responsible for standard table layout.
+/// Provides FpduiTable, TableHeader, TableRow, TableCell.
+///
+/// Used by: Data display, simple lists.
+/// Depends on: fpdui_theme.
+/// Assumes: HTML-like table structure composition.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

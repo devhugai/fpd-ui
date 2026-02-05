@@ -1,3 +1,9 @@
+/// Responsible for visual separation of content.
+/// Provides FpduiSeparator (divider).
+///
+/// Used by: Lists, layouts.
+/// Depends on: fpdui_theme.
+/// Assumes: Horizontal or vertical orientation.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

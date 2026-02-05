@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Collapsible component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: collapsible.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../components/collapsible.dart';

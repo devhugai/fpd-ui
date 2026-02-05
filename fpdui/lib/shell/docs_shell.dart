@@ -1,3 +1,9 @@
+/// Responsible for the documentation layout shell.
+/// Provides the structure for documentation pages with sidebar and content area.
+///
+/// Used by: Router (ShellRoute).
+/// Depends on: docs_sidebar, fpdui_theme.
+/// Assumes: Wraps child route.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';

@@ -1,3 +1,9 @@
+/// Responsible for value selection from a range.
+/// Provides FpduiSlider widget.
+///
+/// Used by: Settings, media controls.
+/// Depends on: fpdui_theme.
+/// Assumes: Range min/max and current value.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

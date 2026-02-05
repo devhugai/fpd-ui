@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Popover component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: popover.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../components/popover.dart';

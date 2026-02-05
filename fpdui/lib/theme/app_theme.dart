@@ -1,3 +1,9 @@
+/// Responsible for building the Flutter ThemeData.
+/// Provides static factories for light and dark themes using FpduiTheme extensions.
+///
+/// Used by: MyApp (main.dart).
+/// Depends on: fpdui_theme, google_fonts.
+/// Assumes: Brightness is provided to toggle modes.
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'fpdui_theme.dart';

@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Tabs component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: tabs.dart, component_page.
 import 'package:flutter/material.dart';
 import '../../components/tabs.dart';
 import '../../components/card.dart';

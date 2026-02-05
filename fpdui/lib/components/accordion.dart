@@ -1,3 +1,9 @@
+/// Responsible for displaying collapsible content panels.
+/// Provides FpduiAccordion and FpduiAccordionItem widgets.
+///
+/// Used by: Settings pages, FAQs, detailed views.
+/// Depends on: fpdui_theme, flutter/material.
+/// Assumes: Children are provided as a list of items.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';

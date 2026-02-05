@@ -1,3 +1,9 @@
+/// Responsible for the "Kitchen Sink" showcase page.
+/// Provides a comprehensive view of all available components for testing.
+///
+/// Used by: Developers, designers.
+/// Depends on: all fpdui components.
+/// Assumes: Dense layout for overview.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';

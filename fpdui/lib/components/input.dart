@@ -1,3 +1,9 @@
+/// Responsible for text input fields.
+/// Provides FpduiInput widget.
+///
+/// Used by: Forms, search bars.
+/// Depends on: fpdui_theme.
+/// Assumes: Handles text editing via controller.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

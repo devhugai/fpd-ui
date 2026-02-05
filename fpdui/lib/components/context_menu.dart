@@ -1,3 +1,9 @@
+/// Responsible for displaying contextual actions on right-click/long-press.
+/// Provides FpduiContextMenu wrapper.
+///
+/// Used by: Lists, items requiring secondary actions.
+/// Depends on: context_menus package or custom overlay, fpdui_theme.
+/// Assumes: Positioned relative to mouse/touch.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';

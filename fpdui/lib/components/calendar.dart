@@ -1,3 +1,9 @@
+/// Responsible for date selection and display.
+/// Provides FpduiCalendar based on table_calendar.
+///
+/// Used by: DatePickers, scheduling views.
+/// Depends on: table_calendar, fpdui_theme.
+/// Assumes: focusedDay and valid date ranges.
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:lucide_icons/lucide_icons.dart';

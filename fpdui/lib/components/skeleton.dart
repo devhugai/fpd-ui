@@ -1,3 +1,9 @@
+/// Responsible for loading state placeholders.
+/// Provides FpduiSkeleton widget.
+///
+/// Used by: Loading screens, async data fetching.
+/// Depends on: shimmer/animate effects, fpdui_theme.
+/// Assumes: Mimics shape of content being loaded.
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../theme/fpdui_theme.dart';

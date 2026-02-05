@@ -1,3 +1,9 @@
+/// Responsible for displaying the Installation documentation page.
+/// Provides setup instructions.
+///
+/// Used by: Router.
+/// Depends on: component_page.
+/// Assumes: Static content.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../theme/fpdui_theme.dart';

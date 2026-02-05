@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Table component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: table.dart, component_page.
 import 'package:flutter/material.dart';
 import '../../components/table.dart';
 import '../../components/card.dart';

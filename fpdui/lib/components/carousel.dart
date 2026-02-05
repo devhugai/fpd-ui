@@ -1,3 +1,9 @@
+/// Responsible for cycling through a series of content.
+/// Provides FpduiCarousel and FpduiCarouselContent.
+///
+/// Used by: Image galleries, featured content.
+/// Depends on: carousel_slider (or custom implementation), fpdui_theme.
+/// Assumes: List of items to cycle through.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'button.dart';

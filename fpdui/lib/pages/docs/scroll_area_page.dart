@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Scroll Area component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: scroll_area.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../components/scroll_area.dart';

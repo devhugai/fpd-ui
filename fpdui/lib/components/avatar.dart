@@ -1,3 +1,9 @@
+/// Responsible for displaying user profile images or fallbacks.
+/// Provides FpduiAvatar widget with circle clipping.
+///
+/// Used by: User profiles, lists, headers.
+/// Depends on: fpdui_theme.
+/// Assumes: ImageProvider can fail, handles error with fallback.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

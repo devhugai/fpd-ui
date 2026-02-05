@@ -1,3 +1,9 @@
+/// Responsible for command palette / combo box functionality.
+/// Provides FpduiCommand, CommandInput, CommandList, etc.
+///
+/// Used by: Global search, complex selection.
+/// Depends on: fpdui_theme, lucide_icons.
+/// Assumes: Filtering logic handles large lists efficiently.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:gap/gap.dart';

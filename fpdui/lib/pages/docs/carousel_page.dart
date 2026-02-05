@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Carousel component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: carousel.dart, component_page.
 import 'package:flutter/material.dart';
 import '../../components/carousel.dart';
 import '../../components/card.dart';

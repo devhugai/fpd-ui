@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Breadcrumb component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: breadcrumb.dart, component_page.
 import 'package:flutter/material.dart';
 import '../../components/breadcrumb.dart';
 

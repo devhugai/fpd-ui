@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Radio Group component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: radio_group.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../components/radio_group.dart';

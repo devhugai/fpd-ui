@@ -1,3 +1,9 @@
+/// Responsible for showing/hiding content sections.
+/// Provides FpduiCollapsible widget.
+///
+/// Used by: Sidebars, advanced options.
+/// Depends on: fpdui_theme.
+/// Assumes: Controlled or uncontrolled state.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';

@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Sidebar component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: sidebar.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../../components/sidebar.dart';

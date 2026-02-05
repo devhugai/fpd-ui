@@ -1,4 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
+/// Responsible for displaying documentation for Chart component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: chart.dart, component_page.
 import 'package:flutter/material.dart';
 import '../../components/chart.dart';
 import '../../components/card.dart';

@@ -1,3 +1,9 @@
+/// Responsible for indicating loading or progress state.
+/// Provides FpduiProgress indicator.
+///
+/// Used by: Uploads, loading screens.
+/// Depends on: fpdui_theme.
+/// Assumes: 0.0 to 1.0 (or 100) range value.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

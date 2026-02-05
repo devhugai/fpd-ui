@@ -1,3 +1,9 @@
+/// Responsible for displaying helper text on hover.
+/// Provides FpduiTooltip widget.
+///
+/// Used by: Icon buttons, dense UIs.
+/// Depends on: fpdui_theme.
+/// Assumes: Triggered on hover/long-press.
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../theme/fpdui_theme.dart';

@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Textarea component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: textarea.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../components/textarea.dart';

@@ -1,3 +1,9 @@
+/// Responsible for tabbed content switching.
+/// Provides FpduiTabs, TabsList, TabsTrigger, TabsContent.
+///
+/// Used by: Dashboards, complex views.
+/// Depends on: fpdui_theme.
+/// Assumes: Shared value/controller for state.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

@@ -1,3 +1,9 @@
+/// Responsible for defining custom theme extensions for FPD UI.
+/// Provides semantic color tokens, dimensions (radius), and other design system properties.
+///
+/// Used by: AppTheme, all UI components.
+/// Depends on: flutter/material.
+/// Assumes: Consumed via Theme.of(context).extension<FpduiTheme>()!.
 import 'package:flutter/material.dart';
 
 @immutable

@@ -1,3 +1,9 @@
+/// Responsible for boolean toggle.
+/// Provides FpduiSwitch widget.
+///
+/// Used by: Settings, activation states.
+/// Depends on: fpdui_theme.
+/// Assumes: Boolean state controlled via onChanged.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

@@ -1,3 +1,9 @@
+/// Responsible for displaying all available text styles in the theme.
+/// Provides visual reference for typography tokens.
+///
+/// Used by: Router, Designers.
+/// Depends on: component_page, fpdui_theme.
+/// Assumes: Theme textTheme is populated.
 import 'package:flutter/material.dart';
 import '../../components/card.dart';
 import '../../components/separator.dart';

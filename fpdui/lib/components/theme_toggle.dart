@@ -1,3 +1,9 @@
+/// Responsible for simple light/dark mode toggle button.
+/// Provides ThemeToggle widget.
+///
+/// Used by: App header, settings.
+/// Depends on: theme_provider, lucide_icons.
+/// Assumes: Toggles between light and dark modes only.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'button.dart';

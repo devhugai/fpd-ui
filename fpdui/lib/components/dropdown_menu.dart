@@ -1,3 +1,9 @@
+/// Responsible for displaying lists of actions in a dropdown.
+/// Provides FpduiDropdownMenu widget.
+///
+/// Used by: Header menus, overflow actions.
+/// Depends on: fpdui_theme.
+/// Assumes: Triggered by user interaction (tap/click).
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';

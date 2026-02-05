@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Dropdown Menu component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: dropdown_menu.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../components/dropdown_menu.dart';

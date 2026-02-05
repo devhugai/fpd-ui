@@ -1,3 +1,9 @@
+/// Responsible for containerizing content with standard styling.
+/// Provides FpduiCard, CardHeader, CardTitle, CardContent, CardFooter.
+///
+/// Used by: Dashboards, complex lists, data display.
+/// Depends on: fpdui_theme.
+/// Assumes: Modular composition of sub-widgets.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../theme/fpdui_theme.dart';

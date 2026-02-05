@@ -1,3 +1,9 @@
+/// Responsible for displaying contextual content in a floating layer.
+/// Provides FpduiPopover and FpduiPopoverContent.
+///
+/// Used by: Help tooltips (complex), small forms.
+/// Depends on: fpdui_theme.
+/// Assumes: Anchored to a trigger widget.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

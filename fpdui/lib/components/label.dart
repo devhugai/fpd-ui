@@ -1,3 +1,9 @@
+/// Responsible for labeling form fields or sections.
+/// Provides FpduiLabel widget with consistent typography.
+///
+/// Used by: Forms.
+/// Depends on: fpdui_theme.
+/// Assumes: Associated with an input usually.
 import 'package:flutter/material.dart';
 
 class FpduiLabel extends StatelessWidget {

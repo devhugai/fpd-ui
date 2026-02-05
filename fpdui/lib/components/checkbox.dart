@@ -1,3 +1,9 @@
+/// Responsible for boolean selection.
+/// Provides FpduiCheckbox widget with custom styling.
+///
+/// Used by: Forms, settings, filters.
+/// Depends on: fpdui_theme.
+/// Assumes: Value changes via onChanged callback.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/fpdui_theme.dart';

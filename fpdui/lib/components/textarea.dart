@@ -1,3 +1,9 @@
+/// Responsible for multi-line text input.
+/// Provides FpduiTextarea widget.
+///
+/// Used by: Forms, comments, messages.
+/// Depends on: fpdui_theme.
+/// Assumes: Unlimited or constrained lines.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

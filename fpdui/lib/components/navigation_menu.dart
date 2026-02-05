@@ -1,3 +1,9 @@
+/// Responsible for displaying hierarchical navigation links.
+/// Provides FpduiNavigationMenu and NavigationMenuItem.
+///
+/// Used by: Header navigation, main menus.
+/// Depends on: fpdui_theme.
+/// Assumes: Hover or click interactions triggers sub-menus.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:gap/gap.dart';

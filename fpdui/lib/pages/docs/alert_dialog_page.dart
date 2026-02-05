@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Alert Dialog component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: alert_dialog.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../components/alert_dialog.dart';

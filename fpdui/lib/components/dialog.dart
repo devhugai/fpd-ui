@@ -1,3 +1,9 @@
+/// Responsible for displaying modal dialog content.
+/// Provides FpduiDialog, DialogContent, DialogFooter.
+///
+/// Used by: Forms, confirmation flows.
+/// Depends on: fpdui_theme.
+/// Assumes: Typically shown via showDialog.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';

@@ -1,3 +1,9 @@
+/// Responsible for the documentation navigation sidebar.
+/// Provides links to all documentation sections.
+///
+/// Used by: DocsShell.
+/// Depends on: go_router, fpdui_theme.
+/// Assumes: Fixed navigation structure.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../components/button.dart';

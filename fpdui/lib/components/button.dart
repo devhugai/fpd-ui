@@ -1,3 +1,9 @@
+/// Responsible for providing standard interactive buttons.
+/// Provides FpduiButton with standard variants (primary, secondary, ghost, etc).
+///
+/// Used by: Forms, Actions, Dialogs.
+/// Depends on: fpdui_theme.
+/// Assumes: Can be disabled via null onPressed.
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';

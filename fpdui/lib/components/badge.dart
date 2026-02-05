@@ -1,3 +1,9 @@
+/// Responsible for displaying status indicators or small counts.
+/// Provides FpduiBadge widget.
+///
+/// Used by: Notifications, status labels.
+/// Depends on: fpdui_theme.
+/// Assumes: Short text content.
 import 'package:flutter/material.dart';
 import '../theme/fpdui_theme.dart';
 

@@ -1,3 +1,9 @@
+/// Responsible for initializing the application and global providers.
+/// Provides the root widget structure, including theme and routing.
+///
+/// Used by: Flutter framework (entry point).
+/// Depends on: flutter_riverpod, routemaster, app_theme.
+/// Assumes: main() is the solitary entry point.
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'components/toast.dart'; // Import Toaster

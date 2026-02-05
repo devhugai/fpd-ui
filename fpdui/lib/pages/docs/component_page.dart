@@ -1,3 +1,9 @@
+/// Responsible for providing the common layout wrapper for component documentation pages.
+/// Provides standard header (title, description) and scrollable body.
+///
+/// Used by: All component documentation pages.
+/// Depends on: flutter/material.
+/// Assumes: Content provided as child.
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

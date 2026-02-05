@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Navigation Menu component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: navigation_menu.dart, component_page.
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../../components/navigation_menu.dart';

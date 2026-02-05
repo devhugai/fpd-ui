@@ -1,3 +1,8 @@
+/// Responsible for displaying documentation for Calendar component.
+/// Provides usage examples and API details.
+///
+/// Used by: Router.
+/// Depends on: calendar.dart, component_page.
 import 'package:flutter/material.dart';
 import '../../components/calendar.dart';
 import '../../components/card.dart';
