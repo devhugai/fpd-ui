@@ -42,6 +42,7 @@ import '../pages/docs/command_page.dart';
 import '../pages/docs/calendar_page.dart';
 import '../pages/docs/chart_page.dart';
 import '../pages/docs/carousel_page.dart';
+import '../pages/docs/typography_page.dart';
 import '../shell/docs_shell.dart';
 import '../pages/home_page.dart';
 import '../pages/sink_page.dart';
@@ -66,6 +67,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/installation',
             builder: (context, state) => const InstallationPage(),
+          ),
+          GoRoute(
+            path: '/docs/typography',
+            builder: (context, state) => const TypographyPage(),
           ),
           GoRoute(
             path: '/docs/components/button',

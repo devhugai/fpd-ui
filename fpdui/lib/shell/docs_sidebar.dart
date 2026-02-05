@@ -21,6 +21,7 @@ class DocsSidebarContent extends StatelessWidget {
             items: [
               _SidebarItem(title: "Introduction", path: "/docs/introduction"),
               _SidebarItem(title: "Installation", path: "/docs/installation"),
+              _SidebarItem(title: "Typography", path: "/docs/typography"),
             ],
           ),
           const SizedBox(height: 24),
