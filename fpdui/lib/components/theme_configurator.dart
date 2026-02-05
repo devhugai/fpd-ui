@@ -115,6 +115,27 @@ class ThemeConfigurator extends ConsumerWidget {
             );
           }).toList(),
         ),
+
+        const Gap(16),
+
+        // Typography Picker
+        constTextHeader('Typography'),
+        const Gap(8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: ['Inter', 'Roboto', 'Lato', 'Open Sans', 'Poppins'].map((font) {
+            final isSelected = ref.watch(themeFontFamilyProvider) == font;
+            return FpduiButton(
+              size: FpduiButtonSize.sm,
+              variant: isSelected ? FpduiButtonVariant.secondary : FpduiButtonVariant.outline,
+              text: font,
+              onPressed: () {
+                 ref.read(themeFontFamilyProvider.notifier).state = font;
+              },
+            );
+          }).toList(),
+        ),
       ],
     );
   }

@@ -12,6 +12,9 @@ final themeColorProvider = StateProvider<Color>((ref) => const Color(0xFF09090b)
 // Let's store a "ThemeColor" object or just a base color.
 // For simplicity, let's store the base Primary Color.
 final themePrimaryColorProvider = StateProvider<Color>((ref) => Colors.black); 
+
+// Typography
+final themeFontFamilyProvider = StateProvider<String>((ref) => 'Inter');
 // Note: "Zinc" isn't a single color, it's a slate/gray. 
 // Shadcn themes are "Zinc", "Slate", "Stone", "Gray", "Neutral", "Red", "Rose", "Orange", "Green", "Blue", "Yellow", "Violet".
 // Each has a set of colors.

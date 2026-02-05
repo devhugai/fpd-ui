@@ -7,6 +7,7 @@ class AppTheme {
     required Brightness brightness,
     Color? primaryColor,
     double radius = 0.5,
+    String fontFamily = 'Inter',
   }) {
     final isDark = brightness == Brightness.dark;
     final baseScheme = isDark ? const ColorScheme.dark() : const ColorScheme.light();
@@ -72,7 +73,7 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
-      fontFamily: GoogleFonts.inter().fontFamily,
+      fontFamily: GoogleFonts.getFont(fontFamily).fontFamily,
       brightness: brightness,
       colorScheme: baseScheme.copyWith(
         background: isDark ? darkBackground : lightBackground,
