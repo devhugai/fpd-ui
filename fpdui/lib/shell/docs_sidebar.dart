@@ -52,6 +52,7 @@ class _DocsSidebarContentState extends State<DocsSidebarContent> {
         _SidebarItem(title: "Input OTP", path: "/docs/components/input-otp"),
         _SidebarItem(title: "Textarea", path: "/docs/components/textarea"),
         _SidebarItem(title: "Checkbox", path: "/docs/components/checkbox"),
+        _SidebarItem(title: "Combobox", path: "/docs/components/combobox"),
         _SidebarItem(title: "Switch", path: "/docs/components/switch"),
         _SidebarItem(title: "Radio Group", path: "/docs/components/radio-group"),
         _SidebarItem(title: "Select", path: "/docs/components/select"),
@@ -72,6 +73,7 @@ class _DocsSidebarContentState extends State<DocsSidebarContent> {
         _SidebarItem(title: "Dialog", path: "/docs/components/dialog"),
         _SidebarItem(title: "Drawer", path: "/docs/components/drawer"),
         _SidebarItem(title: "Dropdown Menu", path: "/docs/components/dropdown-menu"),
+        _SidebarItem(title: "Hover Card", path: "/docs/components/hover-card"),
         _SidebarItem(title: "Popover", path: "/docs/components/popover"),
         _SidebarItem(title: "Sheet", path: "/docs/components/sheet"),
         _SidebarItem(title: "Snackbar", path: "/docs/components/snackbar"),
@@ -84,13 +86,16 @@ class _DocsSidebarContentState extends State<DocsSidebarContent> {
       title: "Navigation & Layout",
       items: [
         _SidebarItem(title: "Accordion", path: "/docs/components/accordion"),
+        _SidebarItem(title: "Aspect Ratio", path: "/docs/components/aspect-ratio"),
         _SidebarItem(title: "Collapsible", path: "/docs/components/collapsible"),
+        _SidebarItem(title: "Menubar", path: "/docs/components/menubar"),
         _SidebarItem(title: "Tabs", path: "/docs/components/tabs"),
         _SidebarItem(title: "Scroll Area", path: "/docs/components/scroll-area"),
         _SidebarItem(title: "Resizable", path: "/docs/components/resizable"),
         _SidebarItem(title: "Sidebar", path: "/docs/components/sidebar"),
-        // _SidebarItem(title: "Navigation Menu", path: "/docs/components/navigation-menu"),
+        _SidebarItem(title: "Navigation Menu", path: "/docs/components/navigation-menu"), // Check if route exists
         // _SidebarItem(title: "Breadcrumb", path: "/docs/components/breadcrumb"), 
+        _SidebarItem(title: "Pagination", path: "/docs/components/pagination"),
       ],
     ),
     _SidebarGroupData(

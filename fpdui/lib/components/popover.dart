@@ -15,6 +15,8 @@ class FpduiPopover extends StatefulWidget {
     this.controller,
     this.targetAnchor = Alignment.bottomCenter,
     this.followerAnchor = Alignment.topCenter,
+    this.width,
+    this.onOpenChange,
   });
 
   /// The widget that triggers the popover (e.g. Button).
@@ -26,6 +28,8 @@ class FpduiPopover extends StatefulWidget {
   final FpduiPopoverController? controller;
   final Alignment targetAnchor;
   final Alignment followerAnchor;
+  final double? width;
+  final ValueChanged<bool>? onOpenChange;
 
   @override
   State<FpduiPopover> createState() => _FpduiPopoverState();
@@ -51,14 +55,17 @@ class _FpduiPopoverState extends State<FpduiPopover> {
 
   void _toggle() {
     _overlayController.toggle();
+    widget.onOpenChange?.call(_overlayController.isShowing);
   }
 
   void _show() {
     _overlayController.show();
+    widget.onOpenChange?.call(true);
   }
 
   void _hide() {
     _overlayController.hide();
+    widget.onOpenChange?.call(false);
   }
 
   @override
@@ -82,7 +89,10 @@ class _FpduiPopoverState extends State<FpduiPopover> {
                 child: TapRegion(
                   groupId: _layerLink, // Use layerLink as unique ID
                   onTapOutside: (event) => _hide(),
-                  child: _PopoverContent(child: widget.content),
+                  child: _PopoverContent(
+                    width: widget.width,
+                    child: widget.content,
+                  ),
                 ),
               ),
             ),
@@ -117,8 +127,13 @@ class FpduiPopoverController {
 }
 
 class _PopoverContent extends StatelessWidget {
-  const _PopoverContent({required this.child});
+  const _PopoverContent({
+    required this.child,
+    this.width,
+  });
+
   final Widget child;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +143,7 @@ class _PopoverContent extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: Container(
-        width: 288, // w-72
+        width: width ?? 288, // w-72 default if null
         padding: const EdgeInsets.all(16), // p-4
         decoration: BoxDecoration(
           color: fpduiTheme.popover, 

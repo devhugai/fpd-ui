@@ -41,6 +41,12 @@ import '../pages/docs/toggle_group_page.dart';
 import '../pages/docs/drawer_page.dart';
 import '../pages/docs/sheet_page.dart';
 import '../pages/docs/popover_page.dart';
+import '../pages/docs/pagination_page.dart';
+import '../pages/docs/menubar_page.dart';
+import '../pages/docs/hover_card_page.dart';
+import '../pages/docs/combobox_page.dart';
+import '../pages/docs/aspect_ratio_page.dart';
+import '../pages/docs/kbd_page.dart';
 import '../pages/docs/tooltip_page.dart';
 import '../pages/docs/toast_page.dart';
 import '../pages/docs/context_menu_page.dart';
@@ -126,6 +132,18 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const ListPage(),
           ),
           GoRoute(
+            path: '/docs/components/menubar',
+            builder: (context, state) => const MenubarPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/menubar',
+            builder: (context, state) => const MenubarPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/hover-card',
+            builder: (context, state) => const HoverCardPage(),
+          ),
+          GoRoute(
             path: '/docs/components/label',
             builder: (context, state) => const LabelPage(),
           ),
@@ -184,6 +202,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/components/popover',
             builder: (context, state) => const PopoverPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/pagination',
+            builder: (context, state) => const PaginationPage(),
           ),
           GoRoute(
             path: '/docs/components/tooltip',
@@ -268,6 +290,22 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/components/date-picker',
             builder: (context, state) => const DatePickerPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/collapse', // Check existing path
+            builder: (context, state) => const CollapsiblePage(),
+          ),
+          GoRoute(
+            path: '/docs/components/combobox',
+            builder: (context, state) => const ComboboxPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/combobox',
+            builder: (context, state) => const ComboboxPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/aspect-ratio',
+            builder: (context, state) => const AspectRatioPage(),
           ),
           GoRoute(
             path: '/docs/components/command',

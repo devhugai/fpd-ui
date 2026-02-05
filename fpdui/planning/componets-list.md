@@ -1,7 +1,7 @@
 ~~Accordion~~
 ~~Alert~~
 ~~Alert Dialog~~
-Aspect Ratio
+~~Aspect Ratio~~
 ~~Avatar~~
 ~~Badge~~
 ~~Breadcrumb~~
@@ -13,7 +13,7 @@ Button Group
 ~~Chart~~
 ~~Checkbox~~
 ~~Collapsible~~
-Combobox
+~~Combobox~~
 ~~Command~~
 ~~Context Menu~~
 ~~Data Table~~
@@ -25,19 +25,20 @@ Direction
 Empty
 Field
 ~~Floating Action Button~~
-Hover Card
+~~Floating Action Button~~
+~~Hover Card~~
 ~~Input~~
 Input Group
 ~~Input OTP~~
-Item
-Kbd
+~~Item~~
+~~Kbd~~
 ~~Label
 List
 ~~ListItem~~~~
-Menubar
+~~Menubar~~
 Native Select
 ~~Navigation Menu~~
-Pagination
+~~Pagination~~
 ~~Popover~~
 ~~Progress~~
 ~~Radio Group~~
