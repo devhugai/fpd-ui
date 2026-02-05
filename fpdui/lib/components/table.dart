@@ -130,7 +130,7 @@ class FpduiTableCell extends StatelessWidget {
         padding: const EdgeInsets.all(16), // p-4
         alignment: alignment,
         child: DefaultTextStyle.merge(
-           style: Theme.of(context).textTheme.bodyMedium,
+           style: Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
            child: child,
         ),
       ),

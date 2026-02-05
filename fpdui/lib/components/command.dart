@@ -100,7 +100,9 @@ class FpduiCommandInput extends StatelessWidget {
             child: TextField(
               controller: controller,
               onChanged: onChanged,
-              style: theme.textTheme.bodyMedium,
+              style: theme.textTheme.bodyMedium, // nullable is fine for TextField style, usually.
+              // Wait, TextField style is TextStyle? so it IS fine.
+              // But let's check inputDecoration hintStyle.
               decoration: InputDecoration(
                 hintText: placeholder,
                 hintStyle: theme.textTheme.bodyMedium?.copyWith(
@@ -232,7 +234,7 @@ class FpduiCommandItem extends StatelessWidget {
         child: DefaultTextStyle.merge(
            style: theme.textTheme.bodyMedium?.copyWith(
              color: selected ? fpduiTheme.accentForeground : theme.colorScheme.onBackground,
-           ),
+           ) ?? const TextStyle(),
            child: IconTheme(
              data: IconThemeData(
                size: 16,

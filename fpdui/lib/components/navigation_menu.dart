@@ -231,7 +231,7 @@ class FpduiNavigationMenuTrigger extends StatelessWidget {
           style: theme.textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.w500,
             color: isActive ? theme.colorScheme.onSecondary : theme.colorScheme.onBackground,
-          ),
+          ) ?? const TextStyle(),
          child: Row(
            mainAxisSize: MainAxisSize.min,
            children: [
@@ -320,7 +320,7 @@ class FpduiNavigationMenuLink extends StatelessWidget {
                 children: [
                    Text(
                      title,
-                     style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                     style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600) ?? const TextStyle(fontWeight: FontWeight.w600),
                    ),
                    if (description != null) ...[
                      const Gap(4),
@@ -328,7 +328,7 @@ class FpduiNavigationMenuLink extends StatelessWidget {
                        description!,
                        style: theme.textTheme.bodySmall?.copyWith(
                          color: theme.colorScheme.onBackground.withOpacity(0.7),
-                       ),
+                       ) ?? const TextStyle(),
                      ),
                    ],
                 ],

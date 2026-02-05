@@ -94,7 +94,7 @@ class FpduiCardDescription extends StatelessWidget {
       child: DefaultTextStyle(
         style: theme.textTheme.bodyMedium?.copyWith(
           color: fpduiTheme.mutedForeground,
-        ),
+        ) ?? const TextStyle(),
         child: child,
       ),
     );
