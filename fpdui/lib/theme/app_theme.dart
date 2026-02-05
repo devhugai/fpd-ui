@@ -109,6 +109,9 @@ class AppTheme {
           input: isDark ? darkInput : lightInput,
           ring: isDark ? darkRing : lightRing,
           radius: radius * 16.0, 
+          radiusSm: (radius * 16.0) - 2.0, // radius-sm
+          radiusLg: (radius * 16.0) + 2.0, // radius-lg
+          radiusXl: (radius * 16.0) + 4.0, // radius-xl (approx)
           // Default was 0.5 (web rem?) -> 8.0 px. So multiplier 16 seems right if 0.5 is default.
           success: isDark ? darkSuccess : lightSuccess,
           successForeground: isDark ? darkSuccessForeground : lightSuccessForeground,

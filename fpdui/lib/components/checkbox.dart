@@ -39,7 +39,7 @@ class FpduiCheckbox extends StatelessWidget {
 
     return InkWell(
       onTap: enabled ? () => onChanged?.call(!value) : null,
-      borderRadius: BorderRadius.circular(4),
+      borderRadius: BorderRadius.circular(fpduiTheme.radiusSm),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         width: 16,
@@ -50,7 +50,7 @@ class FpduiCheckbox extends StatelessWidget {
             color: borderColor,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(fpduiTheme.radiusSm),
         ),
         child: value
             ? Icon(

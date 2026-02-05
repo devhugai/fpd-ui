@@ -37,7 +37,7 @@ class FpduiDialogContent extends StatelessWidget {
       backgroundColor: theme.colorScheme.background,
       surfaceTintColor: Colors.transparent, // Remove M3 tint
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(fpduiTheme.radius),
+        borderRadius: BorderRadius.circular(fpduiTheme.radiusLg),
         side: BorderSide(color: fpduiTheme.border),
       ),
       insetPadding: const EdgeInsets.all(24), // margin for small screens
@@ -108,11 +108,10 @@ class FpduiDialogTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-        fontSize: 18, // text-lg
+      style: Theme.of(context).textTheme.titleLarge?.copyWith(
         fontWeight: FontWeight.w600, // font-semibold
         height: 1.0, // leading-none
-      ),
+      ) ?? const TextStyle(),
     );
   }
 }
@@ -131,10 +130,9 @@ class FpduiDialogDescription extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0), // gap-2 inside header
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: 14, // text-sm
+        style: theme.textTheme.bodyMedium?.copyWith(
           color: fpduiTheme.mutedForeground,
-        ),
+        ) ?? const TextStyle(),
       ),
     );
   }

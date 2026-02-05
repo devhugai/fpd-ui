@@ -20,7 +20,7 @@ class FpduiCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor ?? fpduiTheme.card,
-        borderRadius: BorderRadius.circular(fpduiTheme.radius), // rounded-xl usually larger but we use theme radius
+        borderRadius: BorderRadius.circular(fpduiTheme.radiusXl), // rounded-xl usually larger but we use theme radius
         border: Border.all(color: fpduiTheme.border),
         boxShadow: [
           BoxShadow(

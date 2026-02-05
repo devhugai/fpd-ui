@@ -23,6 +23,9 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
     required this.input,
     required this.ring,
     required this.radius,
+    required this.radiusSm,
+    required this.radiusLg,
+    required this.radiusXl,
     required this.success,
     required this.successForeground,
     required this.warning,
@@ -53,6 +56,9 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
   final Color input;
   final Color ring;
   final double radius;
+  final double radiusSm;
+  final double radiusLg;
+  final double radiusXl;
   final Color success;
   final Color successForeground;
   final Color warning;
@@ -84,6 +90,9 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
     Color? input,
     Color? ring,
     double? radius,
+    double? radiusSm,
+    double? radiusLg,
+    double? radiusXl,
     Color? success,
     Color? successForeground,
     Color? warning,
@@ -114,6 +123,9 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
       input: input ?? this.input,
       ring: ring ?? this.ring,
       radius: radius ?? this.radius,
+      radiusSm: radiusSm ?? this.radiusSm,
+      radiusLg: radiusLg ?? this.radiusLg,
+      radiusXl: radiusXl ?? this.radiusXl,
       success: success ?? this.success,
       successForeground: successForeground ?? this.successForeground,
       warning: warning ?? this.warning,
@@ -151,6 +163,9 @@ class FpduiTheme extends ThemeExtension<FpduiTheme> {
       input: Color.lerp(input, other.input, t)!,
       ring: Color.lerp(ring, other.ring, t)!,
       radius: other.radius, 
+      radiusSm: other.radiusSm,
+      radiusLg: other.radiusLg,
+      radiusXl: other.radiusXl,
       success: Color.lerp(success, other.success, t)!,
       successForeground: Color.lerp(successForeground, other.successForeground, t)!,
       warning: Color.lerp(warning, other.warning, t)!,
