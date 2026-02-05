@@ -300,12 +300,12 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const ComboboxPage(),
           ),
           GoRoute(
-            path: '/docs/components/combobox',
-            builder: (context, state) => const ComboboxPage(),
-          ),
-          GoRoute(
             path: '/docs/components/aspect-ratio',
             builder: (context, state) => const AspectRatioPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/kbd',
+            builder: (context, state) => const KbdPage(),
           ),
           GoRoute(
             path: '/docs/components/command',

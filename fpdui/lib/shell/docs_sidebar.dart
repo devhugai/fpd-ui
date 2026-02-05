@@ -104,6 +104,7 @@ class _DocsSidebarContentState extends State<DocsSidebarContent> {
         _SidebarItem(title: "Table", path: "/docs/components/table"),
         _SidebarItem(title: "Data Table", path: "/docs/components/data-table"),
         _SidebarItem(title: "Command", path: "/docs/components/command"),
+        _SidebarItem(title: "Kbd", path: "/docs/components/kbd"),
         _SidebarItem(title: "Calendar", path: "/docs/components/calendar"),
         _SidebarItem(title: "Chart", path: "/docs/components/chart"),
         _SidebarItem(title: "Carousel", path: "/docs/components/carousel"),
