@@ -34,6 +34,11 @@ import '../pages/docs/toggle_page.dart';
 import '../pages/docs/spinner_page.dart';
 import '../pages/docs/input_otp_page.dart';
 import '../pages/docs/date_picker_page.dart';
+import '../pages/docs/fab_page.dart';
+import '../pages/docs/snackbar_page.dart';
+import '../pages/docs/list_page.dart';
+import '../pages/docs/toggle_group_page.dart';
+import '../pages/docs/drawer_page.dart';
 import '../pages/docs/sheet_page.dart';
 import '../pages/docs/popover_page.dart';
 import '../pages/docs/tooltip_page.dart';
@@ -89,6 +94,10 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const ButtonPage(),
           ),
           GoRoute(
+            path: '/docs/components/fab',
+            builder: (context, state) => const FabPage(),
+          ),
+          GoRoute(
             path: '/sink',
             builder: (context, state) => const SinkPage(),
           ),
@@ -111,6 +120,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/docs/components/skeleton',
             builder: (context, state) => const SkeletonPage(),
+          ),
+          GoRoute(
+            path: '/docs/components/list',
+            builder: (context, state) => const ListPage(),
           ),
           GoRoute(
             path: '/docs/components/label',
@@ -153,6 +166,10 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const DialogPage(),
           ),
           GoRoute(
+            path: '/docs/components/drawer',
+            builder: (context, state) => const DrawerPage(),
+          ),
+          GoRoute(
             path: '/docs/components/alert',
             builder: (context, state) => const AlertPage(),
           ),
@@ -177,12 +194,20 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const ToastPage(),
           ),
           GoRoute(
+            path: '/docs/components/snackbar',
+            builder: (context, state) => const SnackbarPage(),
+          ),
+          GoRoute(
             path: '/docs/components/select',
             builder: (context, state) => const SelectPage(),
           ),
           GoRoute(
             path: '/docs/components/toggle',
             builder: (context, state) => const TogglePage(),
+          ),
+          GoRoute(
+            path: '/docs/components/toggle-group',
+            builder: (context, state) => const ToggleGroupPage(),
           ),
           GoRoute(
             path: '/docs/components/input-otp',

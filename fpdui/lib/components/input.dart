@@ -17,6 +17,8 @@ class FpduiInput extends StatefulWidget {
     this.enabled = true,
     this.maxLines = 1,
     this.onChanged,
+    this.prefix,
+    this.suffix,
   });
 
   final TextEditingController? controller;
@@ -26,6 +28,8 @@ class FpduiInput extends StatefulWidget {
   final bool enabled;
   final int maxLines;
   final ValueChanged<String>? onChanged;
+  final Widget? prefix;
+  final Widget? suffix;
 
   @override
   State<FpduiInput> createState() => _FpduiInputState();
@@ -71,6 +75,12 @@ class _FpduiInputState extends State<FpduiInput> {
       ),
       cursorColor: theme.colorScheme.primary, // caret-primary
       decoration: InputDecoration(
+        prefixIcon: widget.prefix != null 
+            ? IconTheme(data: IconThemeData(color: fpduiTheme.mutedForeground, size: 16), child: widget.prefix!) 
+            : null,
+        suffixIcon: widget.suffix != null
+            ? IconTheme(data: IconThemeData(color: fpduiTheme.mutedForeground, size: 16), child: widget.suffix!)
+            : null,
         hintText: widget.hintText,
         hintStyle: theme.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w400,

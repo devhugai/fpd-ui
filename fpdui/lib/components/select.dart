@@ -95,11 +95,14 @@ class _FpduiSelectState<T> extends State<FpduiSelect<T>> {
 
     // Find selected item widget to display
     final selectedItem = widget.items.where((i) => i.value == widget.value).firstOrNull;
-    final displayContent = selectedItem?.child ?? 
-                          widget.placeholder != null ? DefaultTextStyle(
-                            style: theme.textTheme.bodyMedium!.copyWith(color: fpduiTheme.mutedForeground),
-                            child: widget.placeholder!, 
-                          ) : const SizedBox();
+    Widget? displayContent = selectedItem?.child;
+    if (displayContent == null && widget.placeholder != null) {
+      displayContent = DefaultTextStyle(
+        style: theme.textTheme.bodyMedium!.copyWith(color: fpduiTheme.mutedForeground),
+        child: widget.placeholder!,
+      );
+    }
+    displayContent ??= const SizedBox();
 
     return CompositedTransformTarget(
       link: _layerLink,

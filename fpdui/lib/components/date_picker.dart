@@ -44,8 +44,10 @@ class _FpduiDatePickerState extends State<FpduiDatePicker> {
     return FpduiPopover(
       controller: _popoverController,
       content: FpduiCalendar(
-        mode: FpduiCalendarMode.single,
-        selectedDate: widget.value,
+        focusedDay: widget.value ?? DateTime.now(), // Required param focusedDay was missing too in cal usage!
+        firstDay: DateTime(1900),
+        lastDay: DateTime(2100),
+        selectedDay: widget.value,
         onDaySelected: (selectedDay, focusedDay) {
           widget.onChanged(selectedDay);
           _popoverController.hide();

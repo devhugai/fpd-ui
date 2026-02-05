@@ -20,17 +20,20 @@ Combobox
 ~~Date Picker~~
 ~~Dialog~~
 Direction
-Drawer
+~~Drawer~~
 ~~Dropdown Menu~~
 Empty
 Field
+~~Floating Action Button~~
 Hover Card
 ~~Input~~
 Input Group
 ~~Input OTP~~
 Item
 Kbd
-~~Label~~
+~~Label
+List
+~~ListItem~~~~
 Menubar
 Native Select
 ~~Navigation Menu~~
@@ -46,6 +49,7 @@ Pagination
 ~~Sidebar~~
 ~~Skeleton~~
 ~~Slider~~
+~~Snackbar~~
 Sonner
 ~~Spinner~~
 ~~Switch~~
@@ -54,6 +58,6 @@ Sonner
 ~~Textarea~~
 ~~Toast~~
 ~~Toggle~~
-Toggle Group
+~~Toggle Group~~
 ~~Tooltip~~
 ~~Typography~~
