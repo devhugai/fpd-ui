@@ -96,8 +96,8 @@ Replicate the `apps/v4` documentation site to demonstrate the components.
   - `/docs/components/button`
   - `/docs/components/card`
   - etc.
-- [ ] Create a "Sink" page (Kitchen Sink) to view all components at once for theming tests.
-- [ ] Implement Theme Configurator (Color picker, Radius picker) similar to the website.
+- [x] Create a "Sink" page (Kitchen Sink) to view all components at once for theming tests.
+- [x] Implement Theme Configurator (Color picker, Radius picker) similar to the website.
 
 ## 4. Verification & Testing
 
