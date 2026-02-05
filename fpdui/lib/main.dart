@@ -4,8 +4,10 @@ import 'components/toast.dart'; // Import Toaster
 import 'routes/router.dart';
 import 'theme/app_theme.dart';
 import 'theme/theme_provider.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const ProviderScope(child: MyApp()));
 }
 
