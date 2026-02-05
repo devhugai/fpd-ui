@@ -59,19 +59,17 @@ class _FpduiInputState extends State<FpduiInput> {
       enabled: widget.enabled,
       maxLines: widget.maxLines,
       onChanged: widget.onChanged,
-      style: TextStyle(
-        fontSize: 14,
+      style: theme.textTheme.bodyMedium?.copyWith(
         fontWeight: FontWeight.w400,
         color: theme.colorScheme.onBackground,
       ),
       cursorColor: theme.colorScheme.primary, // caret-primary
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: TextStyle(
-          fontSize: 14,
+        hintStyle: theme.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w400,
           color: fpduiTheme.mutedForeground,
-        ),
+        ) ?? const TextStyle(),
         filled: true,
         fillColor: Colors.transparent, // bg-transparent
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8), // px-3 py-1 (h-9 approx)

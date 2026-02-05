@@ -112,21 +112,19 @@ class FpduiDropdownMenuItem extends StatelessWidget {
           ],
           Expanded(
             child: DefaultTextStyle(
-              style: TextStyle(
-                fontSize: 14,
+              style: theme.textTheme.bodyMedium?.copyWith(
                 color: textColor,
-              ),
+              ) ?? const TextStyle(),
               child: child,
             ),
           ),
           if (trailing != null) ...[
             const Gap(8),
             DefaultTextStyle(
-               style: TextStyle(
-                fontSize: 12,
+               style: theme.textTheme.labelSmall?.copyWith(
                 color: fpduiTheme.mutedForeground,
                 letterSpacing: 1.0,
-              ),
+              ) ?? const TextStyle(),
               child: trailing!,
             ),
           ],
@@ -146,10 +144,9 @@ class FpduiDropdownMenuLabel extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 14,
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w600,
-        ),
+        ) ?? const TextStyle(),
       ),
     );
   }

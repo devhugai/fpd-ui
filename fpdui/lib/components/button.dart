@@ -141,15 +141,14 @@ class _FpduiButtonState extends State<FpduiButton> {
         if (widget.text != null)
           Text(
             widget.text!,
-            style: TextStyle(
+            style: theme.textTheme.bodyMedium?.copyWith(
               color: foregroundColor,
-              fontSize: 14,
               fontWeight: FontWeight.w500,
               decoration: widget.variant == FpduiButtonVariant.link && _isHovered 
                   ? TextDecoration.underline 
                   : null,
               decorationColor: foregroundColor,
-            ),
+            ) ?? const TextStyle(),
           )
         else
           widget.child!,

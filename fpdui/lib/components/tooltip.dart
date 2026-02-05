@@ -156,11 +156,10 @@ class _TooltipContent extends StatelessWidget {
         borderRadius: BorderRadius.circular(fpduiTheme.radius), // rounded-md
       ),
       child: DefaultTextStyle(
-        style: TextStyle(
+        style: theme.textTheme.labelSmall?.copyWith(
           color: theme.colorScheme.background, // text-background (inverse)
-          fontSize: 12, // text-xs
           fontWeight: FontWeight.w500,
-        ),
+        ) ?? const TextStyle(),
         child: content ?? Text(
           message!,
           textAlign: TextAlign.center,

@@ -48,11 +48,10 @@ class FpduiCalendar extends StatelessWidget {
         headerStyle: HeaderStyle(
           titleCentered: true,
           formatButtonVisible: false,
-          titleTextStyle: TextStyle(
-            fontSize: 14,
+          titleTextStyle: theme.textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.w500,
             color: theme.colorScheme.onBackground,
-          ),
+          ) ?? const TextStyle(),
           leftChevronIcon: Icon(LucideIcons.chevronLeft, size: 16, color: theme.colorScheme.onBackground),
           rightChevronIcon: Icon(LucideIcons.chevronRight, size: 16, color: theme.colorScheme.onBackground),
           leftChevronPadding: const EdgeInsets.all(4),
@@ -64,22 +63,20 @@ class FpduiCalendar extends StatelessWidget {
         
         // Days of Week Style
         daysOfWeekStyle: DaysOfWeekStyle(
-          weekdayStyle: TextStyle(
-            fontSize: 12,
+          weekdayStyle: theme.textTheme.labelSmall?.copyWith(
             fontWeight: FontWeight.w400,
             color: fpduiTheme.mutedForeground,
-          ),
-          weekendStyle: TextStyle(
-            fontSize: 12,
+          ) ?? const TextStyle(),
+          weekendStyle: theme.textTheme.labelSmall?.copyWith(
             fontWeight: FontWeight.w400,
             color: fpduiTheme.mutedForeground,
-          ),
+          ) ?? const TextStyle(),
         ),
 
         // Date Cell Styles
         calendarStyle: CalendarStyle(
-          defaultTextStyle: TextStyle(fontSize: 14, color: theme.colorScheme.onBackground),
-          weekendTextStyle: TextStyle(fontSize: 14, color: theme.colorScheme.onBackground),
+          defaultTextStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onBackground) ?? const TextStyle(),
+          weekendTextStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onBackground) ?? const TextStyle(),
           
           // Selected
           selectedDecoration: BoxDecoration(
@@ -87,11 +84,10 @@ class FpduiCalendar extends StatelessWidget {
             borderRadius: BorderRadius.circular(fpduiTheme.radius),
             shape: BoxShape.rectangle, // Explicitly set to avoid assertion conflict with default circle
           ),
-          selectedTextStyle: TextStyle(
-            fontSize: 14, 
+          selectedTextStyle: theme.textTheme.bodyMedium?.copyWith(
             color: fpduiTheme.primaryForeground,
             fontWeight: FontWeight.normal,
-          ),
+          ) ?? const TextStyle(),
           
           // Today
           todayDecoration: BoxDecoration(
@@ -99,17 +95,15 @@ class FpduiCalendar extends StatelessWidget {
             borderRadius: BorderRadius.circular(fpduiTheme.radius),
             shape: BoxShape.rectangle,
           ),
-          todayTextStyle: TextStyle(
-            fontSize: 14, 
+          todayTextStyle: theme.textTheme.bodyMedium?.copyWith(
             color: fpduiTheme.accentForeground,
             fontWeight: FontWeight.normal,
-          ),
+          ) ?? const TextStyle(),
           
           // Outside
-          outsideTextStyle: TextStyle(
-            fontSize: 14, 
+          outsideTextStyle: theme.textTheme.bodyMedium?.copyWith(
             color: fpduiTheme.mutedForeground,
-          ),
+          ) ?? const TextStyle(),
         ),
         
         rowHeight: 40, 

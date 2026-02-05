@@ -49,6 +49,16 @@ class FpduiAvatar extends StatelessWidget {
     final bgColor = backgroundColor ?? fpduiTheme.muted;
     final fgColor = foregroundColor ?? fpduiTheme.mutedForeground;
 
+    final textStyle = theme.textTheme.bodyMedium?.copyWith(
+      color: fgColor,
+      fontSize: fontSize,
+      fontWeight: FontWeight.w500,
+    ) ?? TextStyle(
+      color: fgColor,
+      fontSize: fontSize,
+      fontWeight: FontWeight.w500,
+    );
+
     return Container(
       width: dimension,
       height: dimension,
@@ -61,21 +71,17 @@ class FpduiAvatar extends StatelessWidget {
           ? Image(
               image: image!,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => _buildFallback(fgColor, fontSize),
+              errorBuilder: (context, error, stackTrace) => _buildFallback(textStyle),
             )
-          : _buildFallback(fgColor, fontSize),
+          : _buildFallback(textStyle),
     );
   }
 
-  Widget _buildFallback(Color fgColor, double fontSize) {
+  Widget _buildFallback(TextStyle textStyle) {
     if (fallback == null) return const SizedBox();
     return Center(
       child: DefaultTextStyle(
-        style: TextStyle(
-          color: fgColor,
-          fontSize: fontSize,
-          fontWeight: FontWeight.w500,
-        ),
+        style: textStyle,
         child: fallback!,
       ),
     );

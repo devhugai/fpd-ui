@@ -54,19 +54,17 @@ class _FpduiTextareaState extends State<FpduiTextarea> {
       maxLines: widget.maxLines, // null means unbounded (grow)
       onChanged: widget.onChanged,
       textAlignVertical: TextAlignVertical.top, // Start text at top
-      style: TextStyle(
-        fontSize: 14,
+      style: theme.textTheme.bodyMedium?.copyWith(
         fontWeight: FontWeight.w400,
         color: theme.colorScheme.onBackground,
       ),
       cursorColor: theme.colorScheme.primary,
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: TextStyle(
-          fontSize: 14,
+        hintStyle: theme.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w400,
           color: fpduiTheme.mutedForeground,
-        ),
+        ) ?? const TextStyle(),
         filled: true,
         fillColor: Colors.transparent,
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8), // px-3 py-2

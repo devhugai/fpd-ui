@@ -69,11 +69,11 @@ class FpduiBadge extends StatelessWidget {
         border: borderColor != null ? Border.all(color: borderColor) : null,
       ),
       child: DefaultTextStyle(
-        style: TextStyle(
+        style: theme.textTheme.labelSmall?.copyWith(
           color: foregroundColor,
           fontSize: 12, // text-xs
           fontWeight: FontWeight.w600, // font-semibold
-        ),
+        ) ?? const TextStyle(),
         child: child,
       ),
     );

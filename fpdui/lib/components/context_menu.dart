@@ -142,21 +142,19 @@ class FpduiContextMenuItem extends StatelessWidget {
           ],
           Expanded(
             child: DefaultTextStyle(
-              style: TextStyle(
-                fontSize: 14, // text-sm
+              style: theme.textTheme.bodyMedium?.copyWith(
                 color: textColor,
-              ),
+              ) ?? const TextStyle(),
               child: child,
             ),
           ),
           if (trailing != null) ...[
             const Gap(8),
             DefaultTextStyle(
-               style: TextStyle(
-                fontSize: 12, // text-xs
+               style: theme.textTheme.labelSmall?.copyWith(
                 color: fpduiTheme.mutedForeground,
                 letterSpacing: 1.0, // tracking-widest
-              ),
+              ) ?? const TextStyle(),
               child: trailing!,
             ),
           ],
@@ -182,10 +180,9 @@ class FpduiContextMenuLabel extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 14,
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w600,
-        ),
+        ) ?? const TextStyle(),
       ),
     );
   }

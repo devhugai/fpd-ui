@@ -103,11 +103,10 @@ class _FpduiAccordionItemWrapper extends StatelessWidget {
                 children: [
                   Expanded(
                     child: DefaultTextStyle(
-                      style: TextStyle(
-                        fontSize: 14,
+                      style: theme.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w500, // font-medium
                         color: theme.colorScheme.onBackground,
-                      ),
+                      ) ?? const TextStyle(),
                       child: item.trigger, // We might want to add hover:underline via MouseRegion if we want strict fidelity
                     ),
                   ),
@@ -134,10 +133,9 @@ class _FpduiAccordionItemWrapper extends StatelessWidget {
                   ? Padding(
                       padding: const EdgeInsets.only(bottom: 16), // pb-4
                       child: DefaultTextStyle(
-                        style: TextStyle(
-                            fontSize: 14,
+                        style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.onBackground, // or generic text
-                        ),
+                        ) ?? const TextStyle(),
                         child: item.content
                       ),
                     )
